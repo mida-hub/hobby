@@ -199,8 +199,8 @@ def preprocessing_score(X, ohe_columns, columns_path, rfepca, imputer_path, sele
     return X_fin_s
 
 #####################################################
-# グリッドサーチPCA
-def gridSearchFunction_PCA(X, y, ohe_columns, metrics, est_name="Logistic"):
+# グリッドサーチSelect_n
+def gridSearchFunction_Select_n(X, y, ohe_columns, metrics):
     y = y.as_matrix().ravel()
 
     # one-hotエンコーディング
@@ -210,6 +210,7 @@ def gridSearchFunction_PCA(X, y, ohe_columns, metrics, est_name="Logistic"):
                            columns=ohe_columns)
 
     # print(X_new.head())
+    # print(X_new.shape)
     # print(X_new.describe())
     # print('-' * 50)
 
@@ -233,17 +234,24 @@ def gridSearchFunction_PCA(X, y, ohe_columns, metrics, est_name="Logistic"):
 
     clf_list = {
         # ロジスティック
-        'Logistic':
+        'Logistic_rfe':
+            Pipeline([('scl', StandardScaler()),
+                      ('rfe', RFE(RandomForestClassifier(random_state=1),step=.05)),
+                      ('est', LogisticRegression(random_state=1))]),
+        # ロジスティック
+        'Logistic_pca':
             Pipeline([('scl', StandardScaler()),
                       ('pca', PCA(random_state=1)),
                       ('est', LogisticRegression(random_state=1))])
     }
 
-    pca_n = range(1, 17)
+    select_n = range(1, X_new.shape[1] + 1)
 
     param_list = {
         # ロジスティック
-        'Logistic':{'pca__n_components':pca_n}
+        'Logistic_rfe':{'rfe__n_features_to_select':select_n},
+        # ロジスティック
+        'Logistic_pca':{'pca__n_components':select_n}
     }
 
     for est_name in clf_list:
@@ -263,6 +271,7 @@ def gridSearchFunction_PCA(X, y, ohe_columns, metrics, est_name="Logistic"):
         print(est_name)
         print('Best Score:', gs.best_score_)
         print('Best Params', gs.best_params_)
+        # print(pd.DataFrame(gs.cv_results_))
 
     return
 
@@ -582,11 +591,11 @@ train_flag = True
 if train_flag:
     X, y = read_train(train_path, y_label, obj_type)
 
-# grids_pca_flag = True
-grids_pca_flag = False
-if grids_pca_flag:
+grids_select_n_flag = True
+# grids_pca_flag = False
+if grids_select_n_flag:
     # グリッドサーチPCA
-    gridSearchFunction_PCA(X, y, ohe_columns, metrics)
+    gridSearchFunction_Select_n(X, y, ohe_columns, metrics)
 
 # grids_flag = True
 grids_flag = False
@@ -594,8 +603,8 @@ if grids_flag:
     # グリッドサーチ
     gridSearchFunction(X, y, ohe_columns, metrics)
 
-preprocess_flag = True
-# preprocess_flag = False
+# preprocess_flag = True
+preprocess_flag = False
 if preprocess_flag:
     # 前処理をして返却する
     # input : X, y, one-hotエンコードカラム, columnsパス, RFE/PCAフラグ, imputerパス, selectorパス
@@ -608,8 +617,8 @@ if preprocess_flag:
     est_choice = ""
     best_model, best_name = modelValidation(X, y, metrics, est_choice)
 
-score_flag = True
-# score_flag = False
+# score_flag = True
+score_flag = False
 if score_flag:
     # スコア用データ
     # データ読み込み
