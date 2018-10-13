@@ -75,7 +75,7 @@ def read_score(csvpath, type):
 
 #####################################################
 # 訓練データ前処理
-def preprocessing_train(X, y_new, ohe_columns, columns_path, rfepca, imputer_path, selector_path):
+def preprocessing_train(X, y_new, ohe_columns, columns_path, rfepca, imputer_path, selector_path, select_n):
 
     # one-hotエンコーディング
     # カテゴリ変数に適用する
@@ -102,8 +102,6 @@ def preprocessing_train(X, y_new, ohe_columns, columns_path, rfepca, imputer_pat
 
     # print(X_new.head())
     # print('-' * 50)
-
-    select_n = 10
 
     # print(rfepca)
     if rfepca == 'RFE':
@@ -259,11 +257,11 @@ def gridSearchFunction_Select_n(X, y, ohe_columns, metrics):
         param_grid = param_list[est_name]
 
         gs = GridSearchCV(estimator=clf,
-                                   param_grid=param_grid,
-                                   scoring=metrics,
-                                   cv=3,
-                                   return_train_score=False
-                                   )
+                           param_grid=param_grid,
+                           scoring=metrics,
+                           cv=3,
+                           return_train_score=False
+                            )
 
         gs = gs.fit(X_train, y_train)
 
@@ -277,30 +275,7 @@ def gridSearchFunction_Select_n(X, y, ohe_columns, metrics):
 
 #####################################################
 # グリッドサーチ
-def gridSearchFunction(X, y, ohe_columns, metrics, est_name="Logistic"):
-    y = y.as_matrix().ravel()
-
-    # one-hotエンコーディング
-    # カテゴリ変数に適用する
-    X_new = pd.get_dummies(X,
-                           dummy_na=True,
-                           columns=ohe_columns)
-
-    # print(X_new.head())
-    # print(X_new.describe())
-    # print('-' * 50)
-
-    # 数値型の欠損値を平均値で補完するための計算
-    imp = Imputer(missing_values='NaN',
-                  strategy='mean',
-                  axis=0
-                  )
-    imp.fit(X_new)
-
-    # NaN値を平均値に補完
-    X_new_columns = X_new.columns.values
-    X = pd.DataFrame(imp.transform(X_new),
-                         columns=X_new_columns)
+def gridSearchFunction(X, y, metrics):
 
     X_train, X_test, y_train, y_test = train_test_split(X,
                                                         y,
@@ -312,95 +287,76 @@ def gridSearchFunction(X, y, ohe_columns, metrics, est_name="Logistic"):
         # # K近傍法
         # 'Knn':
         #     Pipeline([('scl', StandardScaler()),
-        #               ('pca', PCA(random_state=1)),
         #               ('est', KNeighborsClassifier())]),
         # ロジスティック
         'Logistic':
             Pipeline([('scl', StandardScaler()),
-                      ('pca', PCA(random_state=1)),
                       ('est', LogisticRegression(random_state=1))]),
         # # SVC
         # 'svc':
         #     Pipeline([('scl', StandardScaler()),
-        #               ('pca', PCA(random_state=1)),
         #               ('est', SVC(random_state=1))]),
         # # L-SVC
         # 'L-svc':
         #     Pipeline([('scl', StandardScaler()),
-        #               ('pca', PCA(random_state=1)),
         #               ('est', LinearSVC(random_state=1))]),
         # ランダムフォレスト
         'R-forest':
             Pipeline([('scl', StandardScaler()),
-                      ('pca', PCA(random_state=1)),
                       ('est', RandomForestClassifier(random_state=1))]),
         # # ブースティング
         'G-boost':
             Pipeline([('scl', StandardScaler()),
-                      ('pca', PCA(random_state=1)),
                       ('est', GradientBoostingClassifier(random_state=1))]),
         # 決定木
         'D-tree':
             Pipeline([('scl', StandardScaler()),
-                      ('pca', PCA(random_state=1)),
                       ('est', DecisionTreeClassifier(random_state=1))]),
         # # パーセプトロン
         # 'Mlp':
         #     Pipeline([('scl', StandardScaler()),
-        #               ('pca', PCA(random_state=1)),
         #               ('est', MLPClassifier(random_state=1))]),
         # XGB
         'xgb':
             Pipeline([('scl', StandardScaler()),
-                      ('pca', PCA(random_state=1)),
                       ('est', XGBClassifier(random_state=1))])
     }
 
-    pca_n = [2, 4, 6, 8, 10, 12, 14, 16]
 
     param_list = {
         # # K近傍法
-        # 'Knn':{'pca__n_components':pca_n,
-        #         'est__n_neighbors': range(10, 101, 10),
+        # 'Knn':{'est__n_neighbors': range(10, 101, 10),
         #         'est__weights': ["uniform", "distance"]},
         # ロジスティック
-        'Logistic':{'pca__n_components':pca_n,
-                  'est__penalty': ["l1", "l2"],
+        'Logistic':{'est__penalty': ["l1", "l2"],
                   'est__C': [0.1, 1, 10]},
         # # SVC
-        # 'svc':{'pca__n_components':pca_n,
-        #         'est__degree': [1, 2, 3, 5, 7],
+        # 'svc':{'est__degree': [1, 2, 3, 5, 7],
         #         'est__C': [0.1, 1, 10]},
         # # L-SVC
-        # 'L-svc':{'pca__n_components':pca_n,
-        #          'est__loss': ["hinge", "squared_hinge"],
+        # 'L-svc':{'est__loss': ["hinge", "squared_hinge"],
         #          'est__C': [0.1, 1, 10]},
         # ランダムフォレスト
-        'R-forest':{'pca__n_components':pca_n,
-                    'est__n_estimators': [10, 20, 30],
+        'R-forest':{'est__n_estimators': [10, 20, 30],
                     'est__max_depth': [3, 5, 7],
                     'est__max_features': np.arange(0.1, 0.5, 0.2),},
         # ブースティング
-        'G-boost':{'pca__n_components':pca_n,
-                    'est__n_estimators': [10, 20, 30],
+        'G-boost':{'est__n_estimators': [10, 20, 30],
                     'est__learning_rate': [0.1, 0.5, 1.],
                     'est__max_depth': [3, 5, 7],
                     'est__max_features': np.arange(0.1, 0.5, 0.2)},
         # 決定木
-        'D-tree':{'pca__n_components':pca_n,
-                    'est__criterion': ["gini", "entropy"],
+        'D-tree':{'est__criterion': ["gini", "entropy"],
                     'est__max_depth': [3, 5, 7],
                     'est__min_samples_split': [2, 4, 6],
                     'est__min_samples_leaf': [2, 4, 6]
         },
         # # パーセプトロン
-        # 'Mlp':{'pca__n_components':pca_n,
-        #         'est__hidden_layer_sizes': [(10, 5), (5, 2), (16, 4, 2)],
+        # 'Mlp':{'est__hidden_layer_sizes': [(10, 5), (5, 2), (16, 4, 2)],
         #         'est__max_iter': [1000]
         # },
         # XGB
-        'xgb':{'pca__n_components':pca_n,
-               'est__max_depth': [2, 4, 6],
+        'xgb':{'est__max_depth': [2, 4, 6],
                'est__min_child_weight': [1, 2, 3],
                'est__gamma': [0, 3, 10],
                'est__n_estimators': [10, 50, 100]
@@ -544,9 +500,9 @@ def scoring(X_s, ID_s, best_model, best_name=""):
 
 #####################################################
 # train
-train_path = './final_hr_analysis_train.csv'
+train_path = './data/final_hr_analysis_train.csv'
 # score
-score_path = './final_hr_analysis_test.csv'
+score_path = './data/final_hr_analysis_test.csv'
 # X columns
 columns_path = './model/my_columns.pkl'
 # Imputer
@@ -566,6 +522,9 @@ metrics = 'accuracy'
 # RFE/PCA
 rfepca = 'RFE'
 # rfepca = 'PCA'
+
+# 次元数
+select_n = 6
 
 # 正解値ラベル
 y_label = 'left'
@@ -592,24 +551,28 @@ if train_flag:
     X, y = read_train(train_path, y_label, obj_type)
 
 grids_select_n_flag = True
-# grids_pca_flag = False
+# grids_select_n_flag = False
 if grids_select_n_flag:
     # グリッドサーチPCA
     gridSearchFunction_Select_n(X, y, ohe_columns, metrics)
-
-# grids_flag = True
-grids_flag = False
-if grids_flag:
-    # グリッドサーチ
-    gridSearchFunction(X, y, ohe_columns, metrics)
 
 # preprocess_flag = True
 preprocess_flag = False
 if preprocess_flag:
     # 前処理をして返却する
     # input : X, y, one-hotエンコードカラム, columnsパス, RFE/PCAフラグ, imputerパス, selectorパス
-    X, y = preprocessing_train(X, y, ohe_columns, columns_path, rfepca, imputer_path, selector_path)
+    X, y = preprocessing_train(X, y, ohe_columns, columns_path, rfepca, imputer_path, selector_path, select_n)
 
+    # grids_flag = True
+    grids_flag = False
+    if grids_flag:
+        # グリッドサーチ
+        gridSearchFunction(X, y, metrics)
+
+
+# best_flag = True
+best_flag = False
+if best_flag:
     # ベストモデルを決定
     # input : X, y, metrics, モデル名（手動選択の場合は入力）
     # 評価指標を選択
