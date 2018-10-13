@@ -1,0 +1,819 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--source template by http://www.coolwebwindow.com/template/simple.php-->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-Script-Type" content="text/javascript" />
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="description" content="" />
+<meta name="keywords" content="" />
+<link rel="stylesheet" href="css/common.css" type="text/css" />
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/common.js"></script>
+<title>グルトレバックテスト</title>
+<!--[if lt IE 7]>
+<script src="http://ie7-js.googlecode.com/svn/version/2.0(beta3)/IE7.js" type="text/javascript"></script>
+<![endif]-->
+<script language="javascript" type="text/javascript">
+		// 確定益
+		var return_amount_num = 0;
+		// 子本体確定益単位
+		var return_unit_num = 0;
+		// トラップ幅
+		var trap_num = 0;
+		// 利確幅
+		var retrun_num = 0;
+		// 通貨単位
+		var unit_num = 0;
+		// サポートポジションMIN,MAX
+		var posi_min = 0;
+		var posi_max = 0;
+		// 子本体ポジションMIN,MAX
+		var posi_ch_l_min = 0;
+		var posi_ch_l_max = 0;
+		var posi_ch_s_min = 0;
+		var posi_ch_s_max = 0;
+		// 損切イベント
+		var loss_event = false;
+		// 子本体約定数
+		var return_ch_num = 0;
+		// 子本体損切数
+		var loss_ch_num = 0;
+
+		// 証拠金focusイベント
+		function focusRep01($this){
+			$this.value = rep01($this.value);
+		}
+
+		// 証拠金blurイベント
+		function blurAdd01($this){
+			$this.value = add01($this.value);
+		}
+
+		// カンマ付与
+		function add01(num){
+			return num.replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,');
+		}
+
+		// カンマ除去
+		function rep01(num){
+			return num.replace(/,/g, '');
+		}
+
+		// td作成
+		function create_td(tr, value, align){
+			var td = tr.insertCell(-1);
+			td.innerHTML = value;
+			td.style.textAlign = align;
+		}
+
+		// 数値チェック
+		function myIsNaN(str, msg){
+			if(isNaN(str)){
+				alert(msg + 'は数値を入力してください');
+				return true;
+			}
+			return false;
+		}
+
+		// 単位チェック
+		function myIsUnit(num, unit, msg){
+			if((Number(num) % Number(unit) != 0) || (Number(num) <= 0)){
+				alert(msg + 'は' + unit + 'pips単位で入力してください');
+				return true;
+			}
+			return false;
+		}
+
+		function abs(val) {
+			return val < 0 ? -val : val;
+		}
+
+		// low->high
+		function search01_sup(a, b, arr, LS_num, arr_l, arr_s){
+			var r_num = 0;
+			for(r=a; r<=b; r++){
+				r_num = Number(r);
+				if(arr.length == 0){
+					arr[0] = r_num;
+					posi_min = r_num;
+					posi_max = r_num;
+				// サポートL
+				}else if((LS_num < 0) & (r_num - posi_min >= 10)){
+					return_amount_num = return_amount_num + unit_num * 10;
+
+					// ポジション除去
+					arr = arr.filter(function(item){
+						return item !== posi_min;
+					})
+
+					// 新規ポジションをセット
+					posi_min = posi_min + 10;
+					if(arr.indexOf(posi_min) == -1){
+						arr[arr.length] = posi_min;
+					}
+
+					// 損切イベント
+					loss_event = true;
+				// サポートS
+				}else if((LS_num > 0) & (r_num - posi_max >= 10)){
+					// 新規ポジションをセット
+					posi_max = posi_max + 10;
+					if(arr.indexOf(posi_max) == -1){
+						arr[arr.length] = posi_max;
+					}
+				}
+			}
+			return arr;
+		}
+
+		// high->low
+		function search02_sup(b, a, arr, LS_num){
+			var r_num = 0;
+			for(r=a; r>=b; r--){
+				r_num = Number(r);
+				if(arr.length == 0){
+					arr[0] = r_num;
+					posi_min = r_num;
+					posi_max = r_num;
+				// サポートL
+				}else if((LS_num < 0) & (posi_min - r_num >= 10)){
+					// 新規ポジションをセット
+					posi_min = posi_min - 10;
+					if(arr.indexOf(posi_min) == -1){
+						arr[arr.length] = posi_min;
+					}
+				// サポートS
+				}else if((LS_num > 0) & (posi_max - r_num >= 10)){
+					return_amount_num = return_amount_num + unit_num * 10;
+
+					// ポジション除去
+					arr = arr.filter(function(item){
+						return item !== posi_max;
+					})
+
+					// 新規ポジションをセット
+					posi_max = posi_max - 10;
+					if(arr.indexOf(posi_max) == -1){
+						arr[arr.length] = posi_max;
+					}
+
+					// 損切イベント
+					loss_event = true;
+				}
+			}
+			return arr;
+		}
+
+		// 子本体Sを10本損切
+		function loss_s(arr_s){
+			for(i=1; i<=10; i++){
+				if(arr_s.length > 0){
+					target = Math.min.apply(null, arr_s);
+					posi_ch_s_min = posi_ch_s_min + trap_num;
+					arr_s = arr_s.filter(function(item){
+						return item !== target
+					})
+					return_amount_num = return_amount_num - unit_num * (posi_min - target) / 10;
+					loss_ch_num++;
+				}
+			}
+			loss_event = false;
+			return arr_s;
+		}
+
+		// 子本体Lを10本損切
+		function loss_l(arr_l){
+			for(i=1; i<=10; i++){
+				if(arr_l.length > 0){
+					target = Math.max.apply(null, arr_l);
+					posi_ch_l_max = posi_ch_l_max - trap_num;
+					arr_l = arr_l.filter(function(item){
+						return item !== target
+					})
+					return_amount_num = return_amount_num - unit_num * (target - posi_max) / 10;
+					loss_ch_num++;
+				}
+			}
+			loss_event = false;
+			return arr_l;
+		}
+
+		// low->high
+		function search01(a, b, arr, longFlag){
+			var r_num = 0;
+			var commitFlag = false;
+			for(r=a; r<=b; r++){
+				r_num = Number(r);
+				if(arr.length == 0){
+					arr[0] = r_num;
+					if(longFlag){
+						posi_ch_l_max = r_num;
+						posi_ch_l_min = r_num;
+					}else{
+						posi_ch_s_max = r_num;
+						posi_ch_s_min = r_num;
+					}
+				}else if(longFlag & (r_num - posi_ch_l_max >= trap_num)){
+					// 新規ポジションをセット
+					posi_ch_l_max = posi_ch_l_max + trap_num;
+					arr[arr.length] = posi_ch_l_max;
+				}else if(!longFlag & (r_num - posi_ch_s_max >= trap_num)){
+					// 新規ポジションをセット
+					posi_ch_s_max = posi_ch_s_max + trap_num;
+					arr[arr.length] = posi_ch_s_max;
+				}
+
+				// 利確判定
+				arr.forEach(function(value){
+					// 利確幅を超えているか
+					if(longFlag){
+						if(r_num - value >= retrun_num){
+							posi_ch_l_min = posi_ch_l_min + trap_num;
+							commitFlag = true;
+						}
+					}else{
+						if(value - r_num >= retrun_num){
+							posi_ch_s_max = posi_ch_s_max - trap_num;
+							commitFlag = true;
+						}
+					}
+
+					if(commitFlag){
+						commitFlag = false;
+						return_amount_num = return_amount_num + return_unit_num;
+						return_ch_num++;
+
+						// 利確となったポジションを除去
+						arr = arr.filter(function(item){
+							return item !== value;
+						})
+					}//if
+				});//forEach
+			}
+			return arr;
+		}
+
+		// high->low
+		function search02(b, a, arr, longFlag){
+			var r_num = 0;
+			var commitFlag = false;
+			for(r=a; r>=b; r--){
+				r_num = Number(r);
+				if(arr.length == 0){
+					arr[0] = r_num;
+					if(longFlag){
+						posi_ch_l_max = r_num;
+						posi_ch_l_min = r_num;
+					}else{
+						posi_ch_s_max = r_num;
+						posi_ch_s_min = r_num;
+					}
+				}else if(longFlag & (posi_ch_l_min - r_num >= trap_num)){
+					// 新規ポジションをセット
+					posi_ch_l_min = posi_ch_l_min - trap_num;
+					arr[arr.length] = posi_ch_l_min;
+				}else if(!longFlag & (posi_ch_s_min - r_num >= trap_num)){
+					// 新規ポジションをセット
+					posi_ch_s_min = posi_ch_s_min - trap_num;
+					arr[arr.length] = posi_ch_s_min;
+				}
+
+				// 利確判定
+				arr.forEach(function(value){
+					// 利確幅を超えているか
+					if(longFlag){
+						if(r_num - value >= retrun_num){
+							posi_ch_l_min = posi_ch_l_min + trap_num;
+							commitFlag = true;
+						}
+					}else{
+						if(value - r_num >= retrun_num){
+							posi_ch_s_max = posi_ch_s_max - trap_num;
+							commitFlag = true;
+						}
+					}
+
+					if(commitFlag){
+						commitFlag = false;
+						return_amount_num = return_amount_num + return_unit_num;
+						return_ch_num++;
+
+						// 利確となったポジションを除去
+						arr = arr.filter(function(item){
+							return item !== value;
+						})
+					}//if
+				});//forEach
+			}
+			return arr;
+		}
+
+		function simu() {
+			// ----設定値取得--------------------------------------------
+			// 開始年月
+			var date_start_org = document.getElementById('date').value;
+			// 証拠金
+			var margin_org = document.getElementById('margin').value;
+			// Long/Short
+			var LS_org = document.getElementById('LS').value;
+			// トラップ幅
+			var trap_org = document.getElementById('trap').value;
+			// 利確幅
+			var retrun_org = document.getElementById('return').value;
+			// 通貨単位
+			var unit_org = document.getElementById('unit').value;
+			// 通貨ペア
+			var currencyPairs_org = document.getElementById('currencyPairs').value;
+
+			// ----エラーチェック--------------------------------------------
+			// 証拠金
+			if(myIsNaN(rep01(margin_org), '証拠金')) return;
+			// トラップ幅
+			if(myIsNaN(trap_org, 'トラップ幅')) return;
+			if(myIsUnit(trap_org, 10, 'トラップ幅')) return;
+			// 利確幅
+			if(myIsNaN(retrun_org, '利確幅')) return;
+			if(myIsUnit(retrun_org, 10, '利確幅')) return;
+			// 通貨単位
+			if(myIsNaN(unit_org, '通貨単位')) return;
+			if(myIsUnit(unit_org, 1000, '通貨単位')) return;
+
+			// ----数値変換--------------------------------------------
+			// 証拠金
+			var margin_num = Number(rep01(margin_org));
+			// Long/Short
+			var LS_num = Number(LS_org);
+			// トラップ幅
+			trap_num = Number(trap_org) / 10;
+			// 利確幅
+			retrun_num = Number(retrun_org) / 10;
+			// 通貨単位
+			unit_num = Number(unit_org);
+			// 確定益単位
+			return_unit_num = retrun_num * unit_num / 10;
+
+			// ----テーブル作成--------------------------------------------
+			// テーブルの要素取得
+			var table = document.getElementById('simulate');
+			// テーブル2行目以降削除
+			while (table.rows.length > 1) table.deleteRow(-1);
+
+			var fxdata = [];
+
+			var req = new XMLHttpRequest();
+			//req.open("get", "csv/AUDJPY60_debug.csv", true);
+			req.open("get", "csv/" + currencyPairs_org + ".csv", true);
+			req.send(null);
+
+			req.onload = function(){
+				var tmp = req.responseText.split("\n");
+
+				for(var i=0; i < tmp.length; i++){
+					fxdata[i] = tmp[i].split(',');
+				}
+
+				// 年月日
+				var yyyymmdd = "";
+				// 年月
+				var yyyymm = "";
+				var yyyymm_pre = "";
+				// フラグ
+				var flag = "";
+				// 始値
+				var startRate_num = 0;
+				// 高値
+				var highRate_num = 0;
+				// 安値
+				var lowRate_num = 0;
+				// 終値
+				var endRate_num = 0;
+				// tmp
+				var last = 0;
+				var temp = 0;
+				// サポートポジション
+				var posi_su_arr = [];
+				// 子本体Lポジション
+				var posi_ch_l_arr = [];
+				// 子本体Sポジション
+				var posi_ch_s_arr = [];
+				// 評価損益
+				var loss_num = 0;
+				// 現在レート
+				var rate_cur_num = 0;
+				// 確定益
+				return_amount_num = 0;
+				// 必要証拠金
+				var margin_req_num = 0;
+				// 有効証拠金
+				var margin_ena_num = 0;
+				// 維持率
+				var retention_rate_num = 100;
+				var retention_rate = "";
+				// 表示フラグ
+				display_flag = false;
+				// 子本体約定数
+				return_ch_num = 0;
+				// 子本体損切数
+				loss_ch_num = 0;
+				var count = 0;
+				for(i=0; i < fxdata.length; i++){
+					// 年月日
+					yyyymmdd = fxdata[i][0];
+					// 開始年月日になるまでcontinue
+					if(yyyymmdd < date_start_org)continue;
+
+					// 年月
+					yyyymm = fxdata[i][0].slice(0, 7);
+					yyyymm = yyyymm.replace('.', '/');
+					var time = fxdata[i][1];
+
+					// 始値
+					startRate_num = parseFloat(fxdata[i][2]).toFixed(3);
+					// 高値
+					highRate_num = parseFloat(fxdata[i][3]).toFixed(3);
+					// 安値
+					lowRate_num = parseFloat(fxdata[i][4]).toFixed(3);
+					// 終値
+					endRate_num = parseFloat(fxdata[i][5]).toFixed(3);
+					// 陽線/陰線/十字線
+					if(startRate_num < endRate_num)flag = "1";
+					if(startRate_num > endRate_num)flag = "-1";
+					if(startRate_num == endRate_num)flag = "0";
+
+					if(count > 0){
+						// 前レートlow to 始値high
+						if(startRate_num > last){
+							temp = parseFloat(startRate_num) * 10;
+							temp = Math.floor(temp);
+							last = parseFloat(last) * 10;
+							last = Math.ceil(last);
+							// サポート
+							posi_su_arr = search01_sup(last, temp, posi_su_arr, LS_num);
+							// 子本体L
+							posi_ch_l_arr = search01(last, temp, posi_ch_l_arr, true);
+							// 子本体S
+							posi_ch_s_arr = search01(last, temp, posi_ch_s_arr, false);
+							if(loss_event & LS_num < 0){
+								posi_ch_s_arr = loss_s(posi_ch_s_arr);
+							}else if(loss_event & LS_num > 0){
+								posi_ch_l_arr = loss_l(posi_ch_l_arr);
+							}
+						// 前レートhigh to 始値low
+						}else if(last > startRate_num){
+							temp = parseFloat(startRate_num) * 10;
+							temp = Math.ceil(temp);
+							last = parseFloat(last) * 10;
+							last = Math.floor(last)
+							// サポート
+							posi_su_arr = search02_sup(temp, last, posi_su_arr, LS_num);
+							// 子本体L
+							posi_ch_l_arr = search02(temp, last, posi_ch_l_arr, true);
+							// 子本体S
+							posi_ch_s_arr = search02(temp, last, posi_ch_s_arr, false);
+							if(loss_event & LS_num < 0){
+								posi_ch_s_arr = loss_s(posi_ch_s_arr);
+							}else if(loss_event & LS_num > 0){
+								posi_ch_l_arr = loss_l(posi_ch_l_arr);
+							}
+						}
+					}
+
+					// 陽線 or 十字線 & Short
+					if((flag == "1") || (flag == "0" & LS_num > 0)){
+						// 始値→安値→高値→終値
+						// 始値→安値
+						last = parseFloat(startRate_num) * 10;
+						last = Math.floor(last);
+						temp = parseFloat(lowRate_num) * 10;
+						temp = Math.ceil(temp);
+						posi_su_arr = search02_sup(temp, last, posi_su_arr, LS_num);
+						posi_ch_l_arr = search02(temp, last, posi_ch_l_arr, true);
+						posi_ch_s_arr = search02(temp, last, posi_ch_s_arr, false);
+						if(loss_event & LS_num < 0){
+							posi_ch_s_arr = loss_s(posi_ch_s_arr);
+						}else if(loss_event & LS_num > 0){
+							posi_ch_l_arr = loss_l(posi_ch_l_arr);
+						}
+						last = temp;
+
+						// 安値→高値
+						temp = parseFloat(highRate_num) * 10;
+						temp = Math.floor(temp);
+						posi_su_arr = search01_sup(last, temp, posi_su_arr, LS_num);
+						posi_ch_l_arr = search01(last, temp, posi_ch_l_arr, true);
+						posi_ch_s_arr = search01(last, temp, posi_ch_s_arr, false);
+						if(loss_event & LS_num < 0){
+							posi_ch_s_arr = loss_s(posi_ch_s_arr);
+						}else if(loss_event & LS_num > 0){
+							posi_ch_l_arr = loss_l(posi_ch_l_arr);
+						}
+						last = temp;
+
+						// 高値→終値
+						temp = parseFloat(endRate_num) * 10;
+						temp = Math.ceil(temp);
+						posi_su_arr = search02_sup(temp, last, posi_su_arr, LS_num);
+						posi_ch_l_arr = search02(temp, last, posi_ch_l_arr, true);
+						posi_ch_s_arr = search02(temp, last, posi_ch_s_arr, false);
+						if(loss_event & LS_num < 0){
+							posi_ch_s_arr = loss_s(posi_ch_s_arr);
+						}else if(loss_event & LS_num > 0){
+							posi_ch_l_arr = loss_l(posi_ch_l_arr);
+						}
+					}
+
+					// 陰線 or 十字線 & Long
+					else if((flag == "-1") || (flag == "0" & LS_num < 0)){
+						// 始値→高値→安値→終値
+						// 始値→高値
+						last = parseFloat(startRate_num) * 10;
+						last = Math.ceil(last);
+						temp = parseFloat(highRate_num) * 10;
+						temp = Math.floor(temp);
+						posi_su_arr = search01_sup(last, temp, posi_su_arr, LS_num);
+						posi_ch_l_arr = search01(last, temp, posi_ch_l_arr, true);
+						posi_ch_s_arr = search01(last, temp, posi_ch_s_arr, false);
+						if(loss_event & LS_num < 0){
+							posi_ch_s_arr = loss_s(posi_ch_s_arr);
+						}else if(loss_event & LS_num > 0){
+							posi_ch_l_arr = loss_l(posi_ch_l_arr);
+						}
+						last = temp;
+						// 高値→安値
+						temp = parseFloat(lowRate_num) * 10;
+						temp = Math.ceil(temp);
+						posi_su_arr = search02_sup(temp, last, posi_su_arr, LS_num);
+						posi_ch_l_arr = search02(temp, last, posi_ch_l_arr, true);
+						posi_ch_s_arr = search02(temp, last, posi_ch_s_arr, false);
+						if(loss_event & LS_num < 0){
+							posi_ch_s_arr = loss_s(posi_ch_s_arr);
+						}else if(loss_event & LS_num > 0){
+							posi_ch_l_arr = loss_l(posi_ch_l_arr);
+						}
+						last = temp;
+
+						// 安値→終値
+						temp = parseFloat(endRate_num) * 10;
+						temp = Math.floor(temp);
+						posi_su_arr = search01_sup(last, temp, posi_su_arr, LS_num);
+						posi_ch_l_arr = search01(last, temp, posi_ch_l_arr, true);
+						posi_ch_s_arr = search01(last, temp, posi_ch_s_arr, false);
+						if(loss_event & LS_num < 0){
+							posi_ch_s_arr = loss_s(posi_ch_s_arr);
+						}else if(loss_event & LS_num > 0){
+							posi_ch_l_arr = loss_l(posi_ch_l_arr);
+						}
+					}
+					last = endRate_num;
+
+					// 評価損益
+					loss_num　= 0;
+					rate_cur_num = Math.floor(parseFloat(endRate_num) * 10);
+					posi_ch_l_arr.forEach(function(value){
+						loss_num = loss_num + (rate_cur_num - value) * unit_num / 10;
+					});
+					posi_ch_s_arr.forEach(function(value){
+						loss_num = loss_num + (value - rate_cur_num) * unit_num / 10;
+					});
+					posi_su_arr.forEach(function(value){
+						if(LS_num < 0){
+							loss_num = loss_num + (rate_cur_num - value) * unit_num;
+						}else if(LS_num > 0){
+							loss_num = loss_num + (value - rate_cur_num) * unit_num;
+						}
+					});
+
+					// 必要証拠金
+					margin_req_num = (posi_ch_s_arr.length + posi_ch_l_arr.length + posi_su_arr.length * 10) * unit_num;
+					// レバレッジ25倍
+					margin_req_num = margin_req_num * rate_cur_num / 10 / 25;
+					margin_req_num = parseFloat(margin_req_num).toFixed(0);
+
+					// 有効証拠金
+					margin_ena_num = margin_num + return_amount_num + loss_num;
+
+					// 維持率
+					retention_rate_num = margin_ena_num / margin_req_num * 100;
+					retention_rate = parseFloat(retention_rate_num).toFixed(1) + '%';
+					display_flag = false;
+					if(i == fxdata.length - 1){
+						display_flag = true;
+					}else{
+						// 年月
+						yyyymm_pre = fxdata[i + 1][0].slice(0, 7);
+						yyyymm_pre = yyyymm_pre.replace('.', '/');
+						if((yyyymm != yyyymm_pre) || (retention_rate_num < 100)){
+							display_flag = true;
+						}
+					}
+
+					if(display_flag){
+						var tr = table.insertRow(-1);
+						create_td(tr, yyyymm, "right");
+						// 子本体Lポジション数
+						create_td(tr, posi_ch_l_arr.length * unit_num, "right");
+						// 子本体Sポジション数
+						create_td(tr, posi_ch_s_arr.length * unit_num, "right");
+						// サポートポジション数
+						create_td(tr, posi_su_arr.length * unit_num * 10, "right");
+						// 評価損益
+						create_td(tr, add01(String(loss_num)), "right");
+						// 確定益
+						create_td(tr, add01(String(return_amount_num)), "right");
+						// 子本体約定回数
+						create_td(tr, return_ch_num + '/' + loss_ch_num, "right");
+						// 有効証拠金
+						create_td(tr, add01(String(margin_ena_num)), "right");
+						// 維持率
+						create_td(tr, retention_rate, "right");
+
+						// 維持率を割ったら終了
+						if(retention_rate_num < 100)return;
+
+						return_ch_num = 0;
+						loss_ch_num = 0;
+
+						/*
+						console.log(yyyymm);
+						console.log(posi_su_arr);
+						console.log(posi_ch_l_arr);
+						console.log(posi_ch_s_arr);
+						*/
+					}//if(display)
+					/*
+					console.log(yyyymmdd + ' ' + time);
+					console.log(return_amount_num);
+					console.log(posi_su_arr);
+					console.log(posi_ch_l_arr);
+					console.log(posi_ch_l_max);
+					console.log(posi_ch_l_min);
+					console.log(posi_ch_s_arr);
+					console.log(posi_ch_s_max);
+					console.log(posi_ch_s_min);
+					*/
+					count = 1;
+				}//for
+			}//req.onload
+
+		}
+
+</script>
+</head>
+<body>
+<div id="top">
+   <div id="header">
+	  <h1><a href="grtr_simu.html">グルトレバックテスト</a></h1>
+	  <div id="menu">
+		  <ul>
+			 <li><a href="grtr_calc.html" class="active">証拠金維持率計算機</a></li>
+			 <li><a href="grtr_simu.html">シミュレーション</a></li>
+			 <li><a href="grtr_anime.html">アニメーション</a></li>
+ 			 <li><a href="">　</a></li>
+  			 <li><a href="">　</a></li>
+		  </ul>
+	  </div>
+      <div id="pr">
+         <p><!--AUD/JPY専用です。-->設定値をもとにバッグテストを行います。
+		<br>
+		トラップ幅、利確幅は10pips単位、通貨単位は1000通貨単位で入力してください。
+		<br>
+		サポートは通貨単位の10倍で100pips単位で追加されます。レバレッジは25倍です。
+		<br>
+		<!--前提：OANDAのMT4デモサーバーより取得したAUDJPYの1時間足のデータをもとに2018.3.1〜2018.7.31までのデータでシミュレートされます。尚、選択された開始年月の1日0時からスタートです。-->
+		前提：OANDAのMT4デモサーバーより取得したAUDJPYの1時間足のデータをもとに2018.5.1〜2018.9.28までのデータでシミュレートされます。尚、選択された開始年月の1日0時からスタートです。
+		<br>
+		データソース：
+		<br>
+		「<a href="csv/AUDJPY60.csv" download="AUDJPY60.csv">AUDJPY.csv</a>」、
+		「<a href="csv/USDJPY60.csv" download="USDJPY60.csv">USDJPY.csv</a>」、
+		「<a href="csv/EURJPY60.csv" download="EURJPY60.csv">EURJPY.csv</a>」、
+		「<a href="csv/NZDJPY60.csv" download="NZDJPY60.csv">NZDJPY.csv</a>」、
+		「<a href="csv/GBPJPY60.csv" download="GBPJPY60.csv">GBPJPY.csv</a>」、
+		「<a href="csv/CADJPY60.csv" download="CADJPY60.csv">CADJPY.csv</a>」
+		です。
+		<br>
+		<br>
+		ルール1：10pips単位で約定されます。初回サポートは仮に80.150から80.250に上昇した場合、80.2でポジションが取られます。
+		<br>
+		ルール2：始値、安値、高値、終値毎に約定判定されます。証拠金維持率は終値で計算されます。
+		<br>
+		ルール3-1：陽線のときは(前回終値→)始値→安値→高値→終値の順番で計算します。
+		<br>
+		ルール3-2：陰線のときは(前回終値→)始値→高値→安値→終値の順番で計算します。
+		<br>
+		ルール3-3：十字線&サポートLのときは(前回終値→)始値→高値→安値→終値の順番で計算します。
+		<br>
+		ルール3-4：十字線&サポートSのときは(前回終値→)始値→安値→高値→終値の順番で計算します。
+		<br>
+		ルール4：サポートは100pips単位で利確され、同時に子本体の反対ポジション10本が含み損の多い順に損切されます。
+		<br>
+		ルール5：1時間足より短い足で利確幅を超えて何度も上下に往復した場合でも、1回の約定判定です。
+		<br>
+		ルール6：スプレッドおよび値飛びおよびスワップは考慮しません。
+		<br>
+		ルール7：2018.9.28まで、もしくは証拠金が100%を割るまでシミュレーションされます。
+</p>
+      <!-- /#pr --></div>
+   <!-- /#header --></div>
+   <!--   <div id="topicPath"> -->
+<!--      <a href="grtr_simu.html">グルトレバックテスト</a> -->
+   <!-- /#topicPath </div>-->
+   <div id="contents">
+      <div id="main">
+         <h4>設定値</h4>
+			 <table>
+				 <tr>
+					 <th width="100">通貨ペア
+					 </th>
+					 <th width="100">開始年月
+					 </th>
+					 <th width="100">証拠金
+					 </th>
+					 <th width="100">方向(L/S)
+					 </th>
+					 <th width="100">トラップ幅
+					 </th>
+					 <th width="100">利確幅
+					 </th>
+					 <th width="100">通貨単位
+					 </th>
+				 </tr>
+				 <tr>
+					 <td style="text-align: center;">
+					 	<select id="currencyPairs">
+					 	 <option value="AUDJPY60">AUDJPY</option>
+					 	 <option value="USDJPY60">USDJPY</option>
+						 <option value="EURJPY60">EURJPY</option>
+						 <option value="NZDJPY60">NZDJPY</option>
+						 <option value="GBPJPY60">GBPJPY</option>
+						 <option value="CADJPY60">CADJPY</option>
+					  </select>
+					  </td>
+					 <td style="text-align: center;">
+					 <select id="date">
+						<option value="2018.05.01">2018/05</option>
+						<option value="2018.06.01">2018/06</option>
+						<option value="2018.07.01">2018/07</option>
+						<option value="2018.08.01">2018/08</option>
+						<option value="2018.09.01">2018/09</option>
+					</select>
+					</td>
+					<td style="text-align: center;">
+					<input id="margin" size="10" value="3,000,000" onBlur="blurAdd01(this);"
+onFocus="focusRep01(this);" type="text" style="text-align: right; "/>
+					</td>
+					<td style="text-align: center;">
+					<select id="LS">
+						<option value="-1">Long</option>
+						<option value="1">Short</option>
+					</select>
+					</td>
+					<td style="text-align: center;">
+					<input id="trap" size="8" value="10" type="text" style="text-align: right; "/>
+					</td>
+					<td style="text-align: center;">
+					<input id="return" size="8" value="50" type="text" style="text-align: right; "/>
+					</td>
+					<td style="text-align: center;">
+					<input id="unit" size="8" value="1000" type="text" style="text-align: right; "/>
+					</td>
+				</tr>
+			</table>
+			<p>
+				<div style="text-align: center;　margin:20px;">
+				<input id="calc" size="20" value="計算" type="button" onclick="simu();" style="width:20%;padding:10px;font-size:30px;"/>
+				</div>
+			</p>
+         <h4>バックテスト</h4>
+         <table id="simulate">
+            <tr>
+				<th width="60">年月</th>
+				<th width="60">子本体L</th>
+				<th width="60">子本体S</th>
+				<th width="60">サポート</th>
+				<th width="70">評価損益</th>
+				<th width="70">累計確定益</th>
+				<th width="80">子本体利確数vs損切数</th>
+				<th width="80">有効証拠金</th>
+				<th width="80">維持率</th>
+			</tr>
+         </table>
+		 <!--<br>
+		 (参考)AUDJPY 1時間足
+		 <p>
+		<img width="400" src="images/AUDJPY_1h.png">
+		 </p>
+			-->
+      <!-- /#main --></div>
+	  <div id="pageTop">
+         <a href="#" onclick="window.scrollTo(0,0);">ページのトップへ戻る</a>
+      <!-- /#pageTop --></div>
+   <!-- /#contents --></div>
+   <div id="footer">
+      <div class="copyright">Copyright &copy; 2018 All Rights Reserved.</div>
+   <!-- /#footer --></div>
+<!-- /#top --></div>
+</body>
+</html>
