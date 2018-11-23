@@ -8,7 +8,7 @@
 	<meta http-equiv="imagetoolbar" content="no" />
 	<meta name="description" content="" />
 	<meta name="keywords" content="" />
-	<link rel="stylesheet" href="css/common.css" type="text/css" />
+	<link rel="stylesheet" href="css/common.css?ver=20181027" type="text/css" />
 	<script type="text/javascript" src="js/jquery.js"></script>
 	<script type="text/javascript" src="js/common.js"></script>
 	<title>グルトレアニメーション</title>
@@ -753,7 +753,7 @@
 	  <div id="menu">
 		  <ul>
 			 <li><a href="grtr_calc.html" class="active">証拠金維持率計算機</a></li>
-			 <li><a href="grtr_simu.html">シミュレーション</a></li>
+			 <li><a href="grtr_simu.html">バックテスト</a></li>
 			 <li><a href="grtr_anime.html">アニメーション</a></li>
  			 <li><a href="">　</a></li>
   			 <li><a href="">　</a></li>
@@ -786,6 +786,8 @@
 					 </th>
 					 <th width="100">通貨単位
 					 </th>
+					 <th width="100">サポート単位
+					 </th>
 				 </tr>
 				 <tr><td style="text-align: center;">
 					 <select id="date" disabled>
@@ -814,6 +816,9 @@ onFocus="focusRep01(this);" type="text" style="text-align: right; "/>
 					</td>
 					<td style="text-align: center;">
 					<input id="unit" disabled size="8" value="1000" type="text" style="text-align: right; "/>
+					</td>
+					<td style="text-align: center;">
+					<input id="supportUnit" disabled size="8" value="10000" type="text" style="text-align: right; "/>
 					</td>
 				</tr>
 			</table>
@@ -888,7 +893,7 @@ onFocus="focusRep01(this);" type="text" style="text-align: right; "/>
 
 	</script>
 		<br>
-         <h4>バックテスト</h4>
+         <h4>トレードポジション＆損益</h4>
          <table id="simulate">
             <tr>
 				<th width="60">日時</th>

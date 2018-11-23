@@ -8,7 +8,7 @@
 <meta http-equiv="imagetoolbar" content="no" />
 <meta name="description" content="" />
 <meta name="keywords" content="" />
-<link rel="stylesheet" href="css/common.css" type="text/css" />
+<link rel="stylesheet" href="css/common.css?ver=20181027" type="text/css" />
 <script type="text/javascript" src="js/jquery.js"></script>
 <script type="text/javascript" src="js/common.js"></script>
 <title>グルトレ証拠金維持率計算機</title>
@@ -20,7 +20,7 @@
 		function focusRep01($this){
 			$this.value = rep01($this.value);
 		}
-		
+
 		// 証拠金blurイベント
 		function blurAdd01($this){
 			$this.value = add01($this.value);
@@ -42,7 +42,7 @@
 			td.innerHTML = value;
 			td.style.textAlign = align;
 		}
-		
+
 		// 数値チェック
 		function myIsNaN(str, msg){
 			if(isNaN(str)){
@@ -63,7 +63,7 @@
 		function isInteger(x) {
 			return Math.round(x) === x;
 		}
-		
+
 		// 整数値、範囲チェック
 		// ホントは引数に下限と上限をもたせる
 		function myIsIntRange(num, msg){
@@ -93,7 +93,7 @@
 			var unit_org = document.getElementById('unit').value;
 			// レバレッジ
 			var leverage_org = document.getElementById('leverage').value;
-			
+
 			// ----エラーチェック--------------------------------------------
 			// 証拠金
 			if(myIsNaN(rep01(margin_org), '証拠金')) return;
@@ -104,19 +104,19 @@
 			// トラップ幅
 			if(myIsNaN(trap_org, 'トラップ幅')) return;
 			if(myIsUnit(trap_org, 10, 'トラップ幅')) return;
-			
+
 			// 利確幅
 			if(myIsNaN(retrun_org, '利確幅')) return;
 			if(myIsUnit(retrun_org, 10, '利確幅')) return;
-			
+
 			// 通貨単位
 			if(myIsNaN(unit_org, '通貨単位')) return;
 			if(myIsUnit(unit_org, 1000, '通貨単位')) return;
-			
+
 			// レバレッジ
 			if(myIsNaN(leverage_org, 'レバレッジ')) return;
 			if(myIsIntRange(leverage_org, 'レバレッジ')) return;
-			
+
 			// ----数値変換--------------------------------------------
 			// 証拠金
 			var margin_num = Number(rep01(margin_org));
@@ -134,7 +134,7 @@
 			var unit_num = Number(unit_org);
 			// レバレッジ
 			var leverage_num = Number(leverage_org);
-			
+
 			// ----テーブル作成--------------------------------------------
 			// テーブルの要素取得
 			var table = document.getElementById('retention');
@@ -190,7 +190,7 @@
 						ch_long_num = max_ch_num;
 						ch_long_count_num--;
 					}
-					
+
 					// 子本体S
 					ch_short_count_num++;
 					ch_short_num = ch_short_count_num * unit_num;
@@ -203,7 +203,7 @@
 					// 桁落ちの懸念があるので整数値で格納する
 					position_ch_array[position_ch_array.length] = rate_cur_num * 10;
 				} // if (count % countup_num == 0)
-				
+
 				if (count % 10 == 0){
 					position_ch_array.forEach(function(value){
 						// 利確幅を超えていたら
@@ -232,14 +232,14 @@
 					loss_num = loss_num + ch_short_count_num * (ch_short_count_num - 1) / 2 * unit_num / 10;
 				}
 				loss_num = loss_num * -1
-				
+
 				// 含み益を算出
 				max_eva_num = 0;
 				position_ch_array.forEach(function(value){
 					max_eva_num = max_eva_num + (rate_cur_num * 10 - value) * LS_num * unit_num / 10;
 				})
 				loss_num = loss_num + max_eva_num;
-				
+
 				// 必要証拠金
 				margin_req_num = ch_short_num + ch_long_num + support_num;
 				// レバレッジによる計算
@@ -274,11 +274,11 @@
 					create_td(tr, add01(String(margin_ena_num)), "right");
 					// 維持率
 					create_td(tr, retention_rate, "right");
-					
+
 					// 維持率が0%を割ったとき
 					if (retention_rate_num < 0) notLosscut_f = false;
 				}
-				
+
 				i = i + 0.1 * LS_num;
 				count += 1;
 			}// while
@@ -293,7 +293,7 @@
 	  <div id="menu">
 		  <ul>
 			 <li><a href="grtr_calc.html" class="active">証拠金維持率計算機</a></li>
-			 <li><a href="grtr_simu.html">シミュレーション</a></li>
+			 <li><a href="grtr_simu.html">バックテスト</a></li>
 			 <li><a href="grtr_anime.html">アニメーション</a></li>
  			 <li><a href="">　</a></li>
   			 <li><a href="">　</a></li>
@@ -338,7 +338,7 @@
 					 </th>
 				 </tr>
 				 <tr><td style="text-align: center;">
-					<input id="margin" size="10" value="3,000,000" onBlur="blurAdd01(this);" 
+					<input id="margin" size="10" value="3,000,000" onBlur="blurAdd01(this);"
 onFocus="focusRep01(this);" type="text" style="text-align: right; "/>
 					</td>
 					<td style="text-align: center;">

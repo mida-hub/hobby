@@ -8,7 +8,7 @@
 <meta http-equiv="imagetoolbar" content="no" />
 <meta name="description" content="" />
 <meta name="keywords" content="" />
-<link rel="stylesheet" href="css/common.css" type="text/css" />
+<link rel="stylesheet" href="css/common.css?ver=20181027" type="text/css" />
 <script type="text/javascript" src="js/jquery.js"></script>
 <script type="text/javascript" src="js/common.js"></script>
 <title>グルトレバックテスト</title>
@@ -86,6 +86,15 @@
 			return false;
 		}
 
+		// 単位チェック
+		function myIsUnit2(num, msg){
+			if((Number(num) % 1 != 0) || (Number(num) <= 0)){
+				alert(msg + 'は1以上の整数を入力してください');
+				return true;
+			}
+			return false;
+		}
+
 		function abs(val) {
 			return val < 0 ? -val : val;
 		}
@@ -101,7 +110,7 @@
 					posi_max = r_num;
 				// サポートL
 				}else if((LS_num < 0) & (r_num - posi_min >= 10)){
-					return_amount_num = return_amount_num + unit_num * 10;
+					return_amount_num = return_amount_num + unit_num * supportUnitunit_num;
 
 					// ポジション除去
 					arr = arr.filter(function(item){
@@ -146,7 +155,7 @@
 					}
 				// サポートS
 				}else if((LS_num > 0) & (posi_max - r_num >= 10)){
-					return_amount_num = return_amount_num + unit_num * 10;
+					return_amount_num = return_amount_num + unit_num * supportUnitunit_num;
 
 					// ポジション除去
 					arr = arr.filter(function(item){
@@ -168,7 +177,7 @@
 
 		// 子本体Sを10本損切
 		function loss_s(arr_s){
-			for(i=1; i<=10; i++){
+			for(i=1; i<=supportUnitunit_num; i++){
 				if(arr_s.length > 0){
 					target = Math.min.apply(null, arr_s);
 					posi_ch_s_min = posi_ch_s_min + trap_num;
@@ -185,7 +194,7 @@
 
 		// 子本体Lを10本損切
 		function loss_l(arr_l){
-			for(i=1; i<=10; i++){
+			for(i=1; i<=supportUnitunit_num; i++){
 				if(arr_l.length > 0){
 					target = Math.max.apply(null, arr_l);
 					posi_ch_l_max = posi_ch_l_max - trap_num;
@@ -324,6 +333,8 @@
 			var retrun_org = document.getElementById('return').value;
 			// 通貨単位
 			var unit_org = document.getElementById('unit').value;
+			// サポート倍率
+			var supportUnit_org = document.getElementById('supportUnit').value;
 			// 通貨ペア
 			var currencyPairs_org = document.getElementById('currencyPairs').value;
 
@@ -339,6 +350,9 @@
 			// 通貨単位
 			if(myIsNaN(unit_org, '通貨単位')) return;
 			if(myIsUnit(unit_org, 1000, '通貨単位')) return;
+			// サポート倍率
+			if(myIsNaN(supportUnit_org, 'サポート倍率')) return;
+			if(myIsUnit2(supportUnit_org, 'サポート倍率')) return;
 
 			// ----数値変換--------------------------------------------
 			// 証拠金
@@ -351,6 +365,8 @@
 			retrun_num = Number(retrun_org) / 10;
 			// 通貨単位
 			unit_num = Number(unit_org);
+			// サポート倍率
+			supportUnitunit_num = Number(supportUnit_org);
 			// 確定益単位
 			return_unit_num = retrun_num * unit_num / 10;
 
@@ -579,14 +595,14 @@
 					});
 					posi_su_arr.forEach(function(value){
 						if(LS_num < 0){
-							loss_num = loss_num + (rate_cur_num - value) * unit_num;
+							loss_num = loss_num + (rate_cur_num - value) * unit_num * supportUnitunit_num / 10;
 						}else if(LS_num > 0){
-							loss_num = loss_num + (value - rate_cur_num) * unit_num;
+							loss_num = loss_num + (value - rate_cur_num) * unit_num * supportUnitunit_num / 10;
 						}
 					});
 
 					// 必要証拠金
-					margin_req_num = (posi_ch_s_arr.length + posi_ch_l_arr.length + posi_su_arr.length * 10) * unit_num;
+					margin_req_num = (posi_ch_s_arr.length + posi_ch_l_arr.length + posi_su_arr.length * supportUnitunit_num) * unit_num;
 					// レバレッジ25倍
 					margin_req_num = margin_req_num * rate_cur_num / 10 / 25;
 					margin_req_num = parseFloat(margin_req_num).toFixed(0);
@@ -617,7 +633,7 @@
 						// 子本体Sポジション数
 						create_td(tr, posi_ch_s_arr.length * unit_num, "right");
 						// サポートポジション数
-						create_td(tr, posi_su_arr.length * unit_num * 10, "right");
+						create_td(tr, posi_su_arr.length * unit_num * supportUnitunit_num, "right");
 						// 評価損益
 						create_td(tr, add01(String(loss_num)), "right");
 						// 確定益
@@ -668,7 +684,7 @@
 	  <div id="menu">
 		  <ul>
 			 <li><a href="grtr_calc.html" class="active">証拠金維持率計算機</a></li>
-			 <li><a href="grtr_simu.html">シミュレーション</a></li>
+			 <li><a href="grtr_simu.html">バックテスト</a></li>
 			 <li><a href="grtr_anime.html">アニメーション</a></li>
  			 <li><a href="">　</a></li>
   			 <li><a href="">　</a></li>
@@ -679,7 +695,7 @@
 		<br>
 		トラップ幅、利確幅は10pips単位、通貨単位は1000通貨単位で入力してください。
 		<br>
-		サポートは通貨単位の10倍で100pips単位で追加されます。レバレッジは25倍です。
+		サポートは通貨単位の10倍(サポート倍率)で100pips単位で追加されます。レバレッジは25倍です。
 		<br>
 		<!--前提：OANDAのMT4デモサーバーより取得したAUDJPYの1時間足のデータをもとに2018.3.1〜2018.7.31までのデータでシミュレートされます。尚、選択された開始年月の1日0時からスタートです。-->
 		前提：OANDAのMT4デモサーバーより取得したAUDJPYの1時間足のデータをもとに2018.5.1〜2018.9.28までのデータでシミュレートされます。尚、選択された開始年月の1日0時からスタートです。
@@ -707,7 +723,7 @@
 		<br>
 		ルール3-4：十字線&サポートSのときは(前回終値→)始値→安値→高値→終値の順番で計算します。
 		<br>
-		ルール4：サポートは100pips単位で利確され、同時に子本体の反対ポジション10本が含み損の多い順に損切されます。
+		ルール4：サポートは100pips単位で利確され、同時に子本体の反対ポジション10本(サポート倍率)が含み損の多い順に損切されます。
 		<br>
 		ルール5：1時間足より短い足で利確幅を超えて何度も上下に往復した場合でも、1回の約定判定です。
 		<br>
@@ -738,6 +754,8 @@
 					 <th width="100">利確幅
 					 </th>
 					 <th width="100">通貨単位
+					 </th>
+					 <th width="100">サポート倍率
 					 </th>
 				 </tr>
 				 <tr>
@@ -778,6 +796,9 @@ onFocus="focusRep01(this);" type="text" style="text-align: right; "/>
 					</td>
 					<td style="text-align: center;">
 					<input id="unit" size="8" value="1000" type="text" style="text-align: right; "/>
+					</td>
+					<td style="text-align: center;">
+					<input id="supportUnit" size="8" value="10" type="text" style="text-align: right; "/>
 					</td>
 				</tr>
 			</table>
