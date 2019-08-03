@@ -323,8 +323,8 @@ class MyUtils:
         # one-hotエンコーディング
         # カテゴリ変数に適用する
         X_score = pd.get_dummies(X,
-                             dummy_na=True,
-                             columns=ohe_columns)
+                                 dummy_na=True,
+                                 columns=ohe_columns)
 
         cols_model = set(X_columns)
         cols_score = set(X_score.columns.values)
