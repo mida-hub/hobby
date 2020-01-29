@@ -1,0 +1,15 @@
+kubectl get nodes
+kubectl get namespace
+kubectl apply -f hogehoge.yaml
+kubectl get pod
+kubectl exec -it pod_name sh -c nginx
+kubectl logs -f pod_name -c echo
+kubectl delete pod pod_name
+kubectl delete -f hogehoge.yaml
+kubectl get pod,replicaset,deployment --selector app=app_name
+kubectl rollout history deployment app_name
+kubectl rollout undo deployment app_name
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/nginx-0.16.2/deploy/mandatory.yaml
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/nginx-0.16.2/deploy/provider/cloud-generic.yaml
+kubectl -n ingress-nginx get service,pod
+kubectl get ingress
