@@ -1,0 +1,31 @@
+docker image pull gihyodocker/echo:latest
+# t option : assign image name
+# p option : port fowarding
+docker container run -t -p 9000:8000 gihyodocker/echo:latest
+# d option : stay background
+dcoker container run -d gihyodocker/echo:latest
+docker image build -t example/echo:latest .
+docker image ls
+docker help
+# f optin : assign Dockerfile
+docker image build -f Dockerfile-test -t example/echo:latest .
+# pull option : docker image pull with force
+docker image build --pull=true -t example/echo:latest .
+docker search --limit 5 mysql
+# tag option : assign tag name
+docker image tag example/echo:latest example/echo:0.1.0
+docker image push stormcattest/echo:latest
+
+docker container ls
+docker container stop
+docker container restart echo
+docker container rm
+docker container logs
+docker container exex -it echo sh
+docker container cp
+docker container prune
+docker system prune
+
+docker-compose up -d
+docker-compose down
+docker-compose ps
