@@ -15,6 +15,7 @@ docker search --limit 5 mysql
 # tag option : assign tag name
 docker image tag example/echo:latest example/echo:0.1.0
 docker image push stormcattest/echo:latest
+docker image prune
 
 docker container ls
 docker container stop
