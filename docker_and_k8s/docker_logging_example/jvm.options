@@ -12,7 +12,7 @@
 -Djdk.io.permissionsUseCanonicalPath=true
 -Dio.netty.noUnsafe=true
 -Dio.netty.noKeySetOptimization=true
--Dio.netty.recycle.maxCapacityPerThread=0
+-Dio.netty.recycler.maxCapacityPerThread=0
 -Dlog4j.shutdownHookEnabled=false
 -Dlog4j2.disable.jmx=true
 -Dlog4j.skipJansi=true
