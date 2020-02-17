@@ -62,4 +62,25 @@ qtl
 # median
 median(iris$Sepal.Length)
 
+# 度数
+ti <- table(iris$Species)
+ti
+
+# 相対度数
+pi <- prop.table(table(iris$Species))
+pi
+
+
+# plot
+barplot(ti)
+barplot(pi)
+
+pairs(iris)
+pairs(iris, col=iris$Species)
+plot(iris, col=iris$Species)
+
+hist(iris$Sepal.Length)
+hist(iris$Sepal.Width)
+
+boxplot(iris)
 
