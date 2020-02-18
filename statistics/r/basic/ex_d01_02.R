@@ -70,7 +70,6 @@ ti
 pi <- prop.table(table(iris$Species))
 pi
 
-
 # plot
 barplot(ti)
 barplot(pi)
