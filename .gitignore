@@ -2,3 +2,7 @@
 .idea
 .idea/workspace.xml
 .idea/tasks.xml
+.ipynb_checkpoints
+venv/
+data/
+tweet/
