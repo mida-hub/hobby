@@ -32,9 +32,9 @@ mcs_and_plot_function <- function(N){
   print(mcs)
 }
 
-mcs_function(100)
-mcs_function(1000)
-mcs_function(10000)
+mcs_and_plot_function(100)
+mcs_and_plot_function(1000)
+mcs_and_plot_function(10000)
 
 mcs_ratio_function <- function(N){
   set.seed(12345)        
