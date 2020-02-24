@@ -16,12 +16,12 @@ mcs_and_plot_function <- function(N){
   threshold_factor = as.factor(threshold)
 
   # 円の描画
-  plot(x, y, type="l", xlim=c(0, 1), ylim=c(0, 1))
+  plot(x, y, xlim=c(0, 1), ylim=c(0, 1), xlab="x", ylab="y", type="l")
   # plotを重ねる
   par(new=T)
   # 乱数を描画
   # cexは点の大きさ
-  plot(xmc, ymc, col=threshold_factor, xlim=c(0, 1), ylim=c(0, 1), cex=0.1)
+  plot(xmc, ymc, xlim=c(0, 1), ylim=c(0, 1), xlab="x", ylab="y", col=threshold_factor, cex=0.1)
 
   # 円の面積
   true_value = pi / 4
@@ -49,7 +49,7 @@ mcs_ratio_function <- function(N){
     mcs_ratio = c(mcs_ratio, mcs)
   }
   # 描画
-  plot(seq(1, N), mcs_ratio, type="l")
+  plot(seq(1, N), mcs_ratio, xlab="N", ylab="value", type="l")
   abline(h=(pi / 4), col='red', lty=2)
 }
 mcs_ratio_function(3000)
