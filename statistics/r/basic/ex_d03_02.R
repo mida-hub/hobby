@@ -1,37 +1,37 @@
-# anova
-
 root_dir <- getwd()
+root_dir
 csvPATH <- "./data/Benefit.csv"
 
-# plot データ確認
-plot(iris[, 1:4])
-plot(iris[, 1:4], col=as.numeric(iris$Species))
+benefit <- read.csv(file=csvPATH, header=T)
 
-par(mfrow=c(2, 2))
-  with(iris, hist(Sepal.Length))
-  with(iris, hist(Sepal.Width))
-  with(iris, hist(Petal.Length))
-  with(iris, hist(Petal.Width))
-par(mfrow=c(1, 1))
+str(benefit)
+summary(benefit)
 
-par(mfrow=c(2, 2))
-  with(iris, boxplot(Sepal.Length~Species, main="Sepal.Length"))
-  with(iris, boxplot(Sepal.Width~Species, main="Sepal.Width"))
-  with(iris, boxplot(Petal.Length~Species, main="Petal.Length"))
-  with(iris, boxplot(Petal.Width~Species, main="Petal.Width"))
-par(mfrow=c(1, 1))
+hist(benefit$Satisfaction)
 
-with(iris, by(Sepal.Width, INDICES=Species, FUN=mean))
-with(iris, by(Sepal.Width, INDICES=Species, FUN=var))
+par(mfrow=c(1, 2))
+  with(benefit, boxplot(Satisfaction ~ Benefit))
+  with(benefit, boxplot(Satisfaction ~ Age))
+par(mfrow=c(1, 1))  
 
-# 分散分析 平均に差はないを棄却
-anova(lm(Sepal.Width ~ Species, data=iris))
+model1 <- lm(Satisfaction ~ Benefit, data=benefit)
+anova(model1)
 
-anova(aov(Sepal.Width ~ Species, data=iris))
+model2 <- lm(Satisfaction ~ Benefit + Age, data=benefit)
+anova(model2)
 
-oneway.test(Sepal.Width ~ Species, data=iris, var.equal=TRUE)
+# 交互作用
+model3 <- lm(Satisfaction ~ Benefit + Age + Benefit * Age, data=benefit)
+anova(model3)
 
-# 3変数
-with(iris, pairwise.t.test(Sepal.Width, Species, p.adjust.method = "none"))
+## 交互作用プロット
+interaction.plot(benefit$Benefit, benefit$Age, benefit$Satisfaction)
+interaction.plot(benefit$Age, benefit$Benefit, benefit$Satisfaction)
 
-with(iris, pairwise.t.test(Petal.Length, Species, p.adjust.method = "none"))
+summary(model1)$r.squared
+summary(model2)$r.squared
+summary(model3)$r.squared
+
+AIC(model1)
+AIC(model2)
+AIC(model3)
