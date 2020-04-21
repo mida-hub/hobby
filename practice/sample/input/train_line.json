@@ -1,0 +1,20 @@
+[
+  {"time": "04:39", "destination": "高尾行", "platform": 2, "type": "各駅"},
+  {"time": "04:58", "destination": "高尾行", "platform": 1, "type": "各駅"},
+  {"time": "05:10", "destination": "高尾行", "platform": 2, "type": "各駅"},
+  {"time": "05:22", "destination": "高尾行", "platform": 2, "type": "各駅"},
+  {"time": "05:33", "destination": "高尾行", "platform": 2, "type": "各駅"},
+  {"time": "05:43", "destination": "高尾行", "platform": 1, "type": "各駅"},
+  {"time": "05:55", "destination": "河辺行", "platform": 2, "type": "各駅"},
+  {"time": "06:06", "destination": "高尾行", "platform": 1, "type": "快速"},
+  {"time": "06:12", "destination": "高尾行", "platform": 2, "type": "中央特快"},
+  {"time": "06:16", "destination": "高尾行", "platform": 1, "type": "快速"},
+  {"time": "06:22", "destination": "高尾行", "platform": 2, "type": "快速"},
+  {"time": "06:23", "destination": "高尾行", "platform": 2, "type": "快速"},
+  {"time": "06:28", "destination": "高尾行", "platform": 1, "type": "快速"},
+  {"time": "06:33", "destination": "高尾行", "platform": 2, "type": "中央特快"},
+  {"time": "06:38", "destination": "青梅行", "platform": 1, "type": "快速"},
+  {"time": "06:48", "destination": "高尾行", "platform": 1, "type": "快速"},
+  {"time": "06:55", "destination": "高尾行", "platform": 1, "type": "快速"},
+  {"time": "06:59", "destination": "高尾行", "platform": 2, "type": "快速"}
+]
