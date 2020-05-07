@@ -1,7 +1,3 @@
-provider "aws" {
-    region = "ap-northeast-1"
-}
-
 resource "aws_security_group" "example_ec2" {
     name = "example-ec2"
 
