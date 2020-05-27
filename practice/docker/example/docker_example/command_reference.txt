@@ -7,7 +7,7 @@ dcoker container run -d gihyodocker/echo:latest
 docker image build -t example/echo:latest .
 docker image ls
 docker help
-# f optin : assign Dockerfile
+# f option : assign Dockerfile
 docker image build -f Dockerfile-test -t example/echo:latest .
 # pull option : docker image pull with force
 docker image build --pull=true -t example/echo:latest .
