@@ -15,6 +15,7 @@ docker search --limit 5 mysql
 # tag option : assign tag name
 docker image tag example/echo:latest example/echo:0.1.0
 docker image push stormcattest/echo:latest
+# タグのついていないイメージの一括削除
 docker image prune
 
 docker container ls
@@ -22,11 +23,24 @@ docker container stop
 docker container restart echo
 docker container rm
 docker container logs
-docker container exex -it echo sh
+docker container logs [service_name]
+# tail
+docker container logs -f
+
+docker container exec -it echo sh
 docker container cp
+# 停止コンテナ一括削除
 docker container prune
+# 停止コンテナ、タグ無しイメージ、未使用ボリューム、未使用ネットワーク一括削除
 docker system prune
 
 docker-compose up -d
+# 一回目の立ち上げではbuildを使用する
+docker-compose up --build
 docker-compose down
 docker-compose ps
+# イメージ再構築 Dockerfile更新時などに使用する
+docker-compose build --no-cache
+
+# コンテナを立ち上けっぱなしにする
+tty: true
