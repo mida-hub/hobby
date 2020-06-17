@@ -1,0 +1,7 @@
+2020-06-17 21:20:12,225-__main__-ERROR-error log
+2020-06-17 21:20:12,225-__main__-CRITICAL-critical log
+2020-06-17 21:20:12,225-__main__-ERROR-division by zero
+Traceback (most recent call last):
+  File "087_logging_instance.py", line 31, in <module>
+    c = a / b
+ZeroDivisionError: division by zero

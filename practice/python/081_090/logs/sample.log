@@ -1,0 +1,11 @@
+2020-06-17 00:02:54,015-55190-DEBUG-debug log
+2020-06-17 00:02:54,015-55190-INFO-info log
+2020-06-17 00:02:54,015-55190-WARNING-warning log
+2020-06-17 00:02:54,015-55190-ERROR-error log
+2020-06-17 00:02:54,015-55190-CRITICAL-critical log
+2020-06-17 00:02:54,015-55190-ERROR-Taro raised error
+2020-06-17 00:02:54,015-55190-ERROR-division by zero
+Traceback (most recent call last):
+  File "086_logging.py", line 29, in <module>
+    c = a / b
+ZeroDivisionError: division by zero
