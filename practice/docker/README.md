@@ -113,3 +113,11 @@ docker ps の container_id 一覧
 ## docker container rm
 ### 一括削除
 docker container rm $(docker ps -aq)
+
+## docker run
+run = create + start
+
+## docker run -it
+- i: interactive インプット可能
+- t: tty 擬似端末
+
