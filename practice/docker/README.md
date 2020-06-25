@@ -76,7 +76,7 @@ tty: true
 ## dockerイメージを取得
 docker pull 
 
-## containerに入る
+## 起動中のcontainerに入る
 docker run -it ubuntu bash
 docker exec -it container_id bash
 
@@ -121,3 +121,12 @@ run = create + start
 - i: interactive インプット可能
 - t: tty 擬似端末
 
+## docker run -d image
+コンテナを起動後にdetachする(バックグラウンド)
+
+```
+docker run -it -d ubuntu bash
+```
+
+## docker run --rm image
+コンテナをExit後に削除する
