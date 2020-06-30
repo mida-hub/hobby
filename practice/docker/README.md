@@ -130,3 +130,8 @@ docker run -it -d ubuntu bash
 
 ## docker run --rm image
 コンテナをExit後に削除する
+
+## docker build .
+Dockerfile を build する
+name:tag
+docker build -t new_ubuntu:latest .
