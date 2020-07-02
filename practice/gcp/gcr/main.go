@@ -14,12 +14,12 @@ func main() {
 	}
 	server := http.NewServeMux()
 	server.HandleFunc("/", hello)
-	log.Print("Server listening on port %s", port)
+	log.Print("Server listening on port ", port)
 	log.Fatal(http.ListenAndServe(":"+port, server))
 }
 
 func hello(w http.ResponseWriter, r *http.Request) {
-	log.Print("Serving request: %s", r.URL.Path)
+	log.Print("Serving request: ", r.URL.Path)
 	host, _ := os.Hostname()
 	fmt.Fprintf(w, "Hello, world!\n")
 	fmt.Fprintf(w, "Version: 1.0.0\n")
