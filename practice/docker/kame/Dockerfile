@@ -38,6 +38,9 @@ FROM ubuntu:latest
 #     touch sample_file
 
 # WORKDIRで作業場所を指定する
-RUN mkdir sample_folder
-WORKDIR /sample_folder
-RUN touch sample_file
+# RUN mkdir sample_folder
+# WORKDIR /sample_folder
+# RUN touch sample_file
+
+RUN mkdir created_in_dockerfile
+

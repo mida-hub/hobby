@@ -135,3 +135,13 @@ docker run -it -d ubuntu bash
 Dockerfile を build する
 name:tag
 docker build -t new_ubuntu:latest .
+
+## docker run -it -v
+ホストのディレクトリにマウントする
+
+```
+docker run -it -v ~/host_folder:/container_folder imageid bash
+```
+
+## docker run -it -v -u
+ユーザーIDとグループIDを指定してコンテナを起動する
