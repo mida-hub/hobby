@@ -217,3 +217,21 @@ docker run -it --rm --cpus 4 --memory 2g ubuntu bash
 docker inspect container_id | grep -i cpu
 docker inspect container_id | grep -i memory
 ```
+
+## docker save/load
+docker save image_id > tarfile
+docker load < tarfile
+
+## ssh/sftp
+chmod 0600 xxx.pem
+sftp -i xxx.pem ubuntu@ec2.xxx.aws.com
+put Dockerfile
+ssh -i xxx.pem ubuntu@ec2.xxx.aws.com
+sudo apt-get update
+sudo apt-get install docker.io
+sudo gpasswd -a ubuntu docker
+exit
+ssh -i xxx.pem ubuntu@ec2.xxx.aws.com
+
+docker build .
+docker run -v ~:/work -p 8888:8888 image_id
