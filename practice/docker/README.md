@@ -1,112 +1,4 @@
-# docker practice 1
-## docker image pull
-```
-docker image pull gihyodocker/echo:latest
-```
-## docker container run 
-```
-docker container run -t -p 9000:8000 gihyodocker/echo:latest
-```
-
-- t option : assign image name
-- p option : port fowarding
-
-```
-dcoker container run -d gihyodocker/echo:latest
-```
-
-- d option : stay background
-
-## docker image build 
-```
-docker image build -t example/echo:latest .
-docker image ls
-docker help
-
-- f option : assign Dockerfile
-
-```
-docker image build -f Dockerfile-test -t example/echo:latest .
-```
-
-- pull option : docker image pull with force
-
-```
-docker image build --pull=true -t example/echo:latest .
-docker search --limit 5 mysql
-```
-
-- tag option : assign tag name
-
-```
-docker image tag example/echo:latest example/echo:0.1.0
-docker image push stormcattest/echo:latest
-```
-
-## タグのついていないイメージの一括削除
-```
-docker image prune
-```
-
-## docker rmi image_id
-```
-docker rmi image_id
-docker rmi $(docker image ls -q)
-```
-
-## docker container ls
-```
-docker container ls
-docker container stop
-docker container restart echo
-docker container rm
-```
-
-## docker container logs
-```
-docker container logs
-docker container logs [service_name]
-```
-
-- tail
-
-```
-docker container logs -f
-
-docker container exec -it echo sh
-docker container cp
-```
-
-## 停止コンテナ一括削除
-```
-docker container prune
-```
-
-## 停止コンテナ、タグ無しイメージ、未使用ボリューム、未使用ネットワーク一括削除
-```
-docker system prune
-
-docker-compose up -d
-```
-
-## 一回目の立ち上げではbuildを使用する
-```
-docker-compose up --build
-docker-compose down
-docker-compose ps
-```
-
-## イメージ再構築 Dockerfile更新時などに使用する
-```
-docker-compose build
-```
-
-## コンテナを立ち上けっぱなしにする
-```
-tty: true
-```
-
-# docker practice 2
+# docker practice
 ## dockerイメージを取得
 ```
 docker pull 
@@ -155,10 +47,12 @@ docker push mida12251141/my-first-repo
 docker ps の container_id 一覧
 
 ## docker container rm
-### 一括削除
 ```
 docker container rm $(docker ps -aq)
 ```
+
+## docker container logs -f
+log
 
 ## docker run
 run = create + start
@@ -223,6 +117,7 @@ docker save image_id > tarfile
 docker load < tarfile
 
 ## ssh/sftp
+```
 chmod 0600 xxx.pem
 sftp -i xxx.pem ubuntu@ec2.xxx.aws.com
 put Dockerfile
@@ -235,3 +130,18 @@ ssh -i xxx.pem ubuntu@ec2.xxx.aws.com
 
 docker build .
 docker run -v ~:/work -p 8888:8888 image_id
+```
+
+## docker-compose
+```
+docker build    <->     docker-compose build
+docker run      <->     docker-compose up
+docker ps       <->     docker-compose ps
+docker exec     <->     docker-compose exec
+```
+
+## docker-compose up --build -d
+buildしてrun
+
+## docker-compose down
+stopしてrm
