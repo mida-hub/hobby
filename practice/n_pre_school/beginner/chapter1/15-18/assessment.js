@@ -1,4 +1,67 @@
 'use strict';
+const userNameInput = document.getElementById('user-name');
+const assessmentButton = document.getElementById('assessment');
+const resultDivided = document.getElementById('result-area');
+const tweetDivided = document.getElementById('tweet-area');
+
+/**
+ * 指定した要素の子どもを全て削除する
+ * @param {HTMLElement} element HTMLの要素
+ */
+function removeAllChildren(element) {
+    // 子どもの要素がある限り削除
+    while (element.firstChild) {
+        element.removeChild(element.firstChild);
+    }
+}
+
+userNameInput.onkeydown = event => {
+    if (event.key === 'Enter') {
+        assessmentButton.onclick();
+    }
+}
+
+assessmentButton.onclick = () => {
+    // console.log('ボタンが押されました');
+    const userName = userNameInput.value;
+    // 未入力のとき
+    if (userNameInput.length === 0) {
+        return;
+    }
+    // console.log(userName);
+
+    // 診断エリアの作成
+    removeAllChildren(resultDivided);
+    const header = document.createElement('h3');
+    header.innerText = '診断結果';
+    resultDivided.appendChild(header);
+
+    const paragraph = document.createElement('p');
+    const result = assesment(userName);
+    paragraph.innerText = result;
+    resultDivided.appendChild(paragraph);
+
+    // ツイートエリアの作成
+    removeAllChildren(tweetDivided);
+
+    const anchor = document.createElement('a');
+    const hrefValue = 'https://twitter.com/intent/tweet?button_hashtag=' +
+                        encodeURIComponent('あなたのいいところ') +
+                        '&ref_src=twsrc%5Etfw';
+    // console.log(hrefValue);
+    anchor.setAttribute('href', hrefValue);
+    anchor.setAttribute('class', 'twitter-hashtag-button');
+    anchor.setAttribute('data-text', result);
+    anchor.innerText = 'Tweet #あなたのいいところ';
+    tweetDivided.appendChild(anchor);
+
+    // widgets.js の設定
+    const script = document.createElement('script');
+    script.setAttribute('src', 'https://platform.twitter.com/widgets.js');
+    tweetDivided.appendChild(script);
+            // <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+}
+
 const answer = [
     '{userName}のいいところは声です。{userName}の特徴的な声は皆を惹きつけ、心に残ります。',
     '{userName}のいいところはまなざしです。{userName}に見つめられた人は、気になって仕方がないでしょう。',
@@ -36,16 +99,14 @@ function assesment(userName) {
     return result;
 }
 
-// console.log(assesment('太郎'));
-// console.log(assesment('次郎'));
-// console.log(assesment('太郎'));
-
+// テストコート
+var alert_msg = '診断結果の文言の特定の部分を名前に置き換える処理が正しくありません。' 
 console.assert(
     assesment('太郎') ===
     '太郎のいいところは決断力です。太郎がする決断にいつも助けられる人がいます。',
-    '診断結果の文言の特定の部分を名前に置き換える処理が正しくありません。'
+    alert_msg
 );
 console.assert(
     assesment('太郎') === assesment('太郎'),
-    '診断結果の文言の特定の部分を名前に置き換える処理が正しくありません。'
+    alert_msg
 );
