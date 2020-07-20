@@ -1,0 +1,10 @@
+version: "3"
+
+services:
+    n_pre_school:
+        build: "."
+        volumes:
+            - ".:/work"
+        ports:
+            - "8000:8000"
+        tty: true
