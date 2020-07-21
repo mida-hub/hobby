@@ -4,7 +4,7 @@ services:
     n_pre_school:
         build: "."
         volumes:
-            - ".:/home/hubot"
+            - ".:/work"
         ports:
-            - "6379:6379"
+            - "8000:8000"
         tty: true
