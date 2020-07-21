@@ -8,3 +8,7 @@ data/
 tweet/
 .Rhistory
 node_modules
+.npm
+.config
+.cache
+.bash_history
