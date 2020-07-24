@@ -4,7 +4,9 @@ RUN apt-get update && apt-get install -y \
 RUN yarn global add axios \
     && yarn global add yo@3.0.0 \
     && yarn global add generator-hubot \
-    && yarn global add coffeescript@1.12.7
+    && yarn global add coffeescript@1.12.7 \
+    && yarn add pug@2.0.0-rc.4 \
+    && yarn global add pug-cli
 RUN useradd hubot -m
 USER hubot
 WORKDIR /home/hubot
