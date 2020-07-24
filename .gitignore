@@ -9,6 +9,7 @@
 .npm
 .Rhistory
 .terraform
+.yarn
 .yarnrc
 credentials.json
 data/
