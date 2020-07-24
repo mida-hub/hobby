@@ -6,7 +6,8 @@ RUN yarn global add axios \
     && yarn global add generator-hubot \
     && yarn global add coffeescript@1.12.7 \
     && yarn add pug@2.0.0-rc.4 \
-    && yarn global add pug-cli
+    && yarn global add pug-cli \
+    && yarn add http-auth@3.2.3
 RUN useradd hubot -m
 USER hubot
 WORKDIR /home/hubot
