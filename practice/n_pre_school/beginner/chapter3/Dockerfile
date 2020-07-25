@@ -12,7 +12,8 @@ RUN yarn global add axios \
     && yarn add sequelize@5.21.5 \
     && yarn add pg@7.17.1 \
     && yarn add pg-hstore@2.3.3 \
-    && yarn add cookies@0.5.1
+    && yarn add cookies@0.5.1 \
+    && yarn add moment-timezone@0.5.0
 # RUN useradd hubot -m
 # USER hubot
 # WORKDIR /home/hubot
