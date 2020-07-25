@@ -8,6 +8,7 @@
   },
   "license": "MIT",
   "dependencies": {
+    "cookies": "0.5.1",
     "pug": "2.0.0-rc.4"
   }
 }

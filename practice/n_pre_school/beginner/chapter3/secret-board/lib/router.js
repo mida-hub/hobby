@@ -7,8 +7,10 @@ function route(req, res) {
     case '/posts':
       postsHandler.handle(req, res);
       break;
+    case '/posts?delete=1':
+      postsHandler.handleDelete(req, res);
+      break;
     case '/logout':
-      // TODO ログアウト処理
       util.handleLogout(req, res);
       break;
     default:
