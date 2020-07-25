@@ -8,9 +8,7 @@ const basic = auth.basic({
   file: './users.htpasswd'
 });
 
-// const server = http.createServer((req, res) => {
 const server = http.createServer(basic, (req, res) => {
-    // res.end('hi');
     router.route(req, res);
   })
   .on('error', e => {

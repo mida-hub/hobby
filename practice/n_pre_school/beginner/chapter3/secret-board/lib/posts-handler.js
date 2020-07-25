@@ -3,7 +3,7 @@ const pug = require('pug');
 const Cookies = require('cookies');
 const util = require('./handler-util');
 const Post = require('./post');
-// const contents = [];
+const moment = require('moment-timezone');
 const trackingIdKey = 'tracking_id';
 
 function handle(req, res) {
@@ -12,15 +12,15 @@ function handle(req, res) {
 
   switch (req.method) {
     case 'GET':
-      // res.end('hi');
       res.writeHead(200, {
         'Content-Type': 'text/html; charset=utf-8'
       });
-      // res.end(pug.renderFile('./views/posts.pug'));
-      // res.end(pug.renderFile('./views/posts.pug', { contents: contents }));
-      Post.findAll({order:[['id', 'DESC']]}).then((posts) => {
+      Post.findAll({ order: [['id', 'DESC']] }).then((posts) => {
         posts.forEach((post) => {
           post.content = post.content.replace(/\n/g, '<br>');
+          post.formattedCreatedAt = moment(post.createdAt)
+            .tz('Asia/Tokyo')
+            .format('YYYY年MM月DD日 HH時mm分ss秒');
         });
         res.end(pug.renderFile('./views/posts.pug', {
           posts: posts,
@@ -28,7 +28,7 @@ function handle(req, res) {
         }));
         console.info(
           `閲覧されました: user: ${req.user}, ` +
-          `trackingId: ${cookies.get(trackingIdKey) }, ` +
+          `trackingId: ${cookies.get(trackingIdKey)}, ` +
           `remoteAddress: ${req.connection.remoteAddress} ,` +
           `userAgent: ${req.headers['user-agent']}`
         );
@@ -42,9 +42,6 @@ function handle(req, res) {
         body = Buffer.concat(body).toString();
         const decoded = decodeURIComponent(body);
         const content = decoded.split('content=')[1];
-        // contents.push(content);
-        // console.info('投稿された全内容: ' + contents);
-        // handleRedirectPosts(req, res);
         Post.create({
           content: content,
           trackingCookie: cookies.get(trackingIdKey),
@@ -76,9 +73,9 @@ function handleDelete(req, res) {
             post.destroy().then(() => {
               console.info(
                 `削除されました: id: ${id}, ` +
-                  `user: ${req.user}, ` +
-                  `remoteAddress: ${req.connection.remoteAddress}, ` +
-                  `userAgent: ${req.headers['user-agent']}`
+                `user: ${req.user}, ` +
+                `remoteAddress: ${req.connection.remoteAddress}, ` +
+                `userAgent: ${req.headers['user-agent']}`
               );
               handleRedirectPosts(req, res);
             });

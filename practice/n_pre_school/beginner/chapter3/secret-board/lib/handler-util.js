@@ -1,11 +1,10 @@
 'use strict';
+const fs = require('fs');
 
 function handleLogout(req, res) {
   res.writeHead(401, {
-    // 'Content-Type': 'text/plain; charset=utf-8'
     'Content-Type': 'text/html; charset=utf-8'
   });
-  // res.end('ログアウトしました');
   res.end('<!DOCTYPE html><html lang="ja"><body>' +
     '<h1>ログアウトしました</h1>' +
     '<a href="/posts">ログイン</a>' +
@@ -27,8 +26,17 @@ function handleBadRequest(req, res) {
   res.end('未対応のメソッドです');
 }
 
+function handleFavicon(req, res) {
+  res.writeHead(200, {
+    'Content-Type': 'image/vnd.microsoft.icon'
+  });
+  const favicon = fs.readFileSync('./favicon.ico');
+  res.end(favicon);
+}
+
 module.exports = {
   handleLogout,
   handleNotFound,
-  handleBadRequest
+  handleBadRequest,
+  handleFavicon
 };
