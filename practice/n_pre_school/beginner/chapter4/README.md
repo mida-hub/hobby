@@ -17,3 +17,8 @@ DEBUG=express-study:* PORT=8000 yarn start
 DEBUG=express-study:*,module:* PORT=8000 yarn start
 DEBUG=module:error PORT=8000 yarn start
 ```
+
+## シークレット
+```
+node -e "console.log(require('crypto').randomBytes(8).toString('hex'));"
+```
