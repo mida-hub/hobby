@@ -17,15 +17,11 @@ RUN yarn global add axios \
     && yarn global add clean-css@4.1.1 \
     && yarn global add htpasswd@2.4.0 \
     && yarn global add express-generator@4.16.0 \
-    && yarn global add helmet@1.1.0
-# RUN useradd hubot -m
-# USER hubot
-# WORKDIR /home/hubot
-# RUN yo hubot --defaults --adapter slack
-
-# コンテナ接続後にサービスを立ち上げてdbコンテナに接続する
-# service postgresql start
-# su - postgres
-# psql -h db -p 5432
+    && yarn global add helmet@1.1.0 \
+    && yarn global add passport@0.3.2 \
+    && yarn global add passport-github2@0.1.9 \
+    && yarn global add express-session@1.15.6 \
+    && yarn global add jest@25.1.0 --dev \
+    && yarn global add jest-junit@10.0.0 --dev
 
 CMD ["/bin/bash"]
