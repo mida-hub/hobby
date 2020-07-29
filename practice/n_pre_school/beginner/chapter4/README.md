@@ -22,3 +22,10 @@ DEBUG=module:error PORT=8000 yarn start
 ```
 node -e "console.log(require('crypto').randomBytes(8).toString('hex'));"
 ```
+
+## webpack
+```
+npx webpack
+or
+node node_modules/webpack/bin/webpack.js
+```
