@@ -18,8 +18,22 @@ movingButton.click(() => {
 
 const loadavg = $('#loadavg');
 
-setInterval(() => {
-  $.get('/server-status', {}, (data) => {
-    loadavg.text(data.loadavg.toString());
-  });
-}, 1000);
+// setInterval(() => {
+//   $.get('/server-status', {}, (data) => {
+//     loadavg.text(data.loadavg.toString());
+//   });
+// }, 1000);
+
+import io from 'socket.io-client';
+const socket = io('http://localhost:8000');
+socket.on('server-status', (data) => {
+  loadavg.text(data.loadavg.toString());
+});
+
+socket.on('connect', () => {
+  console.log('接続しました')
+});
+
+socket.on('disconnect', () => {
+  console.log('切断しました')
+});
