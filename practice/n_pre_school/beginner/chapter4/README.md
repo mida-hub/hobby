@@ -31,6 +31,11 @@ X-Powered-By ヘッダは、この Web サービスがどのようなフレー�
 yarn add helmet@3.8.2
 ```
 
+### CSRF
+```
+yarn add csurf@1.8.3
+```
+
 ## OAuth
 ### GitHub認証の実装
 ```
@@ -65,4 +70,23 @@ package.json
 mkdir test
 touch test/test.js
 yarn test
+```
+
+## モデル
+```
+yarn add sequelize@5.21.5
+yarn add pg@7.17.1
+yarn add pg-hstore@2.3.3
+yarn add uuid@3.3.2
+```
+
+## デザイン
+```
+yarn add bootstrap@4.0.0
+yarn add popper.js@1.14.0
+```
+
+## 時間
+```
+yarn add moment-timezone@0.5.0
 ```
