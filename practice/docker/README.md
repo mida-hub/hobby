@@ -145,3 +145,8 @@ buildしてrun
 
 ## docker-compose down
 stopしてrm
+
+## Mac の DockerEngine の VM に入る
+```
+docker run -it --privileged --pid=host debian nsenter -t 1 -m -u -n -i sh
+```
