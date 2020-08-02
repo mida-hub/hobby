@@ -146,6 +146,12 @@ buildしてrun
 ## docker-compose down
 stopしてrm
 
+## 断捨離
+```
+docker system prune
+docker system prune --volumes
+```
+
 ## Mac の DockerEngine の VM に入る
 ```
 docker run -it --privileged --pid=host debian nsenter -t 1 -m -u -n -i sh
