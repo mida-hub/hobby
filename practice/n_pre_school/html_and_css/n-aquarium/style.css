@@ -1,6 +1,3 @@
-header{
-  background: #eeeeee;
-}
 
 .headerInner{
   height: 100px;
@@ -17,6 +14,31 @@ body{
   max-width: 650px;
   margin: auto;
   padding: 0 20px;
+}
+
+.keyVisual{
+  text-align: center;
+}
+
+.priceWrapper table,
+.priceWrapper th,
+.priceWrapper td{
+    border-collapse: collapse;
+    border: 1px solid black;
+}
+
+.priceWrapper th,
+.priceWrapper td{
+    padding: 7px;
+}
+
+.priceWrapper table{
+    width: 100%;
+}
+
+.priceWrapper th{
+    width: 150px;
+    background: #eee;
 }
 
 footer{
