@@ -1,3 +1,21 @@
+body{
+  font-family: sans-serif;
+  /* background-image: url("niconico_bg_blue.png");
+  background: url("niconico_bg_blue.png") top center / 100px 100px no-repeat; */
+}
+
+h2{
+  /* border-left: solid 1px #000;
+  border-bottom: solid 1px #000;
+  border-width: 0px 0px 2px 4px;
+  border-left-color: red;
+  background-color: #f2f2f2; */
+  background-image: url(niconico_bg_blue.png);
+  line-height: 50px;
+  padding: 0 15px;
+  color: #fff;
+  text-align: center;
+}
 
 .headerInner{
   height: 100px;
@@ -6,14 +24,21 @@
   align-items: center;
 }
 
-body{
-  margin: 0;
-}
-
 .headerInner,.mainInner{
   max-width: 650px;
   margin: auto;
   padding: 0 20px;
+}
+
+.aboutWrapper img{
+  float:left;
+  margin-right: 10px;
+}
+
+.clearfix:after{
+  content: "";
+  display: block;
+  clear: both;
 }
 
 .keyVisual{
