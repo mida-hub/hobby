@@ -20,7 +20,7 @@
   <main>
     <h1>お問い合わせ</h1>
     <form action="thanks.html">
-      <table>
+      <table class="contactForm">
           <tr>
               <td><label for="name">お名前</label></td>
               <td><input type="text" name="name" placeholder="名前を入れてください"></td>
@@ -35,17 +35,19 @@
           <tr>
               <td><label for="age">年齢</label></td>
               <td>
-              <select name="age">
-                  <option value="10">10代</option>
-                  <option value="20">20代</option>
-                  <option value="30">30代</option>
-                  <option value="40">40代</option>
-                  <option value="other">それ以上</option>
-              </select>
+              <div class="selectBox">
+                <select name="age">
+                    <option value="10">10代</option>
+                    <option value="20">20代</option>
+                    <option value="30">30代</option>
+                    <option value="40">40代</option>
+                    <option value="other">それ以上</option>
+                </select>
+              </div>
               </td>
           </tr>
           <tr>
-              <th><label for="title">題名</label></th>
+              <th><label for="title">タイトル</label></th>
               <td><input type="text" name="title" placeholder="タイトルを入れてください"></td>
           </tr>
           <tr>
