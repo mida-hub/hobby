@@ -32,6 +32,7 @@ RUN wget https://www.python.org/ftp/python/3.7.5/Python-3.7.5.tgz \
 RUN update-alternatives --install /usr/local/bin/python3 python3 /usr/local/bin/python3.7 1
 RUN update-alternatives --install /usr/local/bin/pip3 pip3 /usr/local/bin/pip3.7 1
 RUN pip3 install -U pip
+RUN pip3 install Django==2.2.6
 
 WORKDIR ${DEPLOY_DIR}
 

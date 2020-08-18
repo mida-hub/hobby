@@ -6,3 +6,5 @@ services:
     volumes:
       - ".:/root/mysite"
     tty: true
+    ports:
+      - "8000:8000"
