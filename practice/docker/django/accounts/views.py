@@ -14,8 +14,8 @@ logger = logging.getLogger(__name__)
 class HomeView(View):
     def get(self, request, *args, **kwargs):
         # コールバックで入ってきた時に自分以外はログアウトさせる
-        if request.user.is_authenticated and request.user.email != 'rusuden0106@gmail.com':
-            auth_logout(request)
+        # if request.user.is_authenticated and request.user.email != '':
+        #     auth_logout(request)
         return render(request, 'accounts/home.html')
 home = HomeView.as_view()
 
