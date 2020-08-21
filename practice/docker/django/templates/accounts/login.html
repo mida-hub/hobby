@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_title %}ログイン{% endblock %}
+
+{% block extra_css %}
+{% endblock %}
+
+{% block content %}
+<div class="content">ログイン</div>
+
+<form method="post">
+{% csrf_token %}
+<a href="{% url 'social:begin' 'google-oauth2' %}">Login with Google</a><br>
+{% endblock %}

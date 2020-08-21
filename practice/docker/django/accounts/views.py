@@ -1,20 +1,33 @@
-# from django.contrib.auth import login as auth_login
-from django.shortcuts import render
-# from django.urls import reverse
+import logging
+
+from django.conf import settings
+from django.contrib import messages
+from django.contrib.auth import login as auth_login, logout as auth_logout
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.shortcuts import render, redirect
+from django.urls import reverse
 from django.views import View
-#
-# from .forms import LoginForm
-#
 
-from django.http import HttpResponse
+logger = logging.getLogger(__name__)
 
-class HelloView(View):
+
+class HomeView(View):
     def get(self, request, *args, **kwargs):
-        context = {
-            'message': "Hello World!",
-        }
-        return render(request, 'accounts/index.html', context)
+        # コールバックで入ってきた時に自分以外はログアウトさせる
+        if request.user.is_authenticated and request.user.email != 'rusuden0106@gmail.com':
+            auth_logout(request)
+        return render(request, 'accounts/home.html')
+home = HomeView.as_view()
 
-# path('', views.index, name='index')
-# name と 変数名が一致している必要があるらしい
-index = HelloView.as_view()
+
+class LoginView(View):
+    def get(self, request, *args, **kwargs):
+        return render(request, 'accounts/login.html')
+login = LoginView.as_view()
+
+
+class LogoutView(View):
+    def get(self, request, *args, **kwargs):
+        auth_logout(request)
+        return render(request, 'accounts/logout.html')
+logout = LogoutView.as_view()

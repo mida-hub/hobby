@@ -12,3 +12,13 @@ python3 manage.py startapp accounts
 ```
 python3 manage.py runserver 0.0.0.0:8000
 ```
+
+# migrate
+```
+python manage.py migrate
+```
+
+# OAuth
+```
+c.f. https://qiita.com/moi1990sk/items/a849fca7acb29db95508
+```

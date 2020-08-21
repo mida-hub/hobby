@@ -1,3 +1,36 @@
-{% block sample %}
-Hello
-{% endblock %}
+<!doctype html>
+{% load static %}
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block page_title %}{% endblock %}</title>
+
+    {# --- css --- #}
+    <link rel="stylesheet" href="{% static 'css/normalize.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+<header>
+<div class="headerInner">
+  <h1 class="blog-title">とまとエンジニア日記</h1>
+</div>
+</header>
+<main>
+    <div class="mainInner">
+        {% include '_message.html' %}
+        {% block content %}{% endblock %}
+    </div>
+    {% block extra_js %}{% endblock %}
+    {# --- js --- #}
+    <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'js/jquery-ui.min.js' %}"></script>
+</main>
+<footer>
+    <div class="footerInner">
+        <!-- <small>プロフィール</small> -->
+        <small>&copy; とまとエンジニア日記 2020</small>
+    </div>
+</footer>
+</body>
+</html>
