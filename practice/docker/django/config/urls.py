@@ -6,6 +6,7 @@ from django.views.generic import RedirectView
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('accounts.urls')),
+    path('shop/', include('shop.urls')),
     path('', RedirectView.as_view(url='/accounts/home/')),
     path('auth/', include('social_django.urls', namespace='social')),
 ]
