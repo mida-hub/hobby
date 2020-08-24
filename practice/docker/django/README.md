@@ -11,10 +11,12 @@ python3 manage.py startapp accounts
 # サーバー起動
 ```
 python3 manage.py runserver 0.0.0.0:8000
+python3 manage.py runserver 0.0.0.0:8000 --settings config.local_settings
 ```
 
 # migrate
 ```
+python manage.py malemigrations
 python manage.py migrate
 ```
 
