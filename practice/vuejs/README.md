@@ -38,3 +38,21 @@ vue --version
 ```
 npm install vuex
 ```
+
+# ビルド
+```
+vue serve App.vue --open
+``` 
+
+# プロジェクト作成
+cf. https://cr-vue.mio3io.com/guide/chapter7.html
+cf. https://cr-vue.mio3io.com/guide/chapter8.html
+```
+vue create my-ap
+```
+
+
+# ビルド
+```
+npm run serve
+```
