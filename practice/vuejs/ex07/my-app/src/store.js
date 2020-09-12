@@ -21,6 +21,22 @@ const store = new Vuex.Store({
         done: true
       }
     ],
+    labels: [
+      {
+        id: 1,
+        text: '買い物'
+      },
+      {
+        id: 2,
+        text: '食料'
+      },
+      {
+        id: 3,
+        text: '本'
+      }
+    ],
+    nextTaskId: 3,
+    nextLabelId: 4,
   },
   getters: {
     // messageを使用するゲッター
@@ -31,6 +47,34 @@ const store = new Vuex.Store({
       return state.tasks
     },
   },
+  mutations: {
+    addTask (state, { name, labelIds }) {
+      state.tasks.push({
+        id: state.nextTaskId,
+        name,
+        labelIds,
+        done: false
+      })
+      state.nextTaskId++
+    },
+    toggleTaskStatus (state, { id }){
+      const filtered = state.tasks.filter(task => {
+        return task.id === id
+      })
+      filtered.forEach(task => {
+        task.done = !task.done
+      })
+    },
+    addLabel (state, { text }) {
+      state.labels.push({
+        id: state.nextLabelId,
+        text
+      })
+
+      // 次に追加されるラベルに付与する ID を更新する
+      state.nextLabelId++
+    },
+  }
 })
 
 // ストアをエクスポート
