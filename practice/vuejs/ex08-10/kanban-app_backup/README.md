@@ -1,6 +1,6 @@
 # kanban-app
 
-> A Vue.js project
+> A KanBanApplication
 
 ## Build Setup
 

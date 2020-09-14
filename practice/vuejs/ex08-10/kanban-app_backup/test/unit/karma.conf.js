@@ -15,10 +15,6 @@ module.exports = function karmaConfig (config) {
     frameworks: ['mocha', 'sinon-chai', 'phantomjs-shim'],
     reporters: ['spec', 'coverage'],
     files: ['./index.js'],
-    files: [
-      '../../node_modules/es6-promise/dist/es6-promise.auto.js',
-      './index.js'
-    ],
     preprocessors: {
       './index.js': ['webpack', 'sourcemap']
     },
