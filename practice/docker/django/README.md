@@ -16,11 +16,11 @@ python3 manage.py runserver 0.0.0.0:8000 --settings config.local_settings
 
 # migrate
 ```
-python manage.py malemigrations
+python manage.py makemigrations
 python manage.py migrate
 ```
 
 # OAuth
 ```
-c.f. https://qiita.com/moi1990sk/items/a849fca7acb29db95508
+cf. https://qiita.com/moi1990sk/items/a849fca7acb29db95508
 ```
