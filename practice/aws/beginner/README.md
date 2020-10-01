@@ -3,6 +3,7 @@ https://tomomano.gitlab.io/intro-aws/
 
 ## setup
 https://console.aws.amazon.com/iam/home?region=ap-northeast-1#/security_credentials
+
 ```
 export AWS_ACCESS_KEY_ID=
 export AWS_SECRET_ACCESS_KEY=
