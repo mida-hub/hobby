@@ -12,4 +12,17 @@
 - ConcreateBuilder: Builder の処理を具体化したクラス
 - Director: Builder を利用するクラス
 
+# Factory Method
+## 概要
+- 工場のように大量の製品を作成する
+- インタフェースで処理の骨組みを作りサブクラスを用いてオブジェクトを作成する
+- サブクラスに応じて、作成されるオブジェクトのタイプを変える
+  
+## 目的
+- オブジェクトの生成とオブジェクトの具体的な処理を分離することで、柔軟にオブジェクトを利用でき再利用性を高める
 
+## 構成要素
+- Product: 作成するオブジェクトの構成要素を定義するインタフェース
+- ConcreteProduct: Product を具体化したインタフェース
+- Creator: Product を生成する処理を定義したインタフェース
+- ConcreteCreator: Creator を具体化した ConcreteProduct を作成するクラス
