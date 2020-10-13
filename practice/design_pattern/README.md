@@ -26,3 +26,20 @@
 - ConcreteProduct: Product を具体化したインタフェース
 - Creator: Product を生成する処理を定義したインタフェース
 - ConcreteCreator: Creator を具体化した ConcreteProduct を作成するクラス
+
+# Abstract Factory
+- 関連する部品を組み合わせて製品を作成するとき
+- 抽象的な工場、抽象的な部品を利用して、様々な製品を作成する
+- 抽象クラスを継承した複数の部品を組み合わせて一つの製品を作成する
+ 
+## 目的
+- 複数の部品を組み合わせることで、様々な製品を作成する
+- 抽象クラスを継承した部品を作成することで拡張性を高める
+
+## 構成要素
+- Product: 作成するオブジェクトの部品を定義するインタフェース
+- ConcreteProduct: Product を具体化したクラス
+- Factory: Product を生成する処理を定義したインタフェース
+- ConcreteFactory: ConcreteProduct を作成する Factory を具体化したクラス
+
+
