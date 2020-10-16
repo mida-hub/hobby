@@ -63,3 +63,21 @@
 - Prototype: 複製するオブジェクトの構成要素を定義するインタフェース
 - ConcretePrototype: Prototype を具体化したクラス
 - Manager: ConcretePrototype を登録し、複製を作成するクラス
+
+# 構造に関するパターン
+## Adapter
+### 概要
+- コンセントのアダプターの意味
+- 例えば、 iPhone に接続する用の端子を Android でも接続できるように iPhone の端子を Android に変換する
+- Adapter につなぎちあクラスを作成する
+- Adapter に処理を記述するためのインタフェースを作成する
+- Adapter を作成して、 Adapter と接続できるようにする
+
+### 目的
+- クラスとクラスの間をつないで、型の違いを解消すること
+  
+### 構成要素
+- Adaptee: Adapter に接続されるクラスを抽象化したインタフェース
+- ConcreateAdaptee: Adaptee の処理を具体的に記述したクラス
+- Adapter(Target): Adaptee を利用する処理を記載したインタフェース
+- ConcreteAdapter: Adapter の処理を具体化したクラス
