@@ -81,3 +81,19 @@
 - ConcreateAdaptee: Adaptee の処理を具体的に記述したクラス
 - Adapter(Target): Adaptee を利用する処理を記載したインタフェース
 - ConcreteAdapter: Adapter の処理を具体化したクラス
+
+## Bridge
+### 概要
+- 各機能を構成している要素を抽象クラスでつないで、柔軟に機能追加を行う
+- ある機能を持った Implementer と ConcreteImplementer を作成する Bridge を用いて、別のクラスにつなぎ新規の機能を追加する
+
+### 目的
+- 機能拡張が容易にできるようにして、拡張時に外のクラスに影響が出ないようにする
+
+### 構成要素
+- Implementer: 基本的な機能を記述したインタフェース
+- ConcreteImplementer: Implementer を継承して処理を具体的に記述するクラス
+- Abstraction: 追加として実装される機能を Implementer と切り離して作成する処理を記述した抽象クラス
+- RefinedAbstraction: Abstraction の処理を具体的に記述したクラス
+
+
