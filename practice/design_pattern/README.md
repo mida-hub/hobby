@@ -96,4 +96,17 @@
 - Abstraction: 追加として実装される機能を Implementer と切り離して作成する処理を記述した抽象クラス
 - RefinedAbstraction: Abstraction の処理を具体的に記述したクラス
 
+## Composite
+### 概要
+- 木と葉をもった階層構造をプログラム上で表現したい場合に用いられる
+- どの節にどの葉を要素として追加していくのか把握することが難しい場合、Composite パターンを用いてツリー構造を表現する
+- 葉と節のもつ共通の機能を持つ Component を作成して、Component を継承した Composite と Reaf を作成する
+- Composite をインスンタンス化してその Composite の子要素とする Composite, Reaf を作成する
+ 
+### 目的
+- ツリー階層構造をわかりやすく表現する
 
+### 構成要素
+- Component: Composite と Reaf の共通機能を持った抽象クラス
+- Composite: 容器を表す役を持ったクラスで、この中に Composite, Reaf を入れていき、階層構造を作成する
+- Reaf: 中身を表す役のクラス。この中には要素を入れることができない
