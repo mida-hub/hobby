@@ -110,3 +110,19 @@
 - Component: Composite と Reaf の共通機能を持った抽象クラス
 - Composite: 容器を表す役を持ったクラスで、この中に Composite, Reaf を入れていき、階層構造を作成する
 - Reaf: 中身を表す役のクラス。この中には要素を入れることができない
+
+## Decorator
+### 概要
+- デコレーションとは飾り付けのことで、別のクラスの持っている特定の機能を別のクラスに追加するデザインパターン
+- 互いに関連したクラスの処理をクラスをまたいで追加していきたい場合に用いる
+- Component を継承した ConcreteComponent, Decorator を作成し、Decorator は Component をプロパティに持つ
+- Decorator を継承した ConcreteDecorator を作成して、利用する際にプロパティに ConcreteComponent を設定する
+ 
+### 目的
+- 複数の機能を一つのクラスにまとめる
+
+### 構成要素
+- Component: 機能を追加する際の中核となるクラス
+- ConcreteComponent: 追加する処理を記載した Component を継承したクラス
+- Decorator: Component を継承したクラスで、プロパティに Component を持つ
+- ConcreteDecorator: Decorator の処理を具体的に記述したクラス
