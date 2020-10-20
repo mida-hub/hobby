@@ -126,3 +126,29 @@
 - ConcreteComponent: 追加する処理を記載した Component を継承したクラス
 - Decorator: Component を継承したクラスで、プロパティに Component を持つ
 - ConcreteDecorator: Decorator の処理を具体的に記述したクラス
+
+## Facade
+### 概要
+- 建物の正面のこと
+- 各クラスが関連しあって実行される複雑な処理を、Facadeが各クラスを利用してわかりやすくする
+- システムを構成するクラスを作成する
+- システムを構成するクラスを利用するための Facade を作成し、ユーザーに対するインタフェースを提供する
+
+### 目的
+- 複雑なシステムを扱うための、シンプルなインタフェースを提供すること
+
+### 構成要素
+- Facade: システムを構成する様々なクラスを利用するためのクラス
+- その他のクラス: 色々な処理が記載された Facade に利用されるクラス
+
+## Flyweight
+### 概要
+- オブジェクトを共有することで、メモリの使用量を少なくするために用いる
+- Flyweight を作成する
+- Flyweight をインスタンスとして所有する FlyweightFactory を作成する
+
+### 構成要素
+- Flyweight: 普通に用いるとメモリ使用量が大きいため、共有したほうがよいものを表す
+- FlyweightFactory : Flyweight を作成する工場。FlyweightFactory を利用して Flyweight を作成するとオブジェクトが共有される
+
+
