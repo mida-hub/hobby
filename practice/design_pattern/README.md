@@ -151,4 +151,20 @@
 - Flyweight: 普通に用いるとメモリ使用量が大きいため、共有したほうがよいものを表す
 - FlyweightFactory : Flyweight を作成する工場。FlyweightFactory を利用して Flyweight を作成するとオブジェクトが共有される
 
+## Proxy
+### 概要
+- Proxy とは代理を表しており、あるオブジェクトの代わりに処理を行う
+- オリジナルのオブジェクトへのアクセスをコントロールしたい場合に利用する
+- インスタンス化する際に、時間がかかるとき
+- 処理が複雑、危険な処理がありチェックをしたいとき
+- Subject を継承した RealSubject に処理を記述する
+- Subject を継承した Proxy を作成して RealSubject の代わりに処理を行う
+
+### 目的
+- 特定のオブジェクトに代わって処理を行う
+
+### 構成要素
+- Subject: RealSubject と Proxy を同一視して利用するためのインタフェース
+- RealSubject: Subject を継承して処理を記述する
+- Proxy: RealSubject の代わりにクライアントからの処理を返す。自分で処理ができなかった場合に RealSubject を呼び出す
 
