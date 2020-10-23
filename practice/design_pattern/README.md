@@ -201,3 +201,22 @@
 - ConcreteCommand: Command を具体化したもの。Receiver を扱った命令を記述する
 - Receiver: Command が命令を実行する際の対象となるクラス
 - Invoker: 命令の実行を開始する役目となるクラス
+
+## Interpreter
+### 概要
+- SQL, HTML, プログラムなどの一定の規則性を持った文の構造を解析するためのパターン
+- プログラムなどの構文チェックに用いられる
+- 構文解析のための処理を記述したクラスを作成する
+- 構文解析される情報を持ったクラスを作成して、インスタンス化したのちに構文解析させる
+
+### 目的
+- Composite パターンの階層構造を用いて、インタプリタを実装する
+
+### 構成要素
+- AbstractExpression: 構文木の各ノードに共通の処理を記載したインタフェース
+- TerminalExpression: AbstractExpression を具体化したクラス。木構造の葉を表す
+- NonterminalExpression: AbstractExpression を具体化したクラス。木構造の枝を表す
+- Client: 命令を実行するクラス
+- Context: AbstractExpression によって構文解析されるクラス
+
+
