@@ -219,4 +219,20 @@
 - Client: 命令を実行するクラス
 - Context: AbstractExpression によって構文解析されるクラス
 
+## Iterator
+### 概要
+- 繰り返しの意味
+- Iterator パターンでは特定のオブジェクトの集合を操作して、集合の中身を見せずに、集合の中の特定の要素を返す
+- Iterator と ConcreteIterator を実装して、ある特定の集合を探索できるようにする
+- Aggregate を継承した ConcreteAggregate を実装して、自身の Iterator を作成できるようにする
+
+### 目的
+- 特定の要素の集合の中にある要素を探索して1つ1つ返すこと
+
+### 構成要素
+- Iterator: インデックスを利用して、要素を順番にスキャンして返すインタフェース
+- ConcreteIterator: Iterator を具体化したクラス。特定のクラスに対してのイテレーター提供するクラス
+- Aggregate: イテレーターを作成するメソッドを持ったインタフェース
+- ConcreteAggregate: Aggregate を具体化したクラス。自分のイテレータを作成することができるクラス
+
 
