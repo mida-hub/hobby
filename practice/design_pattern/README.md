@@ -235,4 +235,19 @@
 - Aggregate: イテレーターを作成するメソッドを持ったインタフェース
 - ConcreteAggregate: Aggregate を具体化したクラス。自分のイテレータを作成することができるクラス
 
+## Mediator
+### 概要
+- 仲裁人
+- Mediator パターンは、オブジェクト間の仲裁の役目をして、オブジェクト間のデータの受け渡しを行う
+- オブジェクト同士が直接処理をすることを制限して、オブジェクトの独立性を高め複雑な処理を実装する
+- Colleague を作成してプロパティに Mediator を持ち、 Colleague の状態を Mediator に伝えられるようにする
+- Mediator を作成して、 Colleague の状態に応じた処理ができるようにする
 
+### 目的
+- Mediator パターンでは、オブジェクトの仲介をして各オブジェクトが関連し合った処理を実装する
+
+### 構成要素
+- Mediator: Colleague と通信を行い、処理の調整を行うインタフェース
+- ConcreateMediator: Mediator を具体化したクラス。特定の Colleague に対しての調整を行う
+- Colleague: Mediator と通信して、処理を調整するインタフェース
+- ConcreateColleague: Colleague を具体化したクラス。Mediator によって処理を調整される
