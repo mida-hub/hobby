@@ -251,3 +251,19 @@
 - ConcreateMediator: Mediator を具体化したクラス。特定の Colleague に対しての調整を行う
 - Colleague: Mediator と通信して、処理を調整するインタフェース
 - ConcreateColleague: Colleague を具体化したクラス。Mediator によって処理を調整される
+
+## Memento
+### 概要
+- 記念品
+- Memento パターンは、オブジェクトのバックアップをメモリ上に作成して、古い状態に戻すことができるようにするためのデザインパターン
+- Originator と Originator を保存するための Memento, ConcreteMemento を作成する
+- CareTaker を作成して、 Originator の状態を保存するためのメソッドを提供する
+
+### 目的
+- Memento パターンでは、オブジェクトの状態を保存して、元の状態に戻したりする
+
+### 構成要素
+- Originator: Memento を用いて、オブジェクトの状態を保存するクラス
+- Memento: オブジェクトの状態の保存を行うインタフェース
+- ConcreteMemento: Memento を具体化したクラス。特定の Originator に対しての状態を保存する
+- CareTaker: 特定の Originator に対してのバックアップや元に戻すなどの処理を行う
