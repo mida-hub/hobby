@@ -283,3 +283,18 @@
 - ConcreteSubject: Subject を継承して処理を具体化したクラス。特定の処理を行った場合に Observer を呼び出す
 - Observer: 観察者で Subject から呼び出され、特定の処理を実行する
 - ConcreteObserver: Observer を具体化したクラス
+
+## State
+### 概要
+- State とは状態の意味で、状態をクラスで表現するデザインパターン
+- 状態によって変換する処理を定義する State インタフェースを作成する
+- State を継承した ConcreteState に具体的な処理を実装する
+- Context を作成して、場合に応じて利用する ConcreteState を変える処理を実行する
+
+### 目的
+- 状態を表すクラスを作成して、状態に応じた処理を実行して拡張性を高めること
+
+### 構成要素
+- State: 状態を表し、状態ごとに異なる振る舞いをするインタフェースを定める
+- ConcreteState: State を具体化したクラスで、具体的な個々の状態を表現する
+- Context: 現在の状態を表す ConcreteState を持ち、State パターン利用に必要な処理を定める
