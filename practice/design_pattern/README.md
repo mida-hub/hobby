@@ -267,3 +267,19 @@
 - Memento: オブジェクトの状態の保存を行うインタフェース
 - ConcreteMemento: Memento を具体化したクラス。特定の Originator に対しての状態を保存する
 - CareTaker: 特定の Originator に対してのバックアップや元に戻すなどの処理を行う
+
+## Observer
+### 概要
+- 観察者
+- Observer パターンは、オブジェクトの状態を監視して、変更があった際に、変更内容を受け取り、通知をする
+- Observer を登録すための Subject と Observer を呼び出す特定の処理を記載した ConcreteSubject を作成する
+- Observer には、Subject から呼び出された場合に実行されるメソッドを定義し、継承した ConcreteObserver で処理を実装する
+
+### 目的
+- オブジェクトの状態を監視して、変更情報を受け取り通知をできるようにする
+
+### 構成要素
+- Subject: 観察される側。Observer を登録したり削除する処理を持つ
+- ConcreteSubject: Subject を継承して処理を具体化したクラス。特定の処理を行った場合に Observer を呼び出す
+- Observer: 観察者で Subject から呼び出され、特定の処理を実行する
+- ConcreteObserver: Observer を具体化したクラス
