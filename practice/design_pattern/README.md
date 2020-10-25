@@ -328,3 +328,19 @@
 ### 構成要素
 - Abstract Class: 外部から実行されるテンプレートメソッドを実装し、テンプレートメソッドの中で利用される抽象メソッドを宣言する
 - Concrete Class: Abstract Class を継承して、抽象メソッドを定義する
+
+## Visitor
+### 概要
+- 訪問者のこと
+- 既存のクラスに対して、新たな操作を追加したい場合、特に複数のクラスにまたがった処理を作成したい場合に用いられる
+- Visitor を呼び出すための処理を定義したインタフェース Element を定義し、継承した　ConcreteElement を作成する
+- 各 ConcreteElement に訪れるための処理を記述した Visitor インタフェースと継承した ConcreteElement を作成する
+
+### 目的
+- クラスの構造を変化させずに新たな処理を追加する
+
+### 構成要素
+- Visitor: Element にアクセスするための抽象メソッドを定義する
+- ConcreteVistor: Visitor を継承したクラスで具体的な処理を記述する
+- Element: Visitor によって、訪れられる対象となるクラスのインタフェースを定義する
+- ConcreteElement: Element を継承して具体的な処理を記述したクラス
