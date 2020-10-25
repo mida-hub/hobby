@@ -298,3 +298,18 @@
 - State: 状態を表し、状態ごとに異なる振る舞いをするインタフェースを定める
 - ConcreteState: State を具体化したクラスで、具体的な個々の状態を表現する
 - Context: 現在の状態を表す ConcreteState を持ち、State パターン利用に必要な処理を定める
+
+## Strategy
+### 概要
+- 戦略
+- クラスで分けて複数の戦略を実現するデザインパターン
+- 戦略を実行する処理を記述する Strategy インタフェースを作成して、継承した ConcreteStrategy で複数の戦略を実装する
+- Context を実装して、ConcreteStrategy を設定して利用する
+
+### 目的
+- 様々な戦略を実装して選択して利用する
+
+### 構成要素
+- Strategy: 戦略を利用するためのインタフェース
+- ConcreteStrategy: Strategy を具体化したクラスで様々な戦略を表現する
+- Context: 状況に応じて戦略を設定して実行するためのクラス
