@@ -31,12 +31,12 @@ def _json_datetime_serial(obj):
     return obj
 
 json_str = '{"hoge_date": "2019-01-02", "hoge_date2": "2019-01-02 10:10:10", "hoge_date3": "10:10:10"}'
-print(json_str)
+print(f'json_str: {json_str}')
 
 dct = json.loads(json_str, object_hook=_json_datetime_parser)
-print(dct)
+print(f'json_loads: {dct}')
 
-json.dumps(dct, default=_json_datetime_serial)
+print(f'json_dumps :{json.dumps(dct, default=_json_datetime_serial)}')
 
 with open('test.json', 'w') as f:
     json.dump(dct, f, indent=4, default=_json_datetime_serial)
