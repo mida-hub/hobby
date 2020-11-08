@@ -2,7 +2,7 @@ import logging
 
 
 def do_something():
-    logger = logging.getLogger(__name__)
+    logger = logging.getLogger('child')
     logger.debug('debug message')
     logger.info('info message')
     logger.warning('warning message')
