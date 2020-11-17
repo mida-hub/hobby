@@ -5,9 +5,9 @@ import datetime
 logging.config.fileConfig('conf/logger_wapper.conf')
 logger = logging.getLogger(__name__)
 
-from wrapper_logging import WapperLogging
+from wrapper_logging import WrapperLogging
 
-wapper_logging = WapperLogging(__file__)
+wapper_logging = WrapperLogging(__file__)
 
 class Hoge:
     @wapper_logging.common
