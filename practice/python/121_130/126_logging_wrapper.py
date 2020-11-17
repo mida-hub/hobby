@@ -7,14 +7,14 @@ logger = logging.getLogger(__name__)
 
 from wrapper_logging import WrapperLogging
 
-wapper_logging = WrapperLogging(__file__)
+wrapper_logging = WrapperLogging(__file__)
 
 class Hoge:
-    @wapper_logging.common
+    @wrapper_logging.common
     def add(self, x, y):
         return x + y
 
-    @wapper_logging.common
+    @wrapper_logging.common
     def main(self):
         calc = self.add(1, 2)
         return calc
