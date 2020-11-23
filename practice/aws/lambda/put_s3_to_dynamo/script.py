@@ -31,7 +31,7 @@ def lambda_handler(event, context):
         # get body
         body = res['Body'].read()
         bodystr = body.decode('UTF-8')
-        lines = bodystr.split('\n') # for windows line endings
+        lines = bodystr.split('\n')
 
         #get items of each line
         for item in lines:
