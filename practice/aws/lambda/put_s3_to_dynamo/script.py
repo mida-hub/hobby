@@ -3,7 +3,6 @@
 ### Runtime: python 3.6
 
 import boto3
-import json
 import urllib.parse
 import logging
 logger = logging.getLogger()
@@ -36,6 +35,8 @@ def lambda_handler(event, context):
         #get items of each line
         for item in lines:
             data = item.split(' ')
+            if len(data) == 1:
+                continue
             name = data[0]
             age = data[1]
 
