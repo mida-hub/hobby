@@ -8,6 +8,8 @@ verify_ssl = true
 [packages]
 dash = "==0.39.0"
 dash-daq = "==0.1.0"
+numpy = "*"
+plotly = "*"
 
 [requires]
 python_version = "3.8"
