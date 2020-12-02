@@ -2,7 +2,7 @@ def main():
     n = int(input())
     hn = []
     sn = []
-    inf = 2**60
+    inf = 2**10
     tn = [0] * n
 
     for i in range(n):
@@ -22,23 +22,26 @@ def main():
         mid = (left + right) // 2
         ok = True
 
+        # print(f'left:{left}')
+        # print(f'right:{right}')
+        # print(f'mid:{mid}')
+
         for i in range(n):
             if mid < hn[i]:
                 ok = False
             else:
                 tn[i] = (mid - hn[i]) / sn[i]
-                # print(tn)
-            
+
+        # print(f'tn: {tn}')
         tn = sorted(tn)
-        # print('-'*20)
-        # print(tn)
-        # print(right)
-        # print(left)
+        # print(f'tn: {tn}')
 
         for i in range(n):
             if tn[i] < i:
                 ok = False
         
+        # print(f'ok: {ok}')
+
         if ok:
             right = mid
         else:
