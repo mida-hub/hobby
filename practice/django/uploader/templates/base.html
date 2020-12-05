@@ -1,0 +1,27 @@
+<!doctype html>
+{% load static %}
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block page_title %}{% endblock %}</title>
+
+    {# --- css --- #}
+    <link rel="stylesheet" href="{% static 'css/normalize.css' %}">
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+
+</head>
+<body>
+<main>
+    <div class="mainInner" style="max-width: 700px; margin: auto;">
+        {% block content %}{% endblock %}
+        {% include '_message.html' %}
+    </div>
+    {% block extra_js %}{% endblock %}
+    {# --- js --- #}
+    <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'js/jquery-ui.min.js' %}"></script>
+    <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+</main>
+</body>
+</html>
