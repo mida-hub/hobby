@@ -7,7 +7,7 @@
 {% endblock %}
 
 {% block content %}
-
+    <br>
     <h2 style="text-align: center;">ファイルアップロード</h2>
     <form action="" method="POST" class="ui form" enctype="multipart/form-data">
       {% csrf_token %}  
@@ -19,13 +19,35 @@
         <label for="inputText">File</label>
         <div class="custom-file">
           <input type="file" name="file" required id="id_file" class="custom-file-input">
-          <label class="custom-file-label" for="inputFile" data-browse="選択">ファイルを選択(ここにドロップすることもできます)</label>
+          <label class="custom-file-label" for="inputFile" data-browse="選択">ここにアップロードファイルをドロップ</label>
         </div>
       </div>
+      <br>
       <div style="text-align: center">
         <button type="submit" class="btn btn-primary">アップロード</button>
       </div>
     </form>
+
+    {% for file_path in file_path_list %}
+    <br><br>
+    <h2 style="text-align: center;">アップロードファイルリスト</h2>
+    <table class="table">
+      <thead>
+        <tr>
+          <td>No</td>
+          <td>ファイル名</td>
+          <td>削除</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>{{ file_path.id }}</td>
+          <td><a href="/media/{{ file_path.file_id }}" download="{{ file_path.title }}" target="_blank">{{ file_path.title }}</a></td>
+          <td><button type="button" class="btn btn-danger">削除</button></td>
+        </tr>
+    </tbody>
+  </table>
+    {% endfor %}
 
     <script src="https://cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.js"></script>
     <script>
