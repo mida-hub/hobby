@@ -1,9 +1,18 @@
 # cf
+## S3からRedshiftにデータを投入する方法
 https://stackoverrun.com/ja/q/9643617
+
+## Role関係でハマったら
 https://qiita.com/okadadaisuke/items/3f4094b584dbce3d5b44
+
+## Lambda S3 to Dynamo
 https://qiita.com/yifey/items/cd97445ecd7085cea444
+
+## Lambda で psycopg2 を使用するために Layer を追加する
 https://qiita.com/Bacchus/items/db0750865d1c597e1dc0
-https://qiita.com/nsuhara/items/dd780c2622258d10f961
+
+## 【GitHub】に載せたくない環境変数の書き方
+https://qiita.com/hedgehoCrow/items/2fd56ebea463e7fc0f5b
 
 # create table
 ```
