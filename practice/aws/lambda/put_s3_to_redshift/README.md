@@ -14,10 +14,19 @@ create table public.test (
 ```
 
 # VPN
+redshift の VPN と同じ場所に lambda を配置する必要がある
 
+# role
+- AmazonS3FullAccess
+- CloudWatchFullAccess
+- AmazonRedshiftFullAccess
+- AmazonVPCFullAccess
 
 # layer
-Lambda の Python バージョンは 3.8 を選択すること
+default では psycopg2 を import できないので layer を追加する
+
 ```
 arn:aws:lambda:ap-northeast-1:898466741470:layer:psycopg2-py38:1
 ```
+
+Lambda の Python バージョンは 3.8 を選択すること
