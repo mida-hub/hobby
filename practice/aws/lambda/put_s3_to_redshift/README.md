@@ -14,6 +14,9 @@ https://qiita.com/Bacchus/items/db0750865d1c597e1dc0
 ## 【GitHub】に載せたくない環境変数の書き方
 https://qiita.com/hedgehoCrow/items/2fd56ebea463e7fc0f5b
 
+## pandas.read_sql
+https://dev.classmethod.jp/articles/amazon-redshift2pandas_with_psycopg2/
+
 # create table
 ```
 create table public.test (
