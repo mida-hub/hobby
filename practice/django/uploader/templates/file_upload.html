@@ -7,6 +7,7 @@
 {% endblock %}
 
 {% block content %}
+    <br>
     <h2 style="text-align: center;">ファイルアップロード</h2>
     <form action="" method="POST" class="ui form" enctype="multipart/form-data">
       {% csrf_token %}  
@@ -23,24 +24,24 @@
     {% include '_message.html' %}
 
     {% if file_path_list|length > 0 %}
-    <br><br>
-    <h2 style="text-align: center;">アップロードファイルリスト</h2>
-    <table class="table">
-      <thead>
-        <tr>
-          <td>No</td>
-          <td>ファイル名</td>
-        </tr>
-      </thead>
-      {% for file_path in file_path_list %}
-      <tbody>
-        <tr>
-          <td>{{ file_path.id }}</td>
-          <td><a href="/media/{{ file_path.file_id }}" download="{{ file_path.title }}" target="_blank">{{ file_path.title }}</a></td>
-        </tr>
-      </tbody>
-      {% endfor %}
-    </table>
+      <br><br>
+      <h2 style="text-align: center;">アップロードファイルリスト</h2>
+      <table class="table">
+        <thead>
+          <tr>
+            <td>No</td>
+            <td>ファイル名</td>
+          </tr>
+        </thead>
+        {% for file_path in file_path_list %}
+        <tbody>
+          <tr>
+            <td>{{ file_path.id }}</td>
+            <td><a href="/media/{{ file_path.file_id }}" download="{{ file_path.title }}" target="_blank">{{ file_path.title }}</a></td>
+          </tr>
+        </tbody>
+        {% endfor %}
+      </table>
     {% endif %}
 
 {% endblock %}
