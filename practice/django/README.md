@@ -1,6 +1,8 @@
 # ref
-https://pgmemo.tokyo/data/archives/982.html
-https://blog1.mammb.com/entry/2019/12/11/090000
+## uploader
+https://qiita.com/ekzemplaro/items/07abd9a941bcd0eb5834
+https://github.com/JeremyFagis/dropify
+https://dot-blog.jp/news/django-messages-frame-work/
 
 # setup
 ```

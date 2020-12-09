@@ -8,16 +8,17 @@ import uuid
 
 def file_upload(request):
     if request.method == 'POST':
-        form = UploadFileForm(request.POST, request.FILES)
-        if form.is_valid():
-            title = request.POST.get('title')
-            handle_uploaded_file(title, request.FILES['file'])
+        try:
+            form = UploadFileForm(request.POST, request.FILES)
+            if not form.is_valid():
+                raise Exception('Validation Error')
             file_obj = request.FILES['file']
-
+            handle_uploaded_file(file_obj)
             messages.success(request, "アップロードが成功しました。")
-        else:
+        except Exception as e:
             messages.error(request, "アップロードが失敗しました。")
-
+            print(e)
+        
         return HttpResponseRedirect('/web')
 
     else:
@@ -29,24 +30,18 @@ def file_upload(request):
         }
     return render(request, 'file_upload.html', context)
 
-def handle_uploaded_file(title, file_obj):
-    title = title if title is not None else file_obj.name
-    file_id = str(uuid.uuid4()) + "_" + title
-    fp = FilePath(file_id=file_id, title=title)
+def handle_uploaded_file(file_obj):
+    title = file_obj.name
 
+    if '.' in title:
+        file_id = title.split('.')[0] + '_' + str(uuid.uuid4()) + '.' + title.split('.')[1]
+    else:
+        file_id = title + '_' + str(uuid.uuid4())
+
+    fp = FilePath(file_id=file_id, title=title)
     path = 'media/' + file_id
     with open(path, 'wb+') as destination:
         for chunk in file_obj.chunks():
             destination.write(chunk)
     
     fp.save()
-
-@require_POST
-def file_delete(request):
-    if request.method == 'POST':
-        pass
-    form = UploadFileForm()
-    context = {
-        'form': form,
-    }
-    return render(request, 'file_upload.html', context)
