@@ -31,6 +31,7 @@
           <tr>
             <td>No</td>
             <td>ファイル名</td>
+            <td>アップロード日時</td>
           </tr>
         </thead>
         {% for file_path in file_path_list %}
@@ -38,6 +39,7 @@
           <tr>
             <td>{{ file_path.id }}</td>
             <td><a href="/media/{{ file_path.file_id }}" download="{{ file_path.title }}" target="_blank">{{ file_path.title }}</a></td>
+            <td>{{ file_path.created_at|date:"Y-m-j H:i" }}</td>
           </tr>
         </tbody>
         {% endfor %}

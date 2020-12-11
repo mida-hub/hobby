@@ -34,7 +34,7 @@ def handle_uploaded_file(file_obj):
     title = file_obj.name
 
     if '.' in title:
-        file_id = title.split('.')[0] + '_' + str(uuid.uuid4()) + '.' + title.split('.')[1]
+        file_id = '.'.join(title.split('.')[:-1]) + '_' + str(uuid.uuid4()) + '.' + title.split('.')[-1]
     else:
         file_id = title + '_' + str(uuid.uuid4())
 
