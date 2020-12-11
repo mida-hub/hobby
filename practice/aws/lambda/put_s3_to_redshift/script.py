@@ -2,6 +2,8 @@ import psycopg2
 import os
 import urllib.parse
 import logging
+import base64
+import boto3
 
 logger = logging.getLogger()
 logger.setLevel(logging.DEBUG)
@@ -16,12 +18,23 @@ def get_bucket_and_filename(event):
     return bucket, filename
 
 def connect_db():
+    kms = boto3.client('kms')
+
     host = os.environ['host']
     port = os.environ['port']
     database = os.environ['database']
     user = os.environ['user']
-    password = os.environ['password']
-    
+    try:
+        password = kms.decrypt(
+                        CiphertextBlob=base64.b64decode(os.environ['password']),
+                        EncryptionContext={'LambdaFunctionName': os.environ['AWS_LAMBDA_FUNCTION_NAME']}
+                    )['Plaintext'].decode('utf-8')
+    except Exception as e:
+        logger.error('decrypt error')
+        logger.error(e)
+        con_db = None
+        return con_db
+
     con_dict = {
         'host': host,
         'port': port,
@@ -34,6 +47,7 @@ def connect_db():
     try:
         con_db = psycopg2.connect(**con_dict)
     except Exception as e:
+        logger.error('connect error')
         logger.error(e)
         con_db = None
 
@@ -46,10 +60,11 @@ def get_query(bucket, filename):
     region = os.environ['region']
 
     query=f"""
+        truncate table {dataset_id}.{table_id};
         copy {dataset_id}.{table_id} from 's3://{bucket}/{filename}'
         credentials 'aws_iam_role={aws_iam_role}'
         delimiter ' ' region '{region}';
-        COMMIT;
+        commit;
         """
     
     logger.debug(f'query: {query}')
@@ -63,6 +78,7 @@ def execute_query(con_db, query):
         logger.debug('execute query')
         cur.execute(query)
     except Exception as e:
+        logger.error('execute query error')
         logger.error(e)
     finally:
         con_db.close()

@@ -17,6 +17,12 @@ https://qiita.com/hedgehoCrow/items/2fd56ebea463e7fc0f5b
 ## pandas.read_sql
 https://dev.classmethod.jp/articles/amazon-redshift2pandas_with_psycopg2/
 
+## Lambda の環境変数を暗号化する場合に KMS を使用する方法
+https://qiita.com/ryosuk/items/a44f66913f0454ec5a12
+
+## VPN エンドポイント
+https://qiita.com/gymnstcs/items/bd63767a1db0973c32c6
+
 # create table
 ```
 create table public.test (
@@ -33,6 +39,7 @@ redshift の VPN と同じ場所に lambda を配置する必要がある
 - CloudWatchFullAccess
 - AmazonRedshiftFullAccess
 - AmazonVPCFullAccess
+- kmsの自作ポリシー
 
 # layer
 default では psycopg2 を import できないので layer を追加する
