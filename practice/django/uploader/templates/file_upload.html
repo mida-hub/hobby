@@ -9,6 +9,9 @@
 {% block content %}
     <br>
     <h2 style="text-align: center;">ファイルアップロード</h2>
+    <div style="text-align: center;">
+      s3://test-mida-storage{{ path }}
+    </div>
     <form action="" method="POST" class="ui form" enctype="multipart/form-data">
       {% csrf_token %}  
       <div class="form-group">
