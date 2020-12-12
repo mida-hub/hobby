@@ -4,6 +4,9 @@ https://qiita.com/ekzemplaro/items/07abd9a941bcd0eb5834
 https://github.com/JeremyFagis/dropify
 https://dot-blog.jp/news/django-messages-frame-work/
 
+## paginator
+https://qiita.com/jansnap/items/660dbf620ad7c5829c69
+
 # setup
 ```
 pipenv install -r ./requirements.txt

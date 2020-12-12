@@ -1,10 +1,23 @@
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
-from .forms import UploadFileForm
 from django.http import HttpResponse
 from django.contrib import messages
+from django.conf import settings
+from .forms import UploadFileForm
 from .models import FilePath
 import uuid
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+
+def paginate_query(request, queryset, count):
+    paginator = Paginator(queryset, count)
+    page = request.GET.get('page')
+    try:
+        page_obj = paginator.page(page)
+    except PageNotAnInteger:
+        page_obj = paginator.page(1)
+    except EmptyPage:
+        page_obj = paginatot.page(paginator.num_pages)
+    return page_obj
 
 def file_upload(request):
     if request.method == 'POST':
@@ -23,10 +36,11 @@ def file_upload(request):
 
     else:
         form = UploadFileForm()
-        queryset = FilePath.objects.all()
+        queryset = FilePath.objects.order_by("-created_at")
+        page_obj = paginate_query(request, queryset, settings.PAGE_PER_ITEM)
         context = {
             'form': form,
-            'file_path_list': queryset,
+            'page_obj': page_obj,
         }
     return render(request, 'file_upload.html', context)
 

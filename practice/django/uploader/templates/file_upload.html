@@ -23,7 +23,7 @@
 
     {% include '_message.html' %}
 
-    {% if file_path_list|length > 0 %}
+    {% if page_obj|length > 0 %}
       <br><br>
       <h2 style="text-align: center;">アップロードファイルリスト</h2>
       <table class="table">
@@ -34,7 +34,7 @@
             <td>アップロード日時</td>
           </tr>
         </thead>
-        {% for file_path in file_path_list %}
+        {% for file_path in page_obj %}
         <tbody>
           <tr>
             <td>{{ file_path.id }}</td>
@@ -44,6 +44,8 @@
         </tbody>
         {% endfor %}
       </table>
+
+      {% include 'pagination.html' %}
     {% endif %}
 
 {% endblock %}
