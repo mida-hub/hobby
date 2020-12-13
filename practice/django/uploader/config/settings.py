@@ -141,3 +141,6 @@ AWS_STORAGE_BUCKET_NAME = env('bucket_name')
 
 # S3 の処理実行時に storage_backends.py を読み込む設定
 DEFAULT_FILE_STORAGE = 'config.storage_backends.MediaStorage'
+
+AWS_SCHEMA_LOCATION = 'schema/'
+SCHEMA_FILE_STORAGE = 'config.storage_backends.SchemaStorage'

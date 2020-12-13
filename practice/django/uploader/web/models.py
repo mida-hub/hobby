@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils import timezone
+from config.storage_backends import SchemaStorage
 
 
 class FilePath(models.Model):
@@ -11,3 +12,8 @@ class FilePath(models.Model):
 class Document(models.Model):
     uploaded_at = models.DateTimeField(auto_now_add=True)
     upload = models.FileField()
+
+
+class SchemaDocument(models.Model):
+    uploaded_at = models.DateTimeField(auto_now_add=True)
+    upload = models.FileField(storage=SchemaStorage())

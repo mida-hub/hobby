@@ -8,6 +8,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.views.generic.edit import CreateView
 from django.urls import reverse_lazy
 from .models import Document
+from .models import SchemaDocument
 import uuid
 import datetime
 
@@ -70,6 +71,7 @@ def handle_uploaded_file(file_obj):
 
 class DocumentCreateView(CreateView):
     model = Document
+    # model = SchemaDocument
     fields = ['upload', ]
     success_url = reverse_lazy('s3') # urls.py の name を指定する
     template_name = "web/document.html" 
