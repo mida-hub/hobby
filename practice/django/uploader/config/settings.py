@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'web.apps.WebConfig',
+    'storages',
 ]
 
 MIDDLEWARE = [
@@ -132,3 +133,11 @@ MEDIA_URL = '/media/'
 
 # ページネーション
 PAGE_PER_ITEM = 5
+
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+AWS_ACCESS_KEY_ID = env('accesskey')
+AWS_SECRET_ACCESS_KEY = env('secretkey')
+AWS_STORAGE_BUCKET_NAME = env('bucket_name')
+
+# S3 の処理実行時に storage_backends.py を読み込む設定
+DEFAULT_FILE_STORAGE = 'config.storage_backends.MediaStorage'

@@ -4,4 +4,5 @@ from . import views
 
 urlpatterns = [
     path('', views.file_upload, name='file_upload'),
+    path('upload/', views.DocumentCreateView.as_view(), name='s3'),
 ]
