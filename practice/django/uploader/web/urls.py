@@ -2,7 +2,7 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('', views.file_upload, name='file_upload'),
-    path('upload/', views.DocumentCreateView.as_view(), name='s3'),
-    # path('upload/schema', views.SchemaDocumentCreateView.as_view(), name='s3'),
+    path('local/', views.file_upload, name='file_upload'),
+    path('s3/root', views.RootDocumentCreateView.as_view(), name='s3_root'),
+    path('s3/schema', views.SchemaDocumentCreateView.as_view(), name='s3_schema'),
 ]

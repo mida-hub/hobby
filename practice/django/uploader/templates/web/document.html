@@ -42,7 +42,7 @@
         <tbody>
           <tr>
             <td>{{ document.id }}</td>
-            <td><a href="{{ document.upload.url }}" download="{{ document.upload.name }}" target="_blank">{{ document.upload.name }}</a></td>
+            <td><a href="{{ document.upload.url }}" download="{{ document.file_name }}" target="_blank">{{ document.file_name }}</a></td>
             <td>{{ document.uploaded_at|date:"Y-m-j H:i" }}</td>
             <td>{{ document.upload.size|filesizeformat }}</td>
           </tr>

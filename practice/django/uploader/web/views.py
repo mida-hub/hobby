@@ -7,7 +7,7 @@ from .models import FilePath
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.views.generic.edit import CreateView
 from django.urls import reverse_lazy
-from .models import Document
+from .models import RootDocument
 from .models import SchemaDocument
 import uuid
 import datetime
@@ -69,25 +69,11 @@ def handle_uploaded_file(file_obj):
     fp.save()
 
 
-class DocumentCreateView(CreateView):
-    model = Document
-    # model = SchemaDocument
-    fields = ['upload', ]
-    success_url = reverse_lazy('s3') # urls.py の name を指定する
-    template_name = "web/document.html" 
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        documents = Document.objects.order_by("-id")
-        page_obj = paginate_query(self.request, documents, settings.PAGE_PER_ITEM)
-        context['page_obj'] = page_obj
-        context['path'] = self.request.path
-
-        return context
-
+class S3UploadCreateView(CreateView):
     def post(self, request, *args, **kwargs):
         file_obj = request.FILES.get('upload')
         if file_obj is not None:
+            file_name_org = file_obj.name
             file_name = file_obj.name
             dt_now = datetime.datetime.now().strftime('%Y%m%d%H%M%S')
             if '.' in file_name:
@@ -103,10 +89,44 @@ class DocumentCreateView(CreateView):
         form = self.get_form()
         try:
             if form.is_valid():
-                self.object = form.save()
+                self.object = form.save(commit=False)
+                self.object.file_name = file_name_org
+                self.object.save()
                 messages.success(request, "アップロードが成功しました。")
-                return super().form_valid(form)
+                return self.form_valid(form)
         except Exception as e:
             print(e)
         messages.error(request, "アップロードが失敗しました。")
         return self.form_invalid(form)
+
+
+class RootDocumentCreateView(S3UploadCreateView):
+    model = RootDocument
+    fields = ['upload',]
+    success_url = reverse_lazy('s3_root') # urls.py の name を指定する
+    template_name = "web/document.html" 
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        documents = RootDocument.objects.order_by("-id")
+        page_obj = paginate_query(self.request, documents, settings.PAGE_PER_ITEM)
+        context['page_obj'] = page_obj
+        context['path'] = self.request.path
+
+        return context
+
+
+class SchemaDocumentCreateView(S3UploadCreateView):
+    model = SchemaDocument
+    fields = ['upload',]
+    success_url = reverse_lazy('s3_schema') # urls.py の name を指定する
+    template_name = "web/document.html" 
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        documents = SchemaDocument.objects.order_by("-id")
+        page_obj = paginate_query(self.request, documents, settings.PAGE_PER_ITEM)
+        context['page_obj'] = page_obj
+        context['path'] = self.request.path
+
+        return context

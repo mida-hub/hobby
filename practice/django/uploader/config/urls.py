@@ -21,10 +21,7 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('web/', include('web.urls')),
-    path('schema1/table1', include('web.urls')),
-    path('schema2/table2', include('web.urls')),
-    path('s3/', include('web.urls')),
+    path('uploader/', include('web.urls')),
 ]
 
 if settings.DEBUG:
