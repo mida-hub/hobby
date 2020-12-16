@@ -11,6 +11,19 @@ from .models import RootDocument
 from .models import SchemaDocument
 import uuid
 import datetime
+from django.shortcuts import get_object_or_404
+from django.http import FileResponse
+
+
+def download(request, pk, doc):
+    if doc == 'root':
+        doc_model = RootDocument
+    elif doc == 'schema':
+        doc_model = SchemaDocument
+
+    upload_file = get_object_or_404(doc_model, pk=pk)
+    download_file = upload_file.upload
+    return FileResponse(download_file)
 
 
 def paginate_query(request, queryset, count):
@@ -112,6 +125,7 @@ class RootDocumentCreateView(S3UploadCreateView):
         page_obj = paginate_query(self.request, documents, settings.PAGE_PER_ITEM)
         context['page_obj'] = page_obj
         context['path'] = self.request.path
+        context['doc'] = 'root'
 
         return context
 
@@ -128,5 +142,6 @@ class SchemaDocumentCreateView(S3UploadCreateView):
         page_obj = paginate_query(self.request, documents, settings.PAGE_PER_ITEM)
         context['page_obj'] = page_obj
         context['path'] = self.request.path
+        context['doc'] = 'schema'
 
         return context
