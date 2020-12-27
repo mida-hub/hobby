@@ -1,4 +1,4 @@
-# jupyter ssl on ubuntu
+# jupyter ssl on amazon linux2
 cf.https://gist.github.com/sean-smith/f6bd44f0f9eb785e944e7fd999d7b076
 cf.https://qiita.com/ground0state/items/6d5c96dd14a5cb256f64
 cf.https://dev.classmethod.jp/articles/amazon-linux-2-jupyter-notebook/
