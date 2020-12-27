@@ -5,6 +5,9 @@ cf.https://dev.classmethod.jp/articles/amazon-linux-2-jupyter-notebook/
 cf.https://qiita.com/tontonyoga/items/7c7662b61220c86195c9
 cf.https://qiita.com/tigersun2000/items/1091299b675efeb2c6ee
 
+cf.https://qiita.com/bremen/items/fcf8571fd2bae080b42b
+※docker
+
 # キーペアの権限変更
 ```
 chmod 600 jupyter.pem
