@@ -140,8 +140,7 @@ server {
     server_name your_domain;
     root /usr/share/nginx/html;
     ssl_certificate /etc/letsencrypt/live/your_domain/fullchain.pem; # managed by Certbot
-    ssl_certificate_key /etc/letsencrypt/live/your_domain
-    /privkey.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/your_domain/privkey.pem; # managed by Certbot
 
     location /jupyter {
         proxy_pass http://localhost:8888;
