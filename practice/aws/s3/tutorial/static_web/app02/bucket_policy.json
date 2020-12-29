@@ -9,7 +9,7 @@
                 "s3:GetObject"
             ],
             "Resource": [
-                "arn:aws:s3:::app02.watomatonic.work/*"
+                "arn:aws:s3:::app02.your_domain/*"
             ]
         }
     ]
