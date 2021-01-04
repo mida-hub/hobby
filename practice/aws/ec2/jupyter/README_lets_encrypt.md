@@ -1,11 +1,11 @@
 # jupyter ssl on amazon linux2
-cf.https://gist.github.com/sean-smith/f6bd44f0f9eb785e944e7fd999d7b076
-cf.https://qiita.com/ground0state/items/6d5c96dd14a5cb256f64
-cf.https://dev.classmethod.jp/articles/amazon-linux-2-jupyter-notebook/
-cf.https://qiita.com/tontonyoga/items/7c7662b61220c86195c9
-cf.https://qiita.com/tigersun2000/items/1091299b675efeb2c6ee
+- cf.https://gist.github.com/sean-smith/f6bd44f0f9eb785e944e7fd999d7b076
+- cf.https://qiita.com/ground0state/items/6d5c96dd14a5cb256f64
+- cf.https://dev.classmethod.jp/articles/amazon-linux-2-jupyter-notebook/
+- cf.https://qiita.com/tontonyoga/items/7c7662b61220c86195c9
+- cf.https://qiita.com/tigersun2000/items/1091299b675efeb2c6ee
 
-cf.https://qiita.com/bremen/items/fcf8571fd2bae080b42b
+- cf.https://qiita.com/bremen/items/fcf8571fd2bae080b42b
 ※docker
 
 # キーペアの権限変更
@@ -37,6 +37,7 @@ sudo passwd jupyter
 sudo vim /etc/systemd/system/jupyter.service
 ```
 
+```
 [Unit]
 Desctiption = Jupyter lab
 After = syslog.target
@@ -52,6 +53,7 @@ Group = jupyter
 
 [Install]
 WantedBy = multi-user.target
+```
 
 ```
 sudo systemctl enable jupyter
@@ -65,6 +67,7 @@ sudo amazon-linux-extras install nginx1.12
 sudo vim /etc/nginx/conf.d/jupyter.conf
 ```
 
+```
 map $http_upgrade $connection_upgrade {
     default upgrade;
     '' close;
@@ -88,16 +91,19 @@ server {
         root /usr/share/nginx/html;
     }
 }
+```
 
 ```
 sudo vim /etc/nginx/nginx.conf
 ```
 
+```
 listen 80 default_server;
 listen [::]:80 default_server;
 ↓↓↓↓
 #listen 80 default_server;
 #listen [::]:80 default_server;
+```
 
 ```
 sudo systemctl enable nginx
@@ -112,6 +118,7 @@ sudo yum install certbot
 certbot certonly --webroot --webroot-path /usr/share/nginx/html -d your_domain
 ```
 
+```
 IMPORTANT NOTES:
  - Congratulations! Your certificate and chain have been saved at:
    /etc/letsencrypt/live/your_domain/fullchain.pem
@@ -125,6 +132,7 @@ IMPORTANT NOTES:
 
    Donating to ISRG / Let's Encrypt:   https://letsencrypt.org/donate
    Donating to EFF:                    https://eff.org/donate-le
+```
 
 # nginx
 SSL対応
@@ -133,6 +141,7 @@ SSL対応
 sudo vim /etc/nginx/conf.d/jupyter.conf
 ```
 
+```
 ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
 server {
     listen 443;
@@ -151,8 +160,10 @@ server {
         proxy_set_header Origin "http://localhost:8888";
     }
 }
+```
 
 # setup 2 jupyter 
+```
 ipython3
 In [1]: from IPython.lib import passwd
 In [2]: passwd()
@@ -160,12 +171,14 @@ Enter password:<パスワードを入力>
 Verify password:<もう一度パスワードを入力>
 Out[2]: 'sha1:XXXXXXXXXXXXXXXXX'
 Out[3]: quit()
+```
 
 ```
 jupyter-notebook --generate-config
 vi /home/jupyter/.jupyter/jupyter_notebook_config.py
 ```
 
+```
 c = get_config()
 c.IPKernelApp.pylab = 'inline' #matplotlibで描画したものがJupyter Notebook上で表示可能となる
 c.NotebookApp.ip = '0.0.0.0' #Jupyter NotebookにアクセスできるIPを制限
@@ -182,3 +195,4 @@ Restart = always
 ExecStart = /usr/bin/jupyter lab --config=/home/jupyter/.jupyter/jupyter_notebook_config.py
 User = jupyter
 Group = jupyter
+```

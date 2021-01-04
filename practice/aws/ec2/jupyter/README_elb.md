@@ -1,12 +1,12 @@
 # jupyter ssl on amazon linux2
-cf.https://dev.classmethod.jp/articles/mesoko-r53-cdn/
-cf.https://qiita.com/ysKey2/items/0545e13ec05def42ad55
-cf.https://qiita.com/nakanishi03/items/3a514026acc7abe25977
-cf.https://oji-cloud.net/2019/09/15/post-3017/
+- cf.https://dev.classmethod.jp/articles/mesoko-r53-cdn/
+- cf.https://qiita.com/ysKey2/items/0545e13ec05def42ad55
+- cf.https://qiita.com/nakanishi03/items/3a514026acc7abe25977
+- cf.https://oji-cloud.net/2019/09/15/post-3017/
 
 # setup
-nginx and jupyter の設定は下記を参照
-README_lets_encrypt.md
+- nginx and jupyter の設定は下記を参照
+- README_lets_encrypt.md
 
 # SSL作業概要
 1. お名前ドットコムでドメインを取得する
@@ -16,12 +16,11 @@ README_lets_encrypt.md
 5. ELBの設定
 
 ## domain
-お名前ドットコムで取得する
+- お名前ドットコムで取得する
 
 ## route53
-hosted zoneを作成する
-
-type NS の value を控える
+- hosted zoneを作成する
+- type NS の value を控える
 
 ## お名前ドットコム
 - ネームサーバーの変更
@@ -30,17 +29,19 @@ type NS の value を控える
   - 最大反映が72時間
 
 ## ACM
-ドメイン証明書申請
+- ドメイン証明書申請
 
 ## route53
-ACMで設定したドメインのcname生成
+- ACMで設定したドメインのcname生成
 
 ## ELB
-クライアントからはhttpsアクセス
-ALBからInstanceはhttpアクセス
+- クライアントからはhttpsアクセス
+- ALBからInstanceはhttpアクセス
 
 ## nginx
+- ALBからは80でアクセスなので443はいらない気がする？
 
+```
 map $http_upgrade $connection_upgrade {
     default upgrade;
     '' close;
@@ -48,7 +49,7 @@ map $http_upgrade $connection_upgrade {
 
 server {
     listen 80 default_server;
-    server_name your_domain;
+    server_name localhost;
     root /usr/share/nginx/html;
 
     location /jupyter {
@@ -75,3 +76,4 @@ server {
         proxy_set_header Origin "http://localhost:8888";
     }
 }
+```
