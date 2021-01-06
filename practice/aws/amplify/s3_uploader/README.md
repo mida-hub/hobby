@@ -1,18 +1,33 @@
-# s3 uploader
+# amplify
+cf.https://dev.classmethod.jp/articles/amplify-s3-upload/
 
-## vue setup
+## setup
 ```
-npm install -g @vue/cli@4.4.6
-// lint is Basic
-vue create frontend
-cd frontend
-npm run build
+git clone https://github.com/aws-samples/aws-amplify-vue.git
+cd aws-amplify-vue
+npm install
+npm install -g npm
+npm add element-ui
+npm install moment-timezone
 ```
 
-## vue setup2
+## create aws resource
 ```
-npm install vue2-dropzone
-vue add vuetify
-npm install axios --save
-npm run serve
+npm install -g @aws-amplify/cli
+amplify init
+amplify add auth
+amplify add storage
+amplify push
+npm run dev
 ```
+
+## todo
+- upload時
+  - timestamp付与
+    - 同じファイル名の挙動を確認
+- route設定
+  - 動的にアップロードできるようにする
+  - keyをパースする
+  - ディレクトリを無視するようにする
+- ルートアクセス時
+  - 何もさせないようにする
