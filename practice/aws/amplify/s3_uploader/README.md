@@ -20,14 +20,3 @@ amplify add storage
 amplify push
 npm run dev
 ```
-
-## todo
-- upload時
-  - timestamp付与
-    - 同じファイル名の挙動を確認
-- route設定
-  - 動的にアップロードできるようにする
-  - keyをパースする
-  - ディレクトリを無視するようにする
-- ルートアクセス時
-  - 何もさせないようにする
