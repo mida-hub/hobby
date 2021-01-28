@@ -30,10 +30,21 @@ class LinkedList:
             self.tail = node
 
     # target_nodeの前に挿入する
-    def insert(self, target_node:Node, insert_node:Node):
+    def insert_before(self, target_node:Node, insert_node:Node):
         target_node.prev.next = insert_node
         insert_node.next = target_node
         target_node.prev = insert_node
+
+    # target_nodeの後に挿入する
+    def insert_after(self, target_node:Node, insert_node:Node):
+        if target_node.next is None:
+            target_node.next = insert_node
+            insert_node.prev = target_node
+            self.tail = insert_node
+        else:
+            target_node.next.prev = insert_node
+            insert_node.next = target_node.next
+            target_node.next = insert_node
 
     # nodeを削除する
     def delete(self, node:Node):
@@ -47,11 +58,15 @@ node_a = Node('A')
 node_b = Node('B')
 node_c = Node('C')
 node_d = Node('D')
+node_e = Node('E')
+node_f = Node('F')
 
 linked_list.append(node_a)
 linked_list.append(node_b)
-linked_list.insert(target_node=node_b, insert_node=node_c)
-linked_list.append(node_d)
+linked_list.insert_before(target_node=node_b, insert_node=node_c)
+linked_list.insert_after(target_node=node_b, insert_node=node_d)
+linked_list.insert_after(target_node=node_b, insert_node=node_e)
+linked_list.append(node_f)
 linked_list.show()
 
 print('-'*20)
