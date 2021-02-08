@@ -1,18 +1,19 @@
-import math
-x, y, r = map(float, input().split())
-# print(x, y, r)
+def main():
+    from decimal import Decimal
+    import math
+    x, y, r = map(Decimal, input().split())
 
-start = math.ceil(x-r)
-end = math.floor(x+r)
+    start = math.ceil(x-r)
+    end = math.floor(x+r)
 
-total = 0
-for i in range(start, end+1):
-    p = (r * r - (x - i) ** 2) ** 0.5
+    total = 0
+    for i in range(start, end+1):
+        p = (r * r - (x - i) ** 2).sqrt()
+        bottom = math.ceil(y-p)
+        top = math.floor(y+p)
+        
+        total+=(top-bottom+1)
 
-    bottom = math.ceil(y-p)
-    top = math.floor(y+p)
+    print(total)
 
-    total+=(top-bottom+1)
-
-print(total)
-
+main()
