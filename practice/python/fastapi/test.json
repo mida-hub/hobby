@@ -1,0 +1,7 @@
+{
+    "model": "randomforest",
+    "bill_length": 39.1,
+    "bill_depth": 18.7,
+    "flipper_length": 181.0,
+    "body_mass": 3750.0
+}
