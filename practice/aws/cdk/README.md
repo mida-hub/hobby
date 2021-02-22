@@ -2,6 +2,8 @@
 
 ```
 npm install -g aws-cdk
+cdk --version
+cdk bootstrap
 cdk init app --language python
 pipenv install -r requirements.txt
 ```
