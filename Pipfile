@@ -13,6 +13,8 @@ numpy = "*"
 pandas = "*"
 scipy = "*"
 matplotlib = "*"
+pydantic = "*"
+python-dotenv = "*"
 
 [requires]
 python_version = "3.8"
