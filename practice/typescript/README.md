@@ -3,6 +3,11 @@
 npm install -g typescript
 ```
 
+nodebrewの反映
+```
+source ~/.zprofile
+```
+
 # use promise
 tsconfig.json の target/module/libを変更する
 コーディング上はエラーが出なくなるがコンパイル時にエラーが出る
