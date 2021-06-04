@@ -1,10 +1,7 @@
 {
-    class Figure {
-        constructor(protected width: number, protected height: number) {
-        }
-        getArea(): number{
-            return 0;
-        }
+    abstract class Figure {
+        constructor(protected width: number, protected height: number){}
+        abstract getArea(): number;
     }
 
     class Triangle extends Figure {
