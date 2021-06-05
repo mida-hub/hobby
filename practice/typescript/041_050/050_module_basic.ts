@@ -1,3 +1,3 @@
-import {showMessage, Util} from './App';
+import {showMessage, Util} from '../lib/App';
 showMessage();
 console.log(Util.getVersion());
