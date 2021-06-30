@@ -1,28 +1,33 @@
-# ABC007C
 from collections import deque
 
 def print_graph(gh):
     for g in gh:
         print(g)
 
-r, c = map(int, input().split())
-sy, sx = map(int, input().split())
-gy, gx = map(int, input().split())
+h, w = map(int, input().split())
 
-# 0始まりに合わせる
-sy -= 1
-sx -= 1
-gy -= 1
-gx -= 1
+# print(h, w)
 
-c_rc = []
-for i in range(r):
+c_hw = []
+for i in range(h):
     cc = input()
-    c_rc.append(cc)
+    c_hw.append(cc)
 
-# print_graph(c_rc)
+    s = cc.find('s')
+    if s != -1:
+        sy = i
+        sx = s
+    g = cc.find('g')
+    if g != -1:
+        gy = i
+        gx = g
 
-dist = [[-1] * c for x in range(r)]
+# print(sy, sx)
+# print(gy, gx)
+
+# print_graph(c_hw)
+
+dist = [[-1] * w for x in range(h)]
 dist[sy][sx] = 0
 
 # print_graph(dist)
@@ -37,7 +42,7 @@ down = [0, 1]
 ops = [left, up, right, down]
 
 while dq:
-    vy, vx = dq.popleft()
+    vy, vx = dq.pop()
 
     for op in ops:
         t_vy = vy
@@ -48,13 +53,13 @@ while dq:
 
         # 範囲外
         if t_vy < 0 \
-            or t_vy >= r \
+            or t_vy >= h \
             or t_vx < 0 \
-            or t_vx >= c:
+            or t_vx >= w:
             continue
 
         # 通行できない
-        if c_rc[t_vy][t_vx] == '#':
+        if c_hw[t_vy][t_vx] == '#':
             continue
 
         # 探索済み
@@ -65,5 +70,13 @@ while dq:
         dist[t_vy][t_vx] = dist[vy][vx] + 1
         dq.append([t_vy, t_vx])
 
-# print_graph(dist)
-print(dist[gy][gx])
+        # ゴールに到達した
+        if t_vy == gy and t_vx == gx:
+            # print_graph(dist)
+            dq.clear()
+            break
+
+if dist[gy][gx] == -1:
+    print('No')
+else:
+    print('Yes')

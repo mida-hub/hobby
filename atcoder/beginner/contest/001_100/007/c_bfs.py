@@ -47,9 +47,9 @@ while dq:
 
         # 範囲外
         if t_vy < 0 \
-            or t_vy > r \
+            or t_vy >= r \
             or t_vx < 0 \
-            or t_vx > c:
+            or t_vx >= c:
             continue
 
         # 通行できない
