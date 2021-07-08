@@ -13,8 +13,7 @@ for i in range(n):
         if j - w0 >= 0:
             dp[i+1][j] = max([dp[i+1][j],
                               dp[i][j-w0] + v0])
-        else:
-            dp[i+1][j] = dp[i][j]
+        dp[i+1][j] = max([dp[i+1][j], dp[i][j]])
 
 # print_graph(dp)
 # print('-'*50)
