@@ -1,0 +1,29 @@
+{
+    "family": "nginx-revpro",
+    "networkMode": "awsvpc",
+    "containerDefinitions": [
+      {
+        "image": "348598762816.dkr.ecr.ap-northeast-1.amazonaws.com/kaji-test-ecr:web",
+        "name": "nginx-revpro-task",
+        "portMappings": [
+          {
+            "hostPort": 80,
+            "protocol": "tcp",
+            "containerPort": 80
+          }
+        ],
+        "logConfiguration": {
+          "logDriver": "awslogs",
+          "options": {
+            "awslogs-group": "/ecs/nginx-revpro",
+            "awslogs-region": "ap-northeast-1",
+            "awslogs-stream-prefix": "ecs"
+          }
+        }
+      }
+    ],
+    "cpu": "256",
+    "memory": "512",
+    "requiresCompatibilities": ["FARGATE"],
+    "executionRoleArn": "arn:aws:iam::348598762816:role/ecsTaskExecutionRole"
+  }
