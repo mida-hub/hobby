@@ -1,0 +1,996 @@
+{
+  "version": "13.0.0",
+  "artifacts": {
+    "Tree": {
+      "type": "cdk:tree",
+      "properties": {
+        "file": "tree.json"
+      }
+    },
+    "hello-ecs": {
+      "type": "aws:cloudformation:stack",
+      "environment": "aws://unknown-account/unknown-region",
+      "properties": {
+        "templateFile": "hello-ecs.template.json",
+        "validateOnSynth": false
+      },
+      "metadata": {
+        "/hello-ecs/MyWebServer/LB/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MyWebServerLB3B5FD3AB",
+            "trace": [
+              "new BaseLoadBalancer (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-elasticloadbalancingv2/lib/shared/base-load-balancer.js:35:26)",
+              "new ApplicationLoadBalancer (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-elasticloadbalancingv2/lib/alb/application-load-balancer.js:28:9)",
+              "new ApplicationLoadBalancedServiceBase (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ecs-patterns/lib/base/application-load-balanced-service-base.js:55:89)",
+              "new ApplicationLoadBalancedFargateService (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ecs-patterns/lib/fargate/application-load-balanced-fargate-service.js:22:9)",
+              "/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:8154:58",
+              "Kernel._wrapSandboxCode (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:8582:24)",
+              "Kernel._create (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:8154:34)",
+              "Kernel.create (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:7895:29)",
+              "KernelHost.processRequest (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:9479:36)",
+              "KernelHost.run (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:9442:22)",
+              "Immediate._onImmediate (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:9443:46)",
+              "processImmediate (internal/timers.js:461:21)"
+            ]
+          }
+        ],
+        "/hello-ecs/MyWebServer/LB/SecurityGroup/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MyWebServerLBSecurityGroup01B285AA",
+            "trace": [
+              "new SecurityGroup (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ec2/lib/security-group.js:215:30)",
+              "new ApplicationLoadBalancer (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-elasticloadbalancingv2/lib/alb/application-load-balancer.js:34:56)",
+              "new ApplicationLoadBalancedServiceBase (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ecs-patterns/lib/base/application-load-balanced-service-base.js:55:89)",
+              "new ApplicationLoadBalancedFargateService (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ecs-patterns/lib/fargate/application-load-balanced-fargate-service.js:22:9)",
+              "/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:8154:58",
+              "Kernel._wrapSandboxCode (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:8582:24)",
+              "Kernel._create (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:8154:34)",
+              "Kernel.create (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:7895:29)",
+              "KernelHost.processRequest (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:9479:36)",
+              "KernelHost.run (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:9442:22)",
+              "Immediate._onImmediate (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:9443:46)",
+              "processImmediate (internal/timers.js:461:21)"
+            ]
+          }
+        ],
+        "/hello-ecs/MyWebServer/LB/SecurityGroup/to helloecsMyWebServerServiceSecurityGroup95D45F18:80": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MyWebServerLBSecurityGrouptohelloecsMyWebServerServiceSecurityGroup95D45F188045A628E9",
+            "trace": [
+              "SecurityGroup.addEgressRule (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ec2/lib/security-group.js:72:13)",
+              "SecurityGroup.addEgressRule (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ec2/lib/security-group.js:347:19)",
+              "/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ec2/lib/connections.js:81:31",
+              "ReactiveList.forEachAndForever (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ec2/lib/connections.js:226:13)",
+              "/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ec2/lib/connections.js:80:51",
+              "ReactiveList.forEachAndForever (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ec2/lib/connections.js:226:13)",
+              "Connections.allowTo (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ec2/lib/connections.js:79:30)",
+              "Connections.allowFrom (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ec2/lib/connections.js:112:31)",
+              "ApplicationListener.registerConnectable (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-elasticloadbalancingv2/lib/alb/application-listener.js:322:33)",
+              "ApplicationTargetGroup.registerConnectable (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-elasticloadbalancingv2/lib/alb/application-target-group.js:120:22)",
+              "Object.attachToApplicationTargetGroup (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ecs/lib/base/base-service.js:323:29)",
+              "FargateService.attachToApplicationTargetGroup (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ecs/lib/base/base-service.js:284:47)",
+              "ApplicationTargetGroup.addTarget (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-elasticloadbalancingv2/lib/alb/application-target-group.js:71:35)",
+              "ApplicationLoadBalancedFargateService.addServiceAsTarget (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ecs-patterns/lib/base/application-load-balanced-service-base.js:163:26)",
+              "new ApplicationLoadBalancedFargateService (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ecs-patterns/lib/fargate/application-load-balanced-fargate-service.js:78:14)",
+              "/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:8154:58",
+              "Kernel._wrapSandboxCode (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:8582:24)",
+              "Kernel._create (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:8154:34)",
+              "Kernel.create (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:7895:29)",
+              "KernelHost.processRequest (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:9479:36)",
+              "KernelHost.run (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:9442:22)",
+              "Immediate._onImmediate (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:9443:46)",
+              "processImmediate (internal/timers.js:461:21)"
+            ]
+          }
+        ],
+        "/hello-ecs/MyWebServer/LB/PublicListener/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MyWebServerLBPublicListener03D7C493",
+            "trace": [
+              "new BaseListener (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-elasticloadbalancingv2/lib/shared/base-listener.js:21:26)",
+              "new ApplicationListener (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-elasticloadbalancingv2/lib/alb/application-listener.js:32:9)",
+              "ApplicationLoadBalancer.addListener (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-elasticloadbalancingv2/lib/alb/application-load-balancer.js:74:26)",
+              "new ApplicationLoadBalancedServiceBase (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ecs-patterns/lib/base/application-load-balanced-service-base.js:67:38)",
+              "new ApplicationLoadBalancedFargateService (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ecs-patterns/lib/fargate/application-load-balanced-fargate-service.js:22:9)",
+              "/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:8154:58",
+              "Kernel._wrapSandboxCode (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:8582:24)",
+              "Kernel._create (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:8154:34)",
+              "Kernel.create (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:7895:29)",
+              "KernelHost.processRequest (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:9479:36)",
+              "KernelHost.run (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:9442:22)",
+              "Immediate._onImmediate (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:9443:46)",
+              "processImmediate (internal/timers.js:461:21)"
+            ]
+          }
+        ],
+        "/hello-ecs/MyWebServer/LB/PublicListener/ECSGroup/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MyWebServerLBPublicListenerECSGroup5AB9F1C3",
+            "trace": [
+              "new TargetGroupBase (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-elasticloadbalancingv2/lib/shared/base-target-group.js:44:25)",
+              "new ApplicationTargetGroup (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-elasticloadbalancingv2/lib/alb/application-target-group.js:26:9)",
+              "ApplicationListener.addTargets (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-elasticloadbalancingv2/lib/alb/application-listener.js:228:23)",
+              "new ApplicationLoadBalancedServiceBase (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ecs-patterns/lib/base/application-load-balanced-service-base.js:72:42)",
+              "new ApplicationLoadBalancedFargateService (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ecs-patterns/lib/fargate/application-load-balanced-fargate-service.js:22:9)",
+              "/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:8154:58",
+              "Kernel._wrapSandboxCode (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:8582:24)",
+              "Kernel._create (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:8154:34)",
+              "Kernel.create (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:7895:29)",
+              "KernelHost.processRequest (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:9479:36)",
+              "KernelHost.run (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:9442:22)",
+              "Immediate._onImmediate (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:9443:46)",
+              "processImmediate (internal/timers.js:461:21)"
+            ]
+          }
+        ],
+        "/hello-ecs/MyWebServer/LoadBalancerDNS": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MyWebServerLoadBalancerDNSD1AFCC81",
+            "trace": [
+              "new ApplicationLoadBalancedServiceBase (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ecs-patterns/lib/base/application-load-balanced-service-base.js:132:9)",
+              "new ApplicationLoadBalancedFargateService (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ecs-patterns/lib/fargate/application-load-balanced-fargate-service.js:22:9)",
+              "/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:8154:58",
+              "Kernel._wrapSandboxCode (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:8582:24)",
+              "Kernel._create (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:8154:34)",
+              "Kernel.create (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:7895:29)",
+              "KernelHost.processRequest (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:9479:36)",
+              "KernelHost.run (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:9442:22)",
+              "Immediate._onImmediate (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:9443:46)",
+              "processImmediate (internal/timers.js:461:21)"
+            ]
+          }
+        ],
+        "/hello-ecs/MyWebServer/ServiceURL": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MyWebServerServiceURLB0ED50F6",
+            "trace": [
+              "new ApplicationLoadBalancedServiceBase (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ecs-patterns/lib/base/application-load-balanced-service-base.js:133:9)",
+              "new ApplicationLoadBalancedFargateService (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ecs-patterns/lib/fargate/application-load-balanced-fargate-service.js:22:9)",
+              "/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:8154:58",
+              "Kernel._wrapSandboxCode (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:8582:24)",
+              "Kernel._create (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:8154:34)",
+              "Kernel.create (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:7895:29)",
+              "KernelHost.processRequest (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:9479:36)",
+              "KernelHost.run (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:9442:22)",
+              "Immediate._onImmediate (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:9443:46)",
+              "processImmediate (internal/timers.js:461:21)"
+            ]
+          }
+        ],
+        "/hello-ecs/MyWebServer/TaskDef/TaskRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MyWebServerTaskDefTaskRoleB23C17AA",
+            "trace": [
+              "new Role (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-iam/lib/role.js:72:22)",
+              "new TaskDefinition (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ecs/lib/base/task-definition.js:97:43)",
+              "new FargateTaskDefinition (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ecs/lib/fargate/fargate-task-definition.js:25:9)",
+              "new ApplicationLoadBalancedFargateService (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ecs-patterns/lib/fargate/application-load-balanced-fargate-service.js:32:35)",
+              "/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:8154:58",
+              "Kernel._wrapSandboxCode (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:8582:24)",
+              "Kernel._create (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:8154:34)",
+              "Kernel.create (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:7895:29)",
+              "KernelHost.processRequest (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:9479:36)",
+              "KernelHost.run (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:9442:22)",
+              "Immediate._onImmediate (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:9443:46)",
+              "processImmediate (internal/timers.js:461:21)"
+            ]
+          }
+        ],
+        "/hello-ecs/MyWebServer/TaskDef/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MyWebServerTaskDef4CE825A0",
+            "trace": [
+              "new TaskDefinition (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ecs/lib/base/task-definition.js:103:25)",
+              "new FargateTaskDefinition (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ecs/lib/fargate/fargate-task-definition.js:25:9)",
+              "new ApplicationLoadBalancedFargateService (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ecs-patterns/lib/fargate/application-load-balanced-fargate-service.js:32:35)",
+              "/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:8154:58",
+              "Kernel._wrapSandboxCode (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:8582:24)",
+              "Kernel._create (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:8154:34)",
+              "Kernel.create (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:7895:29)",
+              "KernelHost.processRequest (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:9479:36)",
+              "KernelHost.run (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:9442:22)",
+              "Immediate._onImmediate (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:9443:46)",
+              "processImmediate (internal/timers.js:461:21)"
+            ]
+          }
+        ],
+        "/hello-ecs/MyWebServer/TaskDef/web/LogGroup/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MyWebServerTaskDefwebLogGroupC6EE23D4",
+            "trace": [
+              "new LogGroup (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-logs/lib/log-group.js:165:26)",
+              "AwsLogDriver.bind (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ecs/lib/log-drivers/aws-log-driver.js:45:48)",
+              "new ContainerDefinition (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ecs/lib/container-definition.js:114:50)",
+              "FargateTaskDefinition.addContainer (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ecs/lib/base/task-definition.js:261:16)",
+              "new ApplicationLoadBalancedFargateService (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ecs-patterns/lib/fargate/application-load-balanced-fargate-service.js:45:51)",
+              "/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:8154:58",
+              "Kernel._wrapSandboxCode (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:8582:24)",
+              "Kernel._create (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:8154:34)",
+              "Kernel.create (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:7895:29)",
+              "KernelHost.processRequest (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:9479:36)",
+              "KernelHost.run (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:9442:22)",
+              "Immediate._onImmediate (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:9443:46)",
+              "processImmediate (internal/timers.js:461:21)"
+            ]
+          }
+        ],
+        "/hello-ecs/MyWebServer/TaskDef/ExecutionRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MyWebServerTaskDefExecutionRole3C69E361",
+            "trace": [
+              "new Role (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-iam/lib/role.js:72:22)",
+              "FargateTaskDefinition.obtainExecutionRole (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ecs/lib/base/task-definition.js:336:35)",
+              "AwsLogDriver.bind (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ecs/lib/log-drivers/aws-log-driver.js:48:69)",
+              "new ContainerDefinition (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ecs/lib/container-definition.js:114:50)",
+              "FargateTaskDefinition.addContainer (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ecs/lib/base/task-definition.js:261:16)",
+              "new ApplicationLoadBalancedFargateService (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ecs-patterns/lib/fargate/application-load-balanced-fargate-service.js:45:51)",
+              "/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:8154:58",
+              "Kernel._wrapSandboxCode (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:8582:24)",
+              "Kernel._create (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:8154:34)",
+              "Kernel.create (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:7895:29)",
+              "KernelHost.processRequest (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:9479:36)",
+              "KernelHost.run (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:9442:22)",
+              "Immediate._onImmediate (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:9443:46)",
+              "processImmediate (internal/timers.js:461:21)"
+            ]
+          }
+        ],
+        "/hello-ecs/MyWebServer/TaskDef/ExecutionRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MyWebServerTaskDefExecutionRoleDefaultPolicy2AEB4329",
+            "trace": [
+              "new Policy (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-iam/lib/policy.js:56:26)",
+              "Role.addToPrincipalPolicy (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-iam/lib/role.js:209:34)",
+              "Function.addToPrincipal (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-iam/lib/grant.js:90:65)",
+              "LogGroup.grant (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-logs/lib/log-group.js:96:26)",
+              "LogGroup.grantWrite (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-logs/lib/log-group.js:88:21)",
+              "AwsLogDriver.bind (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ecs/lib/log-drivers/aws-log-driver.js:48:23)",
+              "new ContainerDefinition (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ecs/lib/container-definition.js:114:50)",
+              "FargateTaskDefinition.addContainer (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ecs/lib/base/task-definition.js:261:16)",
+              "new ApplicationLoadBalancedFargateService (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ecs-patterns/lib/fargate/application-load-balanced-fargate-service.js:45:51)",
+              "/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:8154:58",
+              "Kernel._wrapSandboxCode (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:8582:24)",
+              "Kernel._create (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:8154:34)",
+              "Kernel.create (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:7895:29)",
+              "KernelHost.processRequest (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:9479:36)",
+              "KernelHost.run (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:9442:22)",
+              "Immediate._onImmediate (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:9443:46)",
+              "processImmediate (internal/timers.js:461:21)"
+            ]
+          }
+        ],
+        "/hello-ecs/MyWebServer/Service/Service": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MyWebServerService2FE7341D",
+            "trace": [
+              "new BaseService (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ecs/lib/base/base-service.js:142:25)",
+              "new FargateService (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ecs/lib/fargate/fargate-service.js:34:9)",
+              "new ApplicationLoadBalancedFargateService (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ecs-patterns/lib/fargate/application-load-balanced-fargate-service.js:60:24)",
+              "/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:8154:58",
+              "Kernel._wrapSandboxCode (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:8582:24)",
+              "Kernel._create (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:8154:34)",
+              "Kernel.create (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:7895:29)",
+              "KernelHost.processRequest (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:9479:36)",
+              "KernelHost.run (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:9442:22)",
+              "Immediate._onImmediate (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:9443:46)",
+              "processImmediate (internal/timers.js:461:21)"
+            ]
+          }
+        ],
+        "/hello-ecs/MyWebServer/Service/SecurityGroup/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MyWebServerServiceSecurityGroup6788214A",
+            "trace": [
+              "new SecurityGroup (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ec2/lib/security-group.js:215:30)",
+              "FargateService.configureAwsVpcNetworkingWithSecurityGroups (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ecs/lib/base/base-service.js:531:31)",
+              "new FargateService (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ecs/lib/fargate/fargate-service.js:52:14)",
+              "new ApplicationLoadBalancedFargateService (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ecs-patterns/lib/fargate/application-load-balanced-fargate-service.js:60:24)",
+              "/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:8154:58",
+              "Kernel._wrapSandboxCode (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:8582:24)",
+              "Kernel._create (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:8154:34)",
+              "Kernel.create (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:7895:29)",
+              "KernelHost.processRequest (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:9479:36)",
+              "KernelHost.run (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:9442:22)",
+              "Immediate._onImmediate (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:9443:46)",
+              "processImmediate (internal/timers.js:461:21)"
+            ]
+          }
+        ],
+        "/hello-ecs/MyWebServer/Service/SecurityGroup/from helloecsMyWebServerLBSecurityGroupD3DDC2A0:80": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MyWebServerServiceSecurityGroupfromhelloecsMyWebServerLBSecurityGroupD3DDC2A080FA79A7AC",
+            "trace": [
+              "SecurityGroup.addIngressRule (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ec2/lib/security-group.js:57:13)",
+              "SecurityGroup.addIngressRule (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ec2/lib/security-group.js:307:19)",
+              "/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ec2/lib/connections.js:106:31",
+              "ReactiveList.forEachAndForever (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ec2/lib/connections.js:226:13)",
+              "/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ec2/lib/connections.js:105:51",
+              "ReactiveList.forEachAndForever (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ec2/lib/connections.js:226:13)",
+              "Connections.allowFrom (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ec2/lib/connections.js:104:30)",
+              "ApplicationListener.registerConnectable (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-elasticloadbalancingv2/lib/alb/application-listener.js:322:33)",
+              "ApplicationTargetGroup.registerConnectable (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-elasticloadbalancingv2/lib/alb/application-target-group.js:120:22)",
+              "Object.attachToApplicationTargetGroup (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ecs/lib/base/base-service.js:323:29)",
+              "FargateService.attachToApplicationTargetGroup (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ecs/lib/base/base-service.js:284:47)",
+              "ApplicationTargetGroup.addTarget (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-elasticloadbalancingv2/lib/alb/application-target-group.js:71:35)",
+              "ApplicationLoadBalancedFargateService.addServiceAsTarget (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ecs-patterns/lib/base/application-load-balanced-service-base.js:163:26)",
+              "new ApplicationLoadBalancedFargateService (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ecs-patterns/lib/fargate/application-load-balanced-fargate-service.js:78:14)",
+              "/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:8154:58",
+              "Kernel._wrapSandboxCode (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:8582:24)",
+              "Kernel._create (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:8154:34)",
+              "Kernel.create (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:7895:29)",
+              "KernelHost.processRequest (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:9479:36)",
+              "KernelHost.run (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:9442:22)",
+              "Immediate._onImmediate (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:9443:46)",
+              "processImmediate (internal/timers.js:461:21)"
+            ]
+          }
+        ],
+        "/hello-ecs/EcsDefaultClusterMnL3mNNYN/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "EcsDefaultClusterMnL3mNNYN926A5246",
+            "trace": [
+              "new Cluster (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ecs/lib/cluster.js:79:25)",
+              "ApplicationLoadBalancedFargateService.getDefaultCluster (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ecs-patterns/lib/base/application-load-balanced-service-base.js:155:63)",
+              "new ApplicationLoadBalancedServiceBase (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ecs-patterns/lib/base/application-load-balanced-service-base.js:43:46)",
+              "new ApplicationLoadBalancedFargateService (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ecs-patterns/lib/fargate/application-load-balanced-fargate-service.js:22:9)",
+              "/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:8154:58",
+              "Kernel._wrapSandboxCode (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:8582:24)",
+              "Kernel._create (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:8154:34)",
+              "Kernel.create (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:7895:29)",
+              "KernelHost.processRequest (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:9479:36)",
+              "KernelHost.run (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:9442:22)",
+              "Immediate._onImmediate (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:9443:46)",
+              "processImmediate (internal/timers.js:461:21)"
+            ]
+          }
+        ],
+        "/hello-ecs/EcsDefaultClusterMnL3mNNYN/Vpc/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "EcsDefaultClusterMnL3mNNYNVpc7788A521",
+            "trace": [
+              "new Vpc (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:355:25)",
+              "new Cluster (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ecs/lib/cluster.js:90:33)",
+              "ApplicationLoadBalancedFargateService.getDefaultCluster (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ecs-patterns/lib/base/application-load-balanced-service-base.js:155:63)",
+              "new ApplicationLoadBalancedServiceBase (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ecs-patterns/lib/base/application-load-balanced-service-base.js:43:46)",
+              "new ApplicationLoadBalancedFargateService (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ecs-patterns/lib/fargate/application-load-balanced-fargate-service.js:22:9)",
+              "/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:8154:58",
+              "Kernel._wrapSandboxCode (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:8582:24)",
+              "Kernel._create (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:8154:34)",
+              "Kernel.create (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:7895:29)",
+              "KernelHost.processRequest (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:9479:36)",
+              "KernelHost.run (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:9442:22)",
+              "Immediate._onImmediate (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:9443:46)",
+              "processImmediate (internal/timers.js:461:21)"
+            ]
+          }
+        ],
+        "/hello-ecs/EcsDefaultClusterMnL3mNNYN/Vpc/PublicSubnet1/Subnet": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "EcsDefaultClusterMnL3mNNYNVpcPublicSubnet1Subnet3C273B99",
+            "trace": [
+              "new Subnet (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:679:24)",
+              "new PublicSubnet (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:844:9)",
+              "/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:577:42",
+              "Array.forEach (<anonymous>)",
+              "Vpc.createSubnetResources (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:561:32)",
+              "Vpc.createSubnets (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:557:18)",
+              "new Vpc (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:376:14)",
+              "new Cluster (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ecs/lib/cluster.js:90:33)",
+              "ApplicationLoadBalancedFargateService.getDefaultCluster (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ecs-patterns/lib/base/application-load-balanced-service-base.js:155:63)",
+              "new ApplicationLoadBalancedServiceBase (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ecs-patterns/lib/base/application-load-balanced-service-base.js:43:46)",
+              "new ApplicationLoadBalancedFargateService (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ecs-patterns/lib/fargate/application-load-balanced-fargate-service.js:22:9)",
+              "/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:8154:58",
+              "Kernel._wrapSandboxCode (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:8582:24)",
+              "Kernel._create (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:8154:34)",
+              "Kernel.create (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:7895:29)",
+              "KernelHost.processRequest (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:9479:36)",
+              "KernelHost.run (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:9442:22)",
+              "Immediate._onImmediate (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:9443:46)",
+              "processImmediate (internal/timers.js:461:21)"
+            ]
+          }
+        ],
+        "/hello-ecs/EcsDefaultClusterMnL3mNNYN/Vpc/PublicSubnet1/RouteTable": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "EcsDefaultClusterMnL3mNNYNVpcPublicSubnet1RouteTableA1FD6ACC",
+            "trace": [
+              "new Subnet (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:695:23)",
+              "new PublicSubnet (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:844:9)",
+              "/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:577:42",
+              "Array.forEach (<anonymous>)",
+              "Vpc.createSubnetResources (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:561:32)",
+              "Vpc.createSubnets (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:557:18)",
+              "new Vpc (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:376:14)",
+              "new Cluster (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ecs/lib/cluster.js:90:33)",
+              "ApplicationLoadBalancedFargateService.getDefaultCluster (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ecs-patterns/lib/base/application-load-balanced-service-base.js:155:63)",
+              "new ApplicationLoadBalancedServiceBase (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ecs-patterns/lib/base/application-load-balanced-service-base.js:43:46)",
+              "new ApplicationLoadBalancedFargateService (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ecs-patterns/lib/fargate/application-load-balanced-fargate-service.js:22:9)",
+              "/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:8154:58",
+              "Kernel._wrapSandboxCode (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:8582:24)",
+              "Kernel._create (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:8154:34)",
+              "Kernel.create (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:7895:29)",
+              "KernelHost.processRequest (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:9479:36)",
+              "KernelHost.run (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:9442:22)",
+              "Immediate._onImmediate (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:9443:46)",
+              "processImmediate (internal/timers.js:461:21)"
+            ]
+          }
+        ],
+        "/hello-ecs/EcsDefaultClusterMnL3mNNYN/Vpc/PublicSubnet1/RouteTableAssociation": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "EcsDefaultClusterMnL3mNNYNVpcPublicSubnet1RouteTableAssociation8B583A17",
+            "trace": [
+              "new Subnet (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:700:9)",
+              "new PublicSubnet (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:844:9)",
+              "/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:577:42",
+              "Array.forEach (<anonymous>)",
+              "Vpc.createSubnetResources (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:561:32)",
+              "Vpc.createSubnets (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:557:18)",
+              "new Vpc (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:376:14)",
+              "new Cluster (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ecs/lib/cluster.js:90:33)",
+              "ApplicationLoadBalancedFargateService.getDefaultCluster (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ecs-patterns/lib/base/application-load-balanced-service-base.js:155:63)",
+              "new ApplicationLoadBalancedServiceBase (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ecs-patterns/lib/base/application-load-balanced-service-base.js:43:46)",
+              "new ApplicationLoadBalancedFargateService (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ecs-patterns/lib/fargate/application-load-balanced-fargate-service.js:22:9)",
+              "/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:8154:58",
+              "Kernel._wrapSandboxCode (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:8582:24)",
+              "Kernel._create (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:8154:34)",
+              "Kernel.create (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:7895:29)",
+              "KernelHost.processRequest (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:9479:36)",
+              "KernelHost.run (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:9442:22)",
+              "Immediate._onImmediate (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:9443:46)",
+              "processImmediate (internal/timers.js:461:21)"
+            ]
+          }
+        ],
+        "/hello-ecs/EcsDefaultClusterMnL3mNNYN/Vpc/PublicSubnet1/DefaultRoute": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "EcsDefaultClusterMnL3mNNYNVpcPublicSubnet1DefaultRouteFF4E2178",
+            "trace": [
+              "PublicSubnet.addDefaultInternetRoute (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:735:23)",
+              "/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:388:30",
+              "Array.forEach (<anonymous>)",
+              "new Vpc (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:387:32)",
+              "new Cluster (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ecs/lib/cluster.js:90:33)",
+              "ApplicationLoadBalancedFargateService.getDefaultCluster (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ecs-patterns/lib/base/application-load-balanced-service-base.js:155:63)",
+              "new ApplicationLoadBalancedServiceBase (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ecs-patterns/lib/base/application-load-balanced-service-base.js:43:46)",
+              "new ApplicationLoadBalancedFargateService (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ecs-patterns/lib/fargate/application-load-balanced-fargate-service.js:22:9)",
+              "/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:8154:58",
+              "Kernel._wrapSandboxCode (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:8582:24)",
+              "Kernel._create (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:8154:34)",
+              "Kernel.create (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:7895:29)",
+              "KernelHost.processRequest (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:9479:36)",
+              "KernelHost.run (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:9442:22)",
+              "Immediate._onImmediate (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:9443:46)",
+              "processImmediate (internal/timers.js:461:21)"
+            ]
+          }
+        ],
+        "/hello-ecs/EcsDefaultClusterMnL3mNNYN/Vpc/PublicSubnet1/EIP": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "EcsDefaultClusterMnL3mNNYNVpcPublicSubnet1EIP8704DB2F",
+            "trace": [
+              "PublicSubnet.addNatGateway (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:864:27)",
+              "NatGatewayProvider.configureNat (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ec2/lib/nat.js:77:33)",
+              "Vpc.createNatGateways (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:535:18)",
+              "new Vpc (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:393:22)",
+              "new Cluster (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ecs/lib/cluster.js:90:33)",
+              "ApplicationLoadBalancedFargateService.getDefaultCluster (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ecs-patterns/lib/base/application-load-balanced-service-base.js:155:63)",
+              "new ApplicationLoadBalancedServiceBase (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ecs-patterns/lib/base/application-load-balanced-service-base.js:43:46)",
+              "new ApplicationLoadBalancedFargateService (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ecs-patterns/lib/fargate/application-load-balanced-fargate-service.js:22:9)",
+              "/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:8154:58",
+              "Kernel._wrapSandboxCode (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:8582:24)",
+              "Kernel._create (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:8154:34)",
+              "Kernel.create (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:7895:29)",
+              "KernelHost.processRequest (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:9479:36)",
+              "KernelHost.run (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:9442:22)",
+              "Immediate._onImmediate (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:9443:46)",
+              "processImmediate (internal/timers.js:461:21)"
+            ]
+          }
+        ],
+        "/hello-ecs/EcsDefaultClusterMnL3mNNYN/Vpc/PublicSubnet1/NATGateway": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "EcsDefaultClusterMnL3mNNYNVpcPublicSubnet1NATGateway5E3732C1",
+            "trace": [
+              "PublicSubnet.addNatGateway (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:862:21)",
+              "NatGatewayProvider.configureNat (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ec2/lib/nat.js:77:33)",
+              "Vpc.createNatGateways (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:535:18)",
+              "new Vpc (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:393:22)",
+              "new Cluster (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ecs/lib/cluster.js:90:33)",
+              "ApplicationLoadBalancedFargateService.getDefaultCluster (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ecs-patterns/lib/base/application-load-balanced-service-base.js:155:63)",
+              "new ApplicationLoadBalancedServiceBase (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ecs-patterns/lib/base/application-load-balanced-service-base.js:43:46)",
+              "new ApplicationLoadBalancedFargateService (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ecs-patterns/lib/fargate/application-load-balanced-fargate-service.js:22:9)",
+              "/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:8154:58",
+              "Kernel._wrapSandboxCode (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:8582:24)",
+              "Kernel._create (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:8154:34)",
+              "Kernel.create (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:7895:29)",
+              "KernelHost.processRequest (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:9479:36)",
+              "KernelHost.run (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:9442:22)",
+              "Immediate._onImmediate (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:9443:46)",
+              "processImmediate (internal/timers.js:461:21)"
+            ]
+          }
+        ],
+        "/hello-ecs/EcsDefaultClusterMnL3mNNYN/Vpc/PublicSubnet2/Subnet": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "EcsDefaultClusterMnL3mNNYNVpcPublicSubnet2Subnet95FF715A",
+            "trace": [
+              "new Subnet (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:679:24)",
+              "new PublicSubnet (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:844:9)",
+              "/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:577:42",
+              "Array.forEach (<anonymous>)",
+              "Vpc.createSubnetResources (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:561:32)",
+              "Vpc.createSubnets (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:557:18)",
+              "new Vpc (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:376:14)",
+              "new Cluster (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ecs/lib/cluster.js:90:33)",
+              "ApplicationLoadBalancedFargateService.getDefaultCluster (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ecs-patterns/lib/base/application-load-balanced-service-base.js:155:63)",
+              "new ApplicationLoadBalancedServiceBase (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ecs-patterns/lib/base/application-load-balanced-service-base.js:43:46)",
+              "new ApplicationLoadBalancedFargateService (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ecs-patterns/lib/fargate/application-load-balanced-fargate-service.js:22:9)",
+              "/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:8154:58",
+              "Kernel._wrapSandboxCode (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:8582:24)",
+              "Kernel._create (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:8154:34)",
+              "Kernel.create (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:7895:29)",
+              "KernelHost.processRequest (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:9479:36)",
+              "KernelHost.run (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:9442:22)",
+              "Immediate._onImmediate (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:9443:46)",
+              "processImmediate (internal/timers.js:461:21)"
+            ]
+          }
+        ],
+        "/hello-ecs/EcsDefaultClusterMnL3mNNYN/Vpc/PublicSubnet2/RouteTable": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "EcsDefaultClusterMnL3mNNYNVpcPublicSubnet2RouteTable263DEAA5",
+            "trace": [
+              "new Subnet (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:695:23)",
+              "new PublicSubnet (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:844:9)",
+              "/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:577:42",
+              "Array.forEach (<anonymous>)",
+              "Vpc.createSubnetResources (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:561:32)",
+              "Vpc.createSubnets (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:557:18)",
+              "new Vpc (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:376:14)",
+              "new Cluster (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ecs/lib/cluster.js:90:33)",
+              "ApplicationLoadBalancedFargateService.getDefaultCluster (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ecs-patterns/lib/base/application-load-balanced-service-base.js:155:63)",
+              "new ApplicationLoadBalancedServiceBase (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ecs-patterns/lib/base/application-load-balanced-service-base.js:43:46)",
+              "new ApplicationLoadBalancedFargateService (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ecs-patterns/lib/fargate/application-load-balanced-fargate-service.js:22:9)",
+              "/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:8154:58",
+              "Kernel._wrapSandboxCode (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:8582:24)",
+              "Kernel._create (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:8154:34)",
+              "Kernel.create (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:7895:29)",
+              "KernelHost.processRequest (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:9479:36)",
+              "KernelHost.run (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:9442:22)",
+              "Immediate._onImmediate (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:9443:46)",
+              "processImmediate (internal/timers.js:461:21)"
+            ]
+          }
+        ],
+        "/hello-ecs/EcsDefaultClusterMnL3mNNYN/Vpc/PublicSubnet2/RouteTableAssociation": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "EcsDefaultClusterMnL3mNNYNVpcPublicSubnet2RouteTableAssociation43E5803C",
+            "trace": [
+              "new Subnet (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:700:9)",
+              "new PublicSubnet (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:844:9)",
+              "/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:577:42",
+              "Array.forEach (<anonymous>)",
+              "Vpc.createSubnetResources (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:561:32)",
+              "Vpc.createSubnets (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:557:18)",
+              "new Vpc (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:376:14)",
+              "new Cluster (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ecs/lib/cluster.js:90:33)",
+              "ApplicationLoadBalancedFargateService.getDefaultCluster (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ecs-patterns/lib/base/application-load-balanced-service-base.js:155:63)",
+              "new ApplicationLoadBalancedServiceBase (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ecs-patterns/lib/base/application-load-balanced-service-base.js:43:46)",
+              "new ApplicationLoadBalancedFargateService (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ecs-patterns/lib/fargate/application-load-balanced-fargate-service.js:22:9)",
+              "/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:8154:58",
+              "Kernel._wrapSandboxCode (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:8582:24)",
+              "Kernel._create (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:8154:34)",
+              "Kernel.create (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:7895:29)",
+              "KernelHost.processRequest (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:9479:36)",
+              "KernelHost.run (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:9442:22)",
+              "Immediate._onImmediate (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:9443:46)",
+              "processImmediate (internal/timers.js:461:21)"
+            ]
+          }
+        ],
+        "/hello-ecs/EcsDefaultClusterMnL3mNNYN/Vpc/PublicSubnet2/DefaultRoute": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "EcsDefaultClusterMnL3mNNYNVpcPublicSubnet2DefaultRouteB1375520",
+            "trace": [
+              "PublicSubnet.addDefaultInternetRoute (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:735:23)",
+              "/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:388:30",
+              "Array.forEach (<anonymous>)",
+              "new Vpc (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:387:32)",
+              "new Cluster (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ecs/lib/cluster.js:90:33)",
+              "ApplicationLoadBalancedFargateService.getDefaultCluster (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ecs-patterns/lib/base/application-load-balanced-service-base.js:155:63)",
+              "new ApplicationLoadBalancedServiceBase (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ecs-patterns/lib/base/application-load-balanced-service-base.js:43:46)",
+              "new ApplicationLoadBalancedFargateService (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ecs-patterns/lib/fargate/application-load-balanced-fargate-service.js:22:9)",
+              "/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:8154:58",
+              "Kernel._wrapSandboxCode (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:8582:24)",
+              "Kernel._create (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:8154:34)",
+              "Kernel.create (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:7895:29)",
+              "KernelHost.processRequest (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:9479:36)",
+              "KernelHost.run (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:9442:22)",
+              "Immediate._onImmediate (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:9443:46)",
+              "processImmediate (internal/timers.js:461:21)"
+            ]
+          }
+        ],
+        "/hello-ecs/EcsDefaultClusterMnL3mNNYN/Vpc/PublicSubnet2/EIP": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "EcsDefaultClusterMnL3mNNYNVpcPublicSubnet2EIPF0764873",
+            "trace": [
+              "PublicSubnet.addNatGateway (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:864:27)",
+              "NatGatewayProvider.configureNat (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ec2/lib/nat.js:77:33)",
+              "Vpc.createNatGateways (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:535:18)",
+              "new Vpc (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:393:22)",
+              "new Cluster (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ecs/lib/cluster.js:90:33)",
+              "ApplicationLoadBalancedFargateService.getDefaultCluster (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ecs-patterns/lib/base/application-load-balanced-service-base.js:155:63)",
+              "new ApplicationLoadBalancedServiceBase (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ecs-patterns/lib/base/application-load-balanced-service-base.js:43:46)",
+              "new ApplicationLoadBalancedFargateService (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ecs-patterns/lib/fargate/application-load-balanced-fargate-service.js:22:9)",
+              "/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:8154:58",
+              "Kernel._wrapSandboxCode (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:8582:24)",
+              "Kernel._create (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:8154:34)",
+              "Kernel.create (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:7895:29)",
+              "KernelHost.processRequest (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:9479:36)",
+              "KernelHost.run (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:9442:22)",
+              "Immediate._onImmediate (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:9443:46)",
+              "processImmediate (internal/timers.js:461:21)"
+            ]
+          }
+        ],
+        "/hello-ecs/EcsDefaultClusterMnL3mNNYN/Vpc/PublicSubnet2/NATGateway": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "EcsDefaultClusterMnL3mNNYNVpcPublicSubnet2NATGateway4C855E00",
+            "trace": [
+              "PublicSubnet.addNatGateway (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:862:21)",
+              "NatGatewayProvider.configureNat (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ec2/lib/nat.js:77:33)",
+              "Vpc.createNatGateways (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:535:18)",
+              "new Vpc (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:393:22)",
+              "new Cluster (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ecs/lib/cluster.js:90:33)",
+              "ApplicationLoadBalancedFargateService.getDefaultCluster (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ecs-patterns/lib/base/application-load-balanced-service-base.js:155:63)",
+              "new ApplicationLoadBalancedServiceBase (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ecs-patterns/lib/base/application-load-balanced-service-base.js:43:46)",
+              "new ApplicationLoadBalancedFargateService (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ecs-patterns/lib/fargate/application-load-balanced-fargate-service.js:22:9)",
+              "/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:8154:58",
+              "Kernel._wrapSandboxCode (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:8582:24)",
+              "Kernel._create (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:8154:34)",
+              "Kernel.create (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:7895:29)",
+              "KernelHost.processRequest (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:9479:36)",
+              "KernelHost.run (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:9442:22)",
+              "Immediate._onImmediate (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:9443:46)",
+              "processImmediate (internal/timers.js:461:21)"
+            ]
+          }
+        ],
+        "/hello-ecs/EcsDefaultClusterMnL3mNNYN/Vpc/PrivateSubnet1/Subnet": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "EcsDefaultClusterMnL3mNNYNVpcPrivateSubnet1Subnet075EFF4C",
+            "trace": [
+              "new Subnet (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:679:24)",
+              "new PrivateSubnet (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:884:9)",
+              "/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:582:43",
+              "Array.forEach (<anonymous>)",
+              "Vpc.createSubnetResources (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:561:32)",
+              "Vpc.createSubnets (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:557:18)",
+              "new Vpc (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:376:14)",
+              "new Cluster (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ecs/lib/cluster.js:90:33)",
+              "ApplicationLoadBalancedFargateService.getDefaultCluster (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ecs-patterns/lib/base/application-load-balanced-service-base.js:155:63)",
+              "new ApplicationLoadBalancedServiceBase (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ecs-patterns/lib/base/application-load-balanced-service-base.js:43:46)",
+              "new ApplicationLoadBalancedFargateService (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ecs-patterns/lib/fargate/application-load-balanced-fargate-service.js:22:9)",
+              "/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:8154:58",
+              "Kernel._wrapSandboxCode (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:8582:24)",
+              "Kernel._create (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:8154:34)",
+              "Kernel.create (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:7895:29)",
+              "KernelHost.processRequest (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:9479:36)",
+              "KernelHost.run (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:9442:22)",
+              "Immediate._onImmediate (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:9443:46)",
+              "processImmediate (internal/timers.js:461:21)"
+            ]
+          }
+        ],
+        "/hello-ecs/EcsDefaultClusterMnL3mNNYN/Vpc/PrivateSubnet1/RouteTable": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "EcsDefaultClusterMnL3mNNYNVpcPrivateSubnet1RouteTable4F1D2E36",
+            "trace": [
+              "new Subnet (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:695:23)",
+              "new PrivateSubnet (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:884:9)",
+              "/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:582:43",
+              "Array.forEach (<anonymous>)",
+              "Vpc.createSubnetResources (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:561:32)",
+              "Vpc.createSubnets (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:557:18)",
+              "new Vpc (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:376:14)",
+              "new Cluster (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ecs/lib/cluster.js:90:33)",
+              "ApplicationLoadBalancedFargateService.getDefaultCluster (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ecs-patterns/lib/base/application-load-balanced-service-base.js:155:63)",
+              "new ApplicationLoadBalancedServiceBase (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ecs-patterns/lib/base/application-load-balanced-service-base.js:43:46)",
+              "new ApplicationLoadBalancedFargateService (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ecs-patterns/lib/fargate/application-load-balanced-fargate-service.js:22:9)",
+              "/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:8154:58",
+              "Kernel._wrapSandboxCode (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:8582:24)",
+              "Kernel._create (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:8154:34)",
+              "Kernel.create (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:7895:29)",
+              "KernelHost.processRequest (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:9479:36)",
+              "KernelHost.run (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:9442:22)",
+              "Immediate._onImmediate (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:9443:46)",
+              "processImmediate (internal/timers.js:461:21)"
+            ]
+          }
+        ],
+        "/hello-ecs/EcsDefaultClusterMnL3mNNYN/Vpc/PrivateSubnet1/RouteTableAssociation": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "EcsDefaultClusterMnL3mNNYNVpcPrivateSubnet1RouteTableAssociation34B92275",
+            "trace": [
+              "new Subnet (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:700:9)",
+              "new PrivateSubnet (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:884:9)",
+              "/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:582:43",
+              "Array.forEach (<anonymous>)",
+              "Vpc.createSubnetResources (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:561:32)",
+              "Vpc.createSubnets (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:557:18)",
+              "new Vpc (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:376:14)",
+              "new Cluster (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ecs/lib/cluster.js:90:33)",
+              "ApplicationLoadBalancedFargateService.getDefaultCluster (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ecs-patterns/lib/base/application-load-balanced-service-base.js:155:63)",
+              "new ApplicationLoadBalancedServiceBase (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ecs-patterns/lib/base/application-load-balanced-service-base.js:43:46)",
+              "new ApplicationLoadBalancedFargateService (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ecs-patterns/lib/fargate/application-load-balanced-fargate-service.js:22:9)",
+              "/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:8154:58",
+              "Kernel._wrapSandboxCode (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:8582:24)",
+              "Kernel._create (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:8154:34)",
+              "Kernel.create (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:7895:29)",
+              "KernelHost.processRequest (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:9479:36)",
+              "KernelHost.run (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:9442:22)",
+              "Immediate._onImmediate (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:9443:46)",
+              "processImmediate (internal/timers.js:461:21)"
+            ]
+          }
+        ],
+        "/hello-ecs/EcsDefaultClusterMnL3mNNYN/Vpc/PrivateSubnet1/DefaultRoute": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "EcsDefaultClusterMnL3mNNYNVpcPrivateSubnet1DefaultRouteA5ADF694",
+            "trace": [
+              "PrivateSubnet.addRoute (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:782:23)",
+              "NatGatewayProvider.configureSubnet (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ec2/lib/nat.js:92:16)",
+              "NatGatewayProvider.configureNat (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ec2/lib/nat.js:86:18)",
+              "Vpc.createNatGateways (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:535:18)",
+              "new Vpc (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:393:22)",
+              "new Cluster (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ecs/lib/cluster.js:90:33)",
+              "ApplicationLoadBalancedFargateService.getDefaultCluster (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ecs-patterns/lib/base/application-load-balanced-service-base.js:155:63)",
+              "new ApplicationLoadBalancedServiceBase (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ecs-patterns/lib/base/application-load-balanced-service-base.js:43:46)",
+              "new ApplicationLoadBalancedFargateService (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ecs-patterns/lib/fargate/application-load-balanced-fargate-service.js:22:9)",
+              "/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:8154:58",
+              "Kernel._wrapSandboxCode (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:8582:24)",
+              "Kernel._create (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:8154:34)",
+              "Kernel.create (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:7895:29)",
+              "KernelHost.processRequest (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:9479:36)",
+              "KernelHost.run (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:9442:22)",
+              "Immediate._onImmediate (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:9443:46)",
+              "processImmediate (internal/timers.js:461:21)"
+            ]
+          }
+        ],
+        "/hello-ecs/EcsDefaultClusterMnL3mNNYN/Vpc/PrivateSubnet2/Subnet": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "EcsDefaultClusterMnL3mNNYNVpcPrivateSubnet2SubnetE4CEDF73",
+            "trace": [
+              "new Subnet (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:679:24)",
+              "new PrivateSubnet (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:884:9)",
+              "/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:582:43",
+              "Array.forEach (<anonymous>)",
+              "Vpc.createSubnetResources (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:561:32)",
+              "Vpc.createSubnets (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:557:18)",
+              "new Vpc (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:376:14)",
+              "new Cluster (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ecs/lib/cluster.js:90:33)",
+              "ApplicationLoadBalancedFargateService.getDefaultCluster (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ecs-patterns/lib/base/application-load-balanced-service-base.js:155:63)",
+              "new ApplicationLoadBalancedServiceBase (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ecs-patterns/lib/base/application-load-balanced-service-base.js:43:46)",
+              "new ApplicationLoadBalancedFargateService (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ecs-patterns/lib/fargate/application-load-balanced-fargate-service.js:22:9)",
+              "/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:8154:58",
+              "Kernel._wrapSandboxCode (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:8582:24)",
+              "Kernel._create (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:8154:34)",
+              "Kernel.create (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:7895:29)",
+              "KernelHost.processRequest (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:9479:36)",
+              "KernelHost.run (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:9442:22)",
+              "Immediate._onImmediate (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:9443:46)",
+              "processImmediate (internal/timers.js:461:21)"
+            ]
+          }
+        ],
+        "/hello-ecs/EcsDefaultClusterMnL3mNNYN/Vpc/PrivateSubnet2/RouteTable": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "EcsDefaultClusterMnL3mNNYNVpcPrivateSubnet2RouteTableDCE46591",
+            "trace": [
+              "new Subnet (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:695:23)",
+              "new PrivateSubnet (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:884:9)",
+              "/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:582:43",
+              "Array.forEach (<anonymous>)",
+              "Vpc.createSubnetResources (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:561:32)",
+              "Vpc.createSubnets (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:557:18)",
+              "new Vpc (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:376:14)",
+              "new Cluster (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ecs/lib/cluster.js:90:33)",
+              "ApplicationLoadBalancedFargateService.getDefaultCluster (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ecs-patterns/lib/base/application-load-balanced-service-base.js:155:63)",
+              "new ApplicationLoadBalancedServiceBase (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ecs-patterns/lib/base/application-load-balanced-service-base.js:43:46)",
+              "new ApplicationLoadBalancedFargateService (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ecs-patterns/lib/fargate/application-load-balanced-fargate-service.js:22:9)",
+              "/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:8154:58",
+              "Kernel._wrapSandboxCode (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:8582:24)",
+              "Kernel._create (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:8154:34)",
+              "Kernel.create (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:7895:29)",
+              "KernelHost.processRequest (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:9479:36)",
+              "KernelHost.run (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:9442:22)",
+              "Immediate._onImmediate (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:9443:46)",
+              "processImmediate (internal/timers.js:461:21)"
+            ]
+          }
+        ],
+        "/hello-ecs/EcsDefaultClusterMnL3mNNYN/Vpc/PrivateSubnet2/RouteTableAssociation": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "EcsDefaultClusterMnL3mNNYNVpcPrivateSubnet2RouteTableAssociation111C622F",
+            "trace": [
+              "new Subnet (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:700:9)",
+              "new PrivateSubnet (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:884:9)",
+              "/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:582:43",
+              "Array.forEach (<anonymous>)",
+              "Vpc.createSubnetResources (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:561:32)",
+              "Vpc.createSubnets (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:557:18)",
+              "new Vpc (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:376:14)",
+              "new Cluster (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ecs/lib/cluster.js:90:33)",
+              "ApplicationLoadBalancedFargateService.getDefaultCluster (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ecs-patterns/lib/base/application-load-balanced-service-base.js:155:63)",
+              "new ApplicationLoadBalancedServiceBase (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ecs-patterns/lib/base/application-load-balanced-service-base.js:43:46)",
+              "new ApplicationLoadBalancedFargateService (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ecs-patterns/lib/fargate/application-load-balanced-fargate-service.js:22:9)",
+              "/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:8154:58",
+              "Kernel._wrapSandboxCode (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:8582:24)",
+              "Kernel._create (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:8154:34)",
+              "Kernel.create (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:7895:29)",
+              "KernelHost.processRequest (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:9479:36)",
+              "KernelHost.run (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:9442:22)",
+              "Immediate._onImmediate (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:9443:46)",
+              "processImmediate (internal/timers.js:461:21)"
+            ]
+          }
+        ],
+        "/hello-ecs/EcsDefaultClusterMnL3mNNYN/Vpc/PrivateSubnet2/DefaultRoute": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "EcsDefaultClusterMnL3mNNYNVpcPrivateSubnet2DefaultRoute20CE2D89",
+            "trace": [
+              "PrivateSubnet.addRoute (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:782:23)",
+              "NatGatewayProvider.configureSubnet (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ec2/lib/nat.js:92:16)",
+              "NatGatewayProvider.configureNat (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ec2/lib/nat.js:86:18)",
+              "Vpc.createNatGateways (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:535:18)",
+              "new Vpc (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:393:22)",
+              "new Cluster (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ecs/lib/cluster.js:90:33)",
+              "ApplicationLoadBalancedFargateService.getDefaultCluster (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ecs-patterns/lib/base/application-load-balanced-service-base.js:155:63)",
+              "new ApplicationLoadBalancedServiceBase (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ecs-patterns/lib/base/application-load-balanced-service-base.js:43:46)",
+              "new ApplicationLoadBalancedFargateService (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ecs-patterns/lib/fargate/application-load-balanced-fargate-service.js:22:9)",
+              "/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:8154:58",
+              "Kernel._wrapSandboxCode (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:8582:24)",
+              "Kernel._create (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:8154:34)",
+              "Kernel.create (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:7895:29)",
+              "KernelHost.processRequest (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:9479:36)",
+              "KernelHost.run (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:9442:22)",
+              "Immediate._onImmediate (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:9443:46)",
+              "processImmediate (internal/timers.js:461:21)"
+            ]
+          }
+        ],
+        "/hello-ecs/EcsDefaultClusterMnL3mNNYN/Vpc/IGW": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "EcsDefaultClusterMnL3mNNYNVpcIGW9C2C2B8F",
+            "trace": [
+              "new Vpc (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:380:25)",
+              "new Cluster (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ecs/lib/cluster.js:90:33)",
+              "ApplicationLoadBalancedFargateService.getDefaultCluster (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ecs-patterns/lib/base/application-load-balanced-service-base.js:155:63)",
+              "new ApplicationLoadBalancedServiceBase (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ecs-patterns/lib/base/application-load-balanced-service-base.js:43:46)",
+              "new ApplicationLoadBalancedFargateService (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ecs-patterns/lib/fargate/application-load-balanced-fargate-service.js:22:9)",
+              "/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:8154:58",
+              "Kernel._wrapSandboxCode (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:8582:24)",
+              "Kernel._create (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:8154:34)",
+              "Kernel.create (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:7895:29)",
+              "KernelHost.processRequest (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:9479:36)",
+              "KernelHost.run (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:9442:22)",
+              "Immediate._onImmediate (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:9443:46)",
+              "processImmediate (internal/timers.js:461:21)"
+            ]
+          }
+        ],
+        "/hello-ecs/EcsDefaultClusterMnL3mNNYN/Vpc/VPCGW": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "EcsDefaultClusterMnL3mNNYNVpcVPCGW2447264E",
+            "trace": [
+              "new Vpc (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:383:25)",
+              "new Cluster (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ecs/lib/cluster.js:90:33)",
+              "ApplicationLoadBalancedFargateService.getDefaultCluster (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ecs-patterns/lib/base/application-load-balanced-service-base.js:155:63)",
+              "new ApplicationLoadBalancedServiceBase (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ecs-patterns/lib/base/application-load-balanced-service-base.js:43:46)",
+              "new ApplicationLoadBalancedFargateService (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/aws-ecs-patterns/lib/fargate/application-load-balanced-fargate-service.js:22:9)",
+              "/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:8154:58",
+              "Kernel._wrapSandboxCode (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:8582:24)",
+              "Kernel._create (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:8154:34)",
+              "Kernel.create (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:7895:29)",
+              "KernelHost.processRequest (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:9479:36)",
+              "KernelHost.run (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:9442:22)",
+              "Immediate._onImmediate (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:9443:46)",
+              "processImmediate (internal/timers.js:461:21)"
+            ]
+          }
+        ],
+        "/hello-ecs/CDKMetadata/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadata",
+            "trace": [
+              "new MetadataResource (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/core/lib/private/metadata-resource.js:22:30)",
+              "/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/core/lib/private/synthesis.js:139:9",
+              "visit (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/core/lib/private/synthesis.js:200:9)",
+              "visit (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/core/lib/private/synthesis.js:197:9)",
+              "injectMetadataResources (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/core/lib/private/synthesis.js:128:5)",
+              "Object.synthesize (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/core/lib/private/synthesis.js:17:5)",
+              "App.synth (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/core/lib/stage.js:100:41)",
+              "/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:7970:134",
+              "Kernel._wrapSandboxCode (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:8582:24)",
+              "/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:7970:107",
+              "Kernel._ensureSync (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:8563:28)",
+              "Kernel.invoke (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:7970:34)",
+              "KernelHost.processRequest (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:9479:36)",
+              "KernelHost.run (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:9442:22)",
+              "Immediate._onImmediate (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:9443:46)",
+              "processImmediate (internal/timers.js:461:21)"
+            ]
+          }
+        ],
+        "/hello-ecs/CDKMetadata/Condition": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadataAvailable",
+            "trace": [
+              "new MetadataResource (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/core/lib/private/metadata-resource.js:30:35)",
+              "/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/core/lib/private/synthesis.js:139:9",
+              "visit (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/core/lib/private/synthesis.js:200:9)",
+              "visit (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/core/lib/private/synthesis.js:197:9)",
+              "injectMetadataResources (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/core/lib/private/synthesis.js:128:5)",
+              "Object.synthesize (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/core/lib/private/synthesis.js:17:5)",
+              "App.synth (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/jsii-kernel-GknQNW/node_modules/@aws-cdk/core/lib/stage.js:100:41)",
+              "/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:7970:134",
+              "Kernel._wrapSandboxCode (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:8582:24)",
+              "/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:7970:107",
+              "Kernel._ensureSync (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:8563:28)",
+              "Kernel.invoke (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:7970:34)",
+              "KernelHost.processRequest (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:9479:36)",
+              "KernelHost.run (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:9442:22)",
+              "Immediate._onImmediate (/private/var/folders/ws/nfcwrpvs4gj6jyc0qgpmh5qr0000gn/T/tmp1787ccrb/lib/program.js:9443:46)",
+              "processImmediate (internal/timers.js:461:21)"
+            ]
+          }
+        ]
+      },
+      "displayName": "hello-ecs"
+    }
+  }
+}
