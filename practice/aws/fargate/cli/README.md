@@ -12,6 +12,8 @@ sudo chmod +x /usr/local/bin/ecs-cli
 ```
 
 # tutorial
+cf. https://docs.aws.amazon.com/ja_jp/AmazonECS/latest/developerguide/ecs-cli-tutorial-fargate.html
+
 ## step 1
 ```
 aws iam --region ap-northeast-1 create-role --role-name ecsTaskExecutionRole --assume-role-policy-document file://task-execution-assume-role.json
