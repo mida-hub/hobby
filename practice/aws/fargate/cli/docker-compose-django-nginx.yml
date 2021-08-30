@@ -1,0 +1,24 @@
+version: '3'
+
+services:
+  django:
+    image: 348598762816.dkr.ecr.ap-northeast-1.amazonaws.com/app:latest
+    command: gunicorn config.wsgi:application --bind 0.0.0.0:8000
+    volumes:
+      - static_volume:/usr/src/app/staticfiles
+    expose:
+      - "8000"
+    # 環境変数を指定
+    env_file: .env
+  nginx:
+    image: 348598762816.dkr.ecr.ap-northeast-1.amazonaws.com/web:latest
+    volumes:
+      - static_volume:/usr/src/app/staticfiles
+    ports:
+      - "80:80"
+    depends_on:
+      - django
+    restart: always
+
+volumes:
+    static_volume:
