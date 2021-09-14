@@ -5,7 +5,38 @@ use std::str;
 use std::{convert::Infallible, net::SocketAddr};
 use tera::{Context, Tera};
 use std::sync::Arc;
+use serde::Deserialize;
+use uuid::Uuid;
+use rusqlite::{params, Connection};
+use tokio::sync::Mutex;
+
 static TEMPLATE: &str = "Hello, {{name}}!";
+
+#[derive(Deserialize)]
+struct NewPost<'a>{
+    title: &'a str,
+    content: &'a str,
+}
+
+async fn create_post(
+        req: Request<Body>,
+        _: Arc<Tera>,
+        conn: Arc<Mutex<Connection>>,
+    )->Result<Response<Body>, Error>{
+    let body = hyper::body::to_bytes(req.into_body()).await?;
+    let new_post = serde_urlencoded::from_bytes::<NewPost>(&body).unwrap();
+    let id = Uuid::new_v4();
+
+    conn.lock()
+        .await
+        .execute(
+            "INSERT INTO posts(id, title, content) VALUES (?1, ?2, ?3)",
+            params![&id, new_post.title, new_post.content],
+        )
+        .unwrap();
+
+    Ok(Response::new(id.to_string().into()))
+}
 
 async fn handle(_: Request<Body>)-> Result<Response<Body>, Infallible>{
     Ok(Response::new("Hello, World!".into()))
