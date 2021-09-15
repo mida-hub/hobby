@@ -9,6 +9,7 @@ use serde::Deserialize;
 use uuid::Uuid;
 use rusqlite::{params, Connection};
 use tokio::sync::Mutex;
+use rusqlite::OperationalExtension;
 
 static TEMPLATE: &str = "Hello, {{name}}!";
 
@@ -16,6 +17,22 @@ static TEMPLATE: &str = "Hello, {{name}}!";
 struct NewPost<'a>{
     title: &'a str,
     content: &'a str,
+}
+
+struct Post {
+    id: Uuid,
+    title: String,
+    content: String,
+}
+
+impl Post {
+    fn render(&self, tera: Arc<Tera>)->String{
+
+    }
+}
+
+fn get_id(req: &Request<Body>)->Uuid{
+
 }
 
 async fn create_post(
