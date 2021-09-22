@@ -23,7 +23,6 @@ while [ -z "$check" ]; do
             ;;
         *)
             echo "*** Bad choice!"
-            printf '¥007'
             check=""
             ;;
     esac
