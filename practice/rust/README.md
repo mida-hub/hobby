@@ -15,3 +15,14 @@ cargo new web-memory
 cargo new test-futures
 cargo add futures
 ```
+
+# build & run
+コンパイル
+```
+cargo build
+```
+
+コンパイル&実行
+```
+cargo run
+```
