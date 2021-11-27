@@ -1,5 +1,5 @@
 [package]
-name = "test-async-await"
+name = "test-async-trait"
 version = "0.1.0"
 authors = ["mida-hub <rusuden0106@gmail.com>"]
 edition = "2018"
@@ -7,6 +7,5 @@ edition = "2018"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-futures = "0.3.17"
-tokio = { version = "0.2.21", features = ["macros"] }
+async-trait = "0.1.51"
 async-std = { version = "1.6.1", features = ["attributes"] }
