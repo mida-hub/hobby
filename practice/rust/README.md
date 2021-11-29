@@ -5,15 +5,14 @@ rustup component add rls rust-analysis rust-src
 ```
 
 # create project
-## web-memory
-```
-cargo new web-memory
-```
-
-## test-futures
 ```
 cargo new test-futures
 cargo add futures
+```
+
+# create crate
+```
+cargo new --lib new_crate
 ```
 
 # build & run
