@@ -25,3 +25,9 @@ cargo build
 ```
 cargo run
 ```
+
+# error handle
+```
+cargo add anyhow
+cargo add thiserror
+```
