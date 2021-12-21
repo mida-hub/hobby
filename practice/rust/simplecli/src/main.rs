@@ -84,8 +84,6 @@ fn main() -> Result<()> {
             run(reader, verbose)
         }
     }
-
-    
 }
 
 fn run<R: BufRead>(reader: R, verbose: bool) -> Result<()> {
