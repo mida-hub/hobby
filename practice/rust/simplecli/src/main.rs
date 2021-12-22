@@ -2,6 +2,7 @@ use anyhow::{bail, ensure, Context, Result};
 
 use clap::{App, Arg};
 use std::fs::File;
+use std::path::PathBuf;
 use std::io::{stdin, BufRead, BufReader};
 
 struct RpnCalculator(bool);
@@ -74,7 +75,7 @@ fn main() -> Result<()> {
     let verbose = matches.is_present("verbose");
     match matches.value_of("formula_file"){
         Some(file) => {
-            let f = File::open(file)?;
+            let f = File::open(PathBuf::from(file))?;
             let reader = BufReader::new(f);
             run(reader, verbose)
         }
