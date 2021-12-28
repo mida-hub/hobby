@@ -1,0 +1,13 @@
+/target
+**/*.rs.bk
+Cargo.lock
+bin/
+pkg/
+src/
+tests/
+www/
+wasm-pack.log
+.appveyor.yml
+.travis.yml
+Cargo.toml
+README.md
