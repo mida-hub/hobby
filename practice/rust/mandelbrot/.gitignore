@@ -4,7 +4,9 @@ Cargo.lock
 bin/
 pkg/
 tests/
-www/
+www/*
+!www/index.html
+!www/index.js
 wasm-pack.log
 .appveyor.yml
 .travis.yml
