@@ -1,5 +1,3 @@
-use proconio::input;
-
 fn main() {
     input! {
         mut l: i32,
