@@ -1,5 +1,5 @@
 fn main() {
-    input! {
+    proconio::input! {
         mut l: i32,
         r: i32,
         s: String,

@@ -1,5 +1,5 @@
 fn main() {
-    input! {
+    proconio::input! {
         x: i32,
         y: i32,
     }
