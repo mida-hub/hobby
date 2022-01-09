@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: webapl
+spec:
+  containers:
+    - name: webapl
+      image: mida12251141/webapl:0.1
+      livenessProbe:            # 活性プローブに対するハンドラー
+        httpGet:
+          path: /healthz
+          port: 3000
+        initialDelaySeconds: 3  # 初回起動から探査開始までの猶予期間
+        periodSeconds: 5        # チェック間隔
+      readinessProbe:           # 準備状態プローブに対するハンドラー
+        httpGet:
+          path: /ready
+          port: 3000
+        initialDelaySeconds: 15
+        periodSeconds: 6

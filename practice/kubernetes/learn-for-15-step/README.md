@@ -28,3 +28,23 @@ kubectl create job job-1 --image=ubuntu -- /bin/bash -c "exit 0"
 kubectl create job job-2 --image=ubuntu -- /bin/bash -c "exit 1"
 kubectl get po
 ```
+
+# Step 7
+```
+# マニフェストからオブジェクトを生成
+kubectl apply -f xxxx.yaml
+
+# ポッドネットワーク内に閉じているためアクセスできない
+kubectl get po nginx -o wide
+curl -m 3 http://
+
+# 対話型ポッドを起動してアクセス
+kubectl run busybox --image=busybox --restart=Never --rm -it sh
+wget -q -O - http://10.1.0.83
+
+# ヘルスチェック
+docker build --tag mida12251141/webapl:0.1 .
+docker push mida12251141/webapl:0.1
+kubectl apply -f webapl-pod.yml
+kubectl delete -f webapl-pod.yml
+```
