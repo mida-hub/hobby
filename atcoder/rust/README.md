@@ -13,7 +13,7 @@ cargo compete init atcoder
 cargo compete login atcoder
 cargo compete new abc233
 cargo compete open
-cargo run --bin abc233-a
+cargo run --bin abc233-a < input.txt
 cargo compete test a
 cargo compete submit a
 ```
