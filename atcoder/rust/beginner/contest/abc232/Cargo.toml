@@ -46,6 +46,7 @@ name = "abc232-h"
 path = "src/bin/h.rs"
 
 [dependencies]
+itertools = "0.10.3"
 proconio = "0.4.3"
 
 [dev-dependencies]
