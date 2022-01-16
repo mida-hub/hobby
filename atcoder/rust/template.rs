@@ -12,5 +12,11 @@ let v = Vec::new();
 ans.push(v);
 ans[0].push(1);
 
-// hashmap
+// hashmap sort
 // https://yiskw713.hatenablog.com/entry/rust-hashmap-sort
+
+let mut votes: HashMap<&str, i32> = HashMap::new();
+for s in &sn {
+    // key, value の組み合わせでカウントする
+    *votes.entry(s).or_insert(0) += 1;
+}
