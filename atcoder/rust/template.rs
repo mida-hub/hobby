@@ -30,3 +30,6 @@ println!("{}", format!("AGC{:03}", ans));
 
 // 配列に要素が含まれる
 patterns.contains(&s_substr)
+
+// 文字列の反転
+let a_rev = a.chars().rev().collect::<String>();
