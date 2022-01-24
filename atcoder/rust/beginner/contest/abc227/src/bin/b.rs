@@ -21,14 +21,9 @@ fn main() {
     
     let mut ans = 0;
     for s in &sn {
-        *sn_list.entry(*s).or_insert(0) += 1;
-        
-        if sn_list[s] == 1 {
+        if sn_list.get(s) == None {
             ans += 1;
-            *sn_list.entry(*s).or_insert(0) -= 1;
         }
-        // println!("{}", s);
-        // println!("{}", sn_list[s]);
     }
 
     println!("{}", ans);
