@@ -22,6 +22,10 @@ for s in &sn {
     // key, value の組み合わせでカウントする
     *votes.entry(s).or_insert(0) += 1;
 }
+// 存在する
+if votes.get(s) {}
+// 存在しない
+if votes.get(s) == None {}
 
 // 文字列のn番目
 abc.chars().nth(0).unwrap()
