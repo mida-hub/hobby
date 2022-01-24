@@ -16,6 +16,7 @@ ans[0].push(1);
 
 // hashmap sort
 // https://yiskw713.hatenablog.com/entry/rust-hashmap-sort
+use std::collections::HashMap;
 let mut votes: HashMap<&str, i32> = HashMap::new();
 for s in &sn {
     // key, value の組み合わせでカウントする
@@ -33,3 +34,9 @@ patterns.contains(&s_substr)
 
 // 文字列の反転
 let a_rev = a.chars().rev().collect::<String>();
+
+// 配列を作成する
+let mut s = vec![0; n];
+
+// 配列の合計
+s.iter().sum::<i32>()
