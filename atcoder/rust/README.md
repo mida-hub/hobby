@@ -14,6 +14,10 @@ cargo compete login atcoder
 cargo compete new abc233
 # Cargo.toml に 記述する
 proconio = "0.4.3"
+# 入力用
+    proconio::input! {
+        s: String,
+    }
 cargo compete open
 cargo run --bin abc233-a < input.txt
 cargo compete test a
