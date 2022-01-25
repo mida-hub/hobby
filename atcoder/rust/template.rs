@@ -44,3 +44,16 @@ let mut s = vec![0; n];
 
 // 配列の合計
 s.iter().sum::<i32>()
+
+// 文字列の入れ替え
+use proconio::marker::{Chars, Usize1};
+
+fn main () {
+    proconio::input! {
+    mut s: Chars,
+        a: Usize1,
+        b: Usize1,
+    }
+    s.swap(a, b);
+    println!("{}", s.iter().collect::<String>());
+}
