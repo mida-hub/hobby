@@ -22,6 +22,12 @@ for s in &sn {
     // key, value の組み合わせでカウントする
     *votes.entry(s).or_insert(0) += 1;
 }
+let mut votes_vec: Vec<(&&usize, &usize)> = votes.iter().collect();
+// sort asc
+votes_vec.sort_by(|a, b| a.1.cmp(&b.1));
+// sort desc
+votes_vec.sort_by(|a, b| (-a.1).cmp(&(-b.1)));
+
 // 存在する
 if votes.get(s) {}
 // 存在しない
