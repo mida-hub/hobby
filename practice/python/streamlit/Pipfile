@@ -7,6 +7,9 @@ name = "pypi"
 streamlit = "*"
 plotly = "*"
 scipy = "*"
+slack-sdk = "*"
+html2image = "*"
+kaleido = "*"
 
 [dev-packages]
 
