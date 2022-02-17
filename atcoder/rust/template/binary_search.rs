@@ -1,3 +1,5 @@
+// abc231c
+// https://moshg.github.io/rust-std-ja/std/primitive.slice.html#method.binary_search
 fn main() {
     proconio::input! {
         n: usize,
