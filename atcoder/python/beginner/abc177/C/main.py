@@ -6,12 +6,11 @@ MOD = 1000000007  # type: int
 
 def solve(N: int, A: "List[int]"):
     total = 0
-    sn = [0]
+    sn = 0
     for i, ai in enumerate(reversed(A)):
-        sn.append(sn[i] + ai)
-        total += sn[i] * ai 
+        total += sn * ai 
         total %= MOD
-
+        sn += ai
         # print(f'ai={ai}')
         # print(f'sn={sn}')
         # print(f'total={total}')
