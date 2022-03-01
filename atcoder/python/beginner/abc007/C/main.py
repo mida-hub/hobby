@@ -37,12 +37,12 @@ def main():
 
     while deq:
         d = deq.popleft()
-        d_r = d[0]
-        d_c = d[1]
+        d_c = d[0]
+        d_r = d[1]
         
         for op in ops:
-            op_r = op[0]
-            op_c = op[1]
+            op_c = op[0]
+            op_r = op[1]
 
             row = d_r + op_r
             col = d_c + op_c
@@ -60,7 +60,7 @@ def main():
                 continue
             
             dist[row][col] = dist[d_r][d_c] + 1
-            deq.append([row, col])
+            deq.append([col, row])
 
     # for d in dist:
     #     print(d)
