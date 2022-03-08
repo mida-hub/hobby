@@ -1,34 +1,30 @@
 #!/usr/bin/env python3
 import sys
+import copy
 
 MOD = 998244353  # type: int
 
 
 def solve(N: int):
-    dp = []
-    for i in range(N+1):
-        dp.append([0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
-
-    for i in range(1, 10):
-        dp[1][i] = 1
+    dp_before = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
 
     for d in range(2, N+1):
-        # print(f'd={d}')
+        dp_after = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
         for i in range(1, 10):
             # f(4??)+=f(5?)
             # f(5??)+=f(5?)
             # f(6??)+=f(5?)
             for j in range(max(1, i - 1), min(10, i + 2)):
-                dp[d][j] += dp[d-1][i]
-                dp[d][j] %= MOD
-            # print(dp[d])
-        # for i in range(N+1):
-            # print(f'dp[{i}]={dp[i]}')
+                dp_after[j] += dp_before[i]
+                dp_after[j] %= MOD
+        
+        # print(f'dp={dp_after}')
+        dp_before = copy.copy(dp_after)
 
     result = 0
     for i in range(1, 10):
         # print(dp[N][i])
-        result += dp[N][i]
+        result += dp_after[i]
         result %= MOD
     print(result)
     return
