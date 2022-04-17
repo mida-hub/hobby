@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  core:
+    # image: apache/airflow:2.2.5
+    build: .
+    container_name: airflow
+    ports:
+      - 8080:8080
+    volumes:
+      - ./opt/airflow:/opt/airflow
+      - ~/.config/gcloud:/home/airflow/.config/gcloud
+    # command: db init # Use fist time only
+    # command: webserver
+    command: >
+      bash -c "airflow webserver -p 8080 -D && airflow scheduler -D"
