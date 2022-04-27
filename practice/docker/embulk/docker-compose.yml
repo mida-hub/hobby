@@ -21,6 +21,7 @@ services:
     volumes:
       - ./embulk:/home
       - ~/.config/gcloud:/root/.config/gcloud
+      - ./embulk/my.cnf:/etc/mysql/my.cnf
     tty: true
 
 networks:

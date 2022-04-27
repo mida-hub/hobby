@@ -1,0 +1,17 @@
+{% include 'in_env' %}
+{% include 'out_env' %}
+in:
+  type: mysql
+  host: {{ host }}
+  database: {{ database }}
+  user: {{ user }}
+  password: {{ password }}
+  query: select * from employees;
+out:
+  type: bigquery
+  project: {{ project }}
+  location: {{ location }}
+  dataset: lake
+  table: employees
+  mode: append
+  auto_create_table: true
