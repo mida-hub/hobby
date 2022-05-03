@@ -18,7 +18,7 @@ fn main() {
         n: usize,
         an: [usize; n]
         }
-    let mut counter_an = vec![0; 200010];
+    let mut counter_an: Vec<i64> = vec![0; 200010];
     for ai in &an {
         counter_an[*ai] += 1;
     }
