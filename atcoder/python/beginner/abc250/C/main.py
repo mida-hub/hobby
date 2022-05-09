@@ -3,6 +3,27 @@ import sys
 
 
 def solve(N: int, Q: int, x: "List[int]"):
+    val = [i for i in range(N)]
+    pos = [i for i in range(N)]
+    
+    for q in x:
+        # print(q - 1)
+        p0 = pos[q - 1]
+        if p0 == N - 1:
+            p1 = p0 - 1
+        else:
+            p1 = p0 + 1
+        # print(p0, p1)
+        v0 = val[p0]
+        v1 = val[p1]
+        # print(v0, v1)
+
+        val[p0], val[p1] = val[p1], val[p0]
+        pos[v0], pos[v1] = pos[v1], pos[v0]
+
+        # print(val)
+        # print(pos)
+    print(" ".join([str(x + 1) for x in val]))
     return
 
 
