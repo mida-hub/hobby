@@ -1,0 +1,29 @@
+version: '3'
+services:
+  db:
+    image: postgres:10
+    volumes:
+      - "./db/data:/var/lib/postgresql/data"
+    restart: always
+    environment:
+      POSTGRES_DB: metabase
+      POSTGRES_USER: metabase
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    ports:
+      - 5432:5432
+  app:
+    image: metabase/metabase:latest
+    container_name: metabase
+    environment:
+      JAVA_TIMEZONE: Asia/Tokyo
+      MB_ENCRYPTION_SECRET_KEY: ${MB}
+      MB_DB_TYPE: postgres
+      MB_DB_DBNAME: metabase
+      MB_DB_PORT: 5432
+      MB_DB_USER: metabase
+      MB_DB_PASS: ${POSTGRES_PASSWORD}
+      MB_DB_HOST: db
+    ports:
+      - 3000:3000
+    depends_on:
+      - db
