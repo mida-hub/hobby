@@ -9,10 +9,10 @@ from dateutil import parser
 ##################################################################
 ## トークン関連
 
-CK = "6Um5ojH4yMwM7V4yXSeHj3Iim"
-CS = "0X2BKo7oviIGcVjd831fVjgELagOzQXPTBN6yRlDPStIO18lAh"
-AT = "1024912353534472192-MheyZdfKGCcI6n0Xcu20yNembGpalF"
-ATS = "WiRYGfDF4E9FeudsqCdVS4IIqdsspwmYssqU3Ze67YrJ2"
+CK = ""
+CS = ""
+AT = ""
+ATS = ""
 
 ##################################################################
 
