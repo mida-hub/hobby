@@ -1,0 +1,21 @@
+version: '3'
+services:
+  postgres:
+    image: debezium/example-postgres
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_USER: postgres-user
+      POSTGRES_PASSWORD: password
+    ports:
+      - "25432:5432"
+  redis:
+    image: redis:6.2.1-alpine
+    ports:
+      - "16379:6379"
+  debezium:
+    image: debezium/server:1.6.1.Final
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./conf:/debezium/conf
+      - ./data:/debezium/data

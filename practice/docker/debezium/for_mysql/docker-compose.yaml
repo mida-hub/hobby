@@ -1,0 +1,23 @@
+version: '3'
+services:
+  mysql:
+    image: debezium/example-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: test
+      MYSQL_USER: mysql-user
+      MYSQL_PASSWORD: password
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_bin
+    ports:
+      - "23306:3306"
+  redis:
+    image: redis:6.2.1-alpine
+    ports:
+      - "16379:6379"
+  debezium:
+    image: debezium/server:1.6.1.Final
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./conf:/debezium/conf
+      - ./data:/debezium/data
