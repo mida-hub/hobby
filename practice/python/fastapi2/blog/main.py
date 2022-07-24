@@ -1,14 +1,78 @@
-from fastapi import FastAPI
+import imp
+import re
+from fastapi import FastAPI, Depends, status, Response, HTTPException
 from starlette.responses import FileResponse
-from .schemas import Blog
+from typing import List
+from .schemas import Blog, ShowBlog
+from .models import Base
+from . import models
+from .database import engine, sessionLocal
+from sqlalchemy.orm import Session
 
 app = FastAPI()
 favicon_path = 'favicon.ico'
+Base.metadata.create_all(engine)
+
+def get_db():
+    db = sessionLocal()
+
+    try:
+        yield db
+    finally:
+        db.close()
 
 @app.get('/favicon.ico')
 async def favicon():
     return FileResponse(favicon_path)
 
-@app.post('/blog')
-def create(blog: Blog):
-    return {'data': blog}
+@app.post('/blog', status_code=status.HTTP_201_CREATED)
+def create(blog: Blog, db: Session = Depends(get_db)):
+    new_blog = models.Blog(title=blog.title, body=blog.body)
+    db.add(new_blog)
+    db.commit()
+    db.refresh(new_blog)
+
+    return new_blog
+
+@app.get('/blog', response_model=List[ShowBlog])
+def all_fetch(db: Session = Depends(get_db)):
+    blogs = db.query(models.Blog).all()
+    return blogs
+
+@app.get('/blog/{id}', status_code=status.HTTP_200_OK, response_model=ShowBlog)
+def show(id: int, response: Response, db: Session = Depends(get_db)):
+    blog = db.query(models.Blog).filter(models.Blog.id == id).first()
+
+    if blog is None:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
+                            detail=f'Blog with the id {id} is not available')
+        # response.status_code = status.HTTP_404_NOT_FOUND
+        # return {'detail': f'Blog with the id {id} is not available'}
+
+    return blog
+
+@app.delete('/blog/{id}', status_code=status.HTTP_204_NO_CONTENT)
+def delete(id: int, db: Session = Depends(get_db)):
+    blog = db.query(models.Blog).filter(models.Blog.id == id)
+    
+    if blog.first() is None:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
+                            detail=f'Blog with the id {id} is not found')
+
+    blog.delete(synchronize_session=False)
+    db.commit()
+
+    return 'Deletion completed'
+
+@app.put('/bloh/{id}', status_code=status.HTTP_202_ACCEPTED)
+def update(id, request: Blog, db: Session = Depends(get_db)):
+    blog = db.query(models.Blog).filter(models.Blog.id == id)
+    
+    if blog.first() is None:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
+                            detail=f'Blog with the id {id} is not found')
+    
+    blog.update(request.dict())
+    db.commit()
+
+    return 'Update completed'
