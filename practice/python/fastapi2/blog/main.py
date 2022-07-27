@@ -27,8 +27,8 @@ async def favicon():
     return FileResponse(favicon_path)
 
 @app.post('/blog', status_code=status.HTTP_201_CREATED, tags=['blogs'])
-def create(blog: Blog, db: Session = Depends(get_db)):
-    new_blog = models.Blog(title=blog.title, body=blog.body)
+def create(request: Blog, db: Session = Depends(get_db)):
+    new_blog = models.Blog(title=request.title, body=request.body, creator_id=request.creator_id)
     db.add(new_blog)
     db.commit()
     db.refresh(new_blog)
