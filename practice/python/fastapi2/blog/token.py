@@ -3,6 +3,7 @@ from datetime import datetime, timedelta
 from jose import jwt, JWTError
 from .settings import Settings
 from .functions.user import get_user
+from .models import User
 
 settings = Settings()
 
@@ -23,7 +24,7 @@ def create_access_token(data: dict, expires_delta: Optional[timedelta] = None):
 
     return encoded_jwt
 
-def verify_token(token: str, credentilas_exception, db):
+def verify_token(token: str, credentilas_exception, db) -> User:
     try:
         payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
         email: str = payload.get("sub")
