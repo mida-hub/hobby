@@ -1,10 +1,5 @@
-from os import access
-from typing import List, Optional
+from typing import List
 from pydantic import BaseModel
-
-class Login(BaseModel):
-    email: str
-    password: str
 
 class User(BaseModel):
     name: str
@@ -14,7 +9,6 @@ class User(BaseModel):
 class Blog(BaseModel):
     title: str
     body: str
-    creator_id: int
 
 class RelationshipUser(BaseModel):
     id: int
@@ -48,10 +42,3 @@ class ShowBlog(BaseModel):
 
     class Config:
         orm_mode = True
-
-class Token(BaseModel):
-    access_token: str
-    token_type: str
-
-class TokenData(BaseModel):
-    email: Optional[str] = None

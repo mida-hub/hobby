@@ -1,7 +1,8 @@
 from typing import Optional
 from datetime import datetime, timedelta
-from jose import jwt
+from jose import jwt, JWTError
 from .settings import Settings
+from .functions.user import get_user
 
 settings = Settings()
 
@@ -21,3 +22,19 @@ def create_access_token(data: dict, expires_delta: Optional[timedelta] = None):
     encoded_jwt = jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
 
     return encoded_jwt
+
+def verify_token(token: str, credentilas_exception, db):
+    try:
+        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+        email: str = payload.get("sub")
+        id: int = payload.get("id")
+        
+        if email is None:
+            raise credentilas_exception
+
+    except JWTError:
+        raise credentilas_exception
+
+    user = get_user(id, db)
+
+    return user

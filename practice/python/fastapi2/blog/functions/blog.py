@@ -16,8 +16,12 @@ def show(id: int, db: Session):
 
     return blog
 
-def create(request: Blog, db: Session):
-    new_blog = models.Blog(title=request.title, body=request.body, creator_id=request.creator_id)
+def create(request: Blog, db: Session, current_user):
+    print(current_user)
+    user_id = [data for data in current_user]
+    user_id = user_id[0].id
+
+    new_blog = models.Blog(title=request.title, body=request.body, creator_id=user_id)
     db.add(new_blog)
     db.commit()
     db.refresh(new_blog)
