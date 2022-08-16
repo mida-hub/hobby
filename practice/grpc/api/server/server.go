@@ -12,6 +12,10 @@ import (
 
     "grpc/api/handler"
     "grpc/api/gen/api"
+
+    "go.uber.org/zap"
+    "github.com/grpc-ecosystem/go-grpc-middleware"
+    "github.com/grpc-ecosystem/go-grpc-middleware/logging/zap"
 )
 
 func main() {
@@ -21,7 +25,20 @@ func main() {
         log.Fatalf("failed to listen: %v", err)
     }
 
-    server := grpc.NewServer()
+    zapLogger, err := zap.NewProduction()
+    if err != nil {
+        panic(err)
+    }
+    grpc_zap.ReplaceGrpcLogger(zapLogger)
+
+    server := grpc.NewServer(
+        grpc.UnaryInterceptor(
+            grpc_middleware.ChainUnaryServer(
+                grpc_zap.UnaryServerInterceptor(zapLogger),
+            ),
+        ),
+    )
+    
     api.RegisterPancakeBakerServiceServer(
         server,
         handler.NewBakerHandler(),
