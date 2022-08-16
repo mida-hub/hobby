@@ -23,6 +23,9 @@ go get -u github.com/golang/protobuf/protoc-gen-go
 go get google.golang.org/grpc
 go get google.golang.org/grpc/reflection
 
+go get -u go.uber.org/zap
+go get -u github.com/grpc-ecosystem/go-grpc-middleware
+
 ## path
 tree . -L 1
 
