@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: skaffold-hands-on
+  name: skaffold-hands-on
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: skaffold-hands-on
+  template:
+    metadata:
+      labels:
+        app: skaffold-hands-on
+    spec:
+      containers:
+      - image: skaffold-hands-on # コンテナイメージはskaffold-hands-on
+        name: skaffold-hands-on
+        ports:
+        - containerPort: 8080    # 8080ポートを公開する
