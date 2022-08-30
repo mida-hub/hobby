@@ -1,3 +1,5 @@
+cf. https://atmarkit.itmedia.co.jp/ait/articles/2103/04/news001.html
+
 # setup
 brew install kubernetes-helm
 
