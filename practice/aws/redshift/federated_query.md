@@ -6,6 +6,7 @@
 4. ルートテーブル
 5. セキュリティグループ
 6. サブネットグループ
+7. VPCエンドポイント: S3 gateway で作成
 
 ## S3
 - bucket: sync-mida-test
@@ -18,55 +19,32 @@ CLI User を作成する(以降は aws-cli-user とする)
 
 ## Redshift
 ### Redshift Serverless setup
-https://dev.classmethod.jp/articles/20220805-amazon-redshift-serverless/
+- https://dev.classmethod.jp/articles/20220805-amazon-redshift-serverless/
+- 拡張VPCををオンにする(そうしないと federated query でうまく接続できない)
+- Redshift マネージド VPC エンドポイント を作成する
 
 ### Role
 - AmazonRedshiftAllCommandsFullAccess
 - AmazonS3FullAccess
 
-### table
-```sql
-create table public.test (
-    name varchar (10),
-    age decimal(3,0)
-);
-
-insert into public.test values('alice', 20);
-commit;
-```
-
-### s3 output
-```sql
-UNLOAD ('select * from public.test')
-TO 's3://sync-mida-test/output/'
-IAM_ROLE 'arn:aws:iam::aws_account:role/your_role'
-ALLOWOVERWRITE
-FORMAT JSON;
-```
-
 ### data api
 権限設定
 
-```sql
-select * from pg_user;
-GRANT USAGE ON SCHEMA public TO "IAM:aws-cli-user";
-GRANT SELECT ON ALL TABLES IN SCHEMA public TO "IAM:aws-cli-user";
-
--- 権限確認
-select
-  usename
-  , schemaname
-  , tablename
-  , has_table_privilege(usename, schemaname || '.' || tablename, 'select') as select
-from
-  pg_tables, pg_user
-where
-  schemaname in ('public')  -- 確認したいスキーマで絞り込む
-and
-  usename in ('IAM:aws-cli-user')  -- 確認したいユーザで絞り込む
-order by
-  1, 2, 3
-;
-```
-
 ## DB
+1. mysqlとして最小インスタンスで作成する
+2. 同一VPCのパブリックネットワークに作成する
+
+## Redshift Federated Query
+### Secret Manager
+DB の user / password を保存する
+
+### IAM
+Redshift の IAM role に Secret Manager がアクセスできるようにする
+
+https://docs.aws.amazon.com/ja_jp/redshift/latest/dg/federated-create-secret-iam-role.html
+
+# public network and 2 vpc
+## VPC
+1. VPCピアリング
+2. ルートテーブルの設定
+3. セキュリティグループの許可

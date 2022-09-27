@@ -31,6 +31,14 @@ sql = f"""
     FORMAT JSON;
 """
 
+sql = f"""
+    UNLOAD ('select * from ex_pg.users')
+    TO '{settings.s3}'
+    IAM_ROLE '{settings.iam_role}'
+    ALLOWOVERWRITE
+    FORMAT JSON;
+"""
+
 print(sql)
 
 # redshift data api を実行
