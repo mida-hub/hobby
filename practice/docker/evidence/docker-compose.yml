@@ -7,3 +7,5 @@ services:
     ports:
       - "127.0.0.1:3000:3000"
     command: sh -c "cd my-project && npm run dev"
+    volumes:
+      - index.md:/app/my-project/index.md
