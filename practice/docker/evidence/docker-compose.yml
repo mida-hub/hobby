@@ -9,3 +9,4 @@ services:
     command: sh -c "cd my-project && npm run dev"
     volumes:
       - index.md:/app/my-project/index.md
+      - evidence.settings.json:/app/my-project/.evidence/template/evidence.settings.json
