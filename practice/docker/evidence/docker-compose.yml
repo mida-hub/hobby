@@ -8,5 +8,5 @@ services:
       - "127.0.0.1:3000:3000"
     command: sh -c "cd my-project && npm run dev"
     volumes:
-      - index.md:/app/my-project/index.md
+      - ./pages:/app/my-project/pages
       - evidence.settings.json:/app/my-project/.evidence/template/evidence.settings.json
