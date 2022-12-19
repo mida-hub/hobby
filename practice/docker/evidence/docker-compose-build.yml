@@ -3,9 +3,7 @@ services:
   app:
     container_name: evidence
     build: .
-    ports:
-      - "127.0.0.1:3000:3000"
-    command: sh -c "cd my-project && npm run dev"
+    command: sh -c "cd my-project && npm run build"
     volumes:
       - ./pages:/app/my-project/pages
       - ./build:/app/my-project/build
