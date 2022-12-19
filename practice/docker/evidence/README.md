@@ -8,9 +8,6 @@ $ mkdir build
 $ touch settings.json
 ```
 
-# DB の接続設定
-settings.json は git 管理には含めないこと
-
 # pages
 pages ディレクトリ配下に hoge.md を作成し、ここに SQL や表示設定を書く
 
@@ -22,20 +19,27 @@ npm run build 時に出力されるディレクトリ
 
 ```sh
 $ docker-compose up -d
-$ docker-compose down
 ```
+
+localhost:3000
+
+evidence の設定画面から DB の接続設定をすると
+setting.json をマウントしているので、設定が書き込まれます
+次回以降コンテナ立ち上げ時の設定が不要になります
+※ このファイルは git 管理に含めないこと
 
 ## build
 
 ```sh
-$ docker-compose -f docker-compose-build.yml up -d
+$ docker-compose -f docker-compose-build.yml up
 ```
 
-build 後にコンテナは終了します
+build 後に /build にファイルが出力されてコンテナは終了します
 
 ## hosting
 
 ```sh
 $ docker-compose -f docker-compose-nginx.yml up -d
-$ docker-compose -f docker-compose-nginx.yml down
 ```
+
+localhost
