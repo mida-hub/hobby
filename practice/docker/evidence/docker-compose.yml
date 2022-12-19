@@ -8,5 +8,4 @@ services:
     command: sh -c "cd my-project && npm run dev"
     volumes:
       - ./pages:/app/my-project/pages
-      - ./build:/app/my-project/build
       - ./settings.json:/app/my-project/.evidence/template/evidence.settings.json
