@@ -1,4 +1,0 @@
-clinics
-departments
-patients
-treatments
