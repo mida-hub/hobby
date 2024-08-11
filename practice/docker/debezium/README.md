@@ -12,9 +12,11 @@ GRANT SELECT, RELOAD, SHOW DATABASES, REPLICATION SLAVE, REPLICATION CLIENT, LOC
 mysql -> debezium -> redis
 docker-compose up
 
+debezium が立ち上がらない場合は data/offsets.dat を削除する
+
 ### monitoring
 docker ps
-docker exec -it redis-container-id sh  
+docker exec -it redis-container-id sh
 redis-cli monitor
 
 docker exec it mysql-container-id bash
