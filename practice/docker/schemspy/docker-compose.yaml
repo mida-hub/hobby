@@ -1,0 +1,51 @@
+services:
+  db:
+    container_name: postgres_db
+    image: postgres:15
+    restart: always
+    ports:
+      - 5432:5432
+    networks:
+      - app_network
+    environment:
+      - TZ=Asia/Tokyo
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    volumes:
+      - database:/var/lib/postgresql/data
+    healthcheck:
+      test: "psql -U postgres"
+      interval: 3s
+      timeout: 3s
+      retries: 5
+
+  schemaspy:
+    build:
+      context: .
+      dockerfile: ./schemaspy/Dockerfile.dev
+    container_name: schemaspy
+    networks:
+      - app_network
+    volumes:
+      - ./schemaspy/output:/schemaspy_output
+      - ./schemaspy/schemaspy.properties:/schemaspy.properties
+    command: "java -jar schemaspy.jar -vizjs"
+    depends_on:
+      db:
+        condition: service_healthy
+
+  nginx_schemaspy:
+    image: nginx
+    container_name: "nginx_schemaspy"
+    depends_on:
+      - schemaspy
+    ports:
+      - "8088:80"
+    volumes:
+      - ./schemaspy/output:/usr/share/nginx/html:ro
+      
+volumes:
+  database:
+
+networks:
+  app_network:
