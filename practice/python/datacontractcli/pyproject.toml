@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "datacontractcli"
+version = "0.1.0"
+description = ""
+authors = ["mida-hub <rusuden0106@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+datacontract-cli = "^0.10.16"
+google-cloud-bigquery = "^3.27.0"
+google-cloud-bigquery-storage = "^2.27.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
