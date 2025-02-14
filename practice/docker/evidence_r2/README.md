@@ -12,6 +12,11 @@ npm run sources
 npm run dev -- --host 0.0.0.0
 
 npm install ; npm run sources ; npm exec evidence dev -- --open
+
+# package update
+npx -p npm-check-updates -c "ncu"
+npx -p npm-check-updates -c "ncu -u"
+npm install
 ```
 
 See [the CLI docs](https://docs.evidence.dev/cli/) for more command information.
